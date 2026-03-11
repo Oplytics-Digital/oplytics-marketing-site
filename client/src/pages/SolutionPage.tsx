@@ -1,15 +1,20 @@
 /**
- * SolutionPage — Generic solution page driven by service config.
- * Used for all 8 service pages: /solutions/:slug
- * Design: "Neon Operations"
+ * SolutionPage — Standardised service page template (TASK-16)
+ * All 8 service pages use this template: /solutions/:slug
  *
- * Standardised sections:
- *   1. Hero (status-driven CTAs)
- *   2. Key Features (FeatureGrid)
- *   3. AI Features (AIFeatureList)
- *   4. Live Demo / See It In Action
- *   5. Contact / Early Access
- *   6. Cross-sell
+ * Sections (in order):
+ *   1. Hero — Service name, tagline, status badge, primary CTA
+ *   2. Problem — What problem does this service solve?
+ *   3. Features — 4-6 key features with icons (FeatureGrid)
+ *   4. How It Works — Step-by-step process (3-4 phases)
+ *   5. Results — Verified metrics, research-backed stats, or neutral language
+ *   6. AI Features — Built-in AI capabilities
+ *   7. Demo — See It In Action (live demo or preview)
+ *   8. Cross-Sell — Related services
+ *   9. Contact — Embedded enquiry form / early access
+ *
+ * CLAIMS POLICY: Results section enforces tier labels.
+ * No pricing on service pages — CTAs link to /pricing.
  */
 import { useParams } from 'wouter';
 import MarketingLayout from '@/components/shared/MarketingLayout';
@@ -18,12 +23,12 @@ import FeatureGrid from '@/components/shared/FeatureGrid';
 import ContactForm from '@/components/shared/ContactForm';
 import ServiceCard from '@/components/shared/ServiceCard';
 import { AIFeatureList } from '@/components/shared/AIBadge';
-import { getServiceBySlug, services } from '@/config/services';
+import { getServiceBySlug, getCrossSellServices, getClaimTierLabel } from '@/config/services';
 import { Link } from 'wouter';
 import {
   Gauge, LayoutGrid, ClipboardCheck, Shield, Target,
   Plug, CheckCircle, Award, BarChart3, Zap, TrendingUp,
-  Users, ArrowRight, Play, Monitor
+  Users, ArrowRight, Play, Monitor, AlertTriangle, BookOpen
 } from 'lucide-react';
 
 /** Service-specific feature data */
@@ -42,11 +47,11 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <CheckCircle className="w-5 h-5" />, title: 'Quality Tracking', description: 'First-pass yield, scrap rates, and customer complaints. Quality data integrated from your QMS.' },
     { icon: <TrendingUp className="w-5 h-5" />, title: 'Delivery Performance', description: 'On-time delivery, schedule adherence, and backlog visibility. Keep your customers happy.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Cost Management', description: 'Track operational costs, waste, and efficiency metrics. Drive cost reduction initiatives.' },
-    { icon: <Users className="w-5 h-5" />, title: 'People & Skills', description: 'Attendance, training matrices, and skills development tracking. Invest in your team.' },
+    { icon: <Users className="w-5 h-5" />, title: 'People and Skills', description: 'Attendance, training matrices, and skills development tracking. Invest in your team.' },
   ],
   'action-manager': [
     { icon: <ClipboardCheck className="w-5 h-5" />, title: 'Action Capture', description: 'Capture actions from any source — audits, incidents, meetings, tier boards. One unified action register.' },
-    { icon: <Users className="w-5 h-5" />, title: 'Assignment & Ownership', description: 'Assign actions to individuals with clear due dates. Automatic escalation for overdue items.' },
+    { icon: <Users className="w-5 h-5" />, title: 'Assignment and Ownership', description: 'Assign actions to individuals with clear due dates. Automatic escalation for overdue items.' },
     { icon: <TrendingUp className="w-5 h-5" />, title: 'Progress Tracking', description: 'Visual status tracking from open to verified closure. Nothing falls through the cracks.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Analytics Dashboard', description: 'Action completion rates, ageing analysis, and source breakdown. Measure your improvement culture.' },
   ],
@@ -103,11 +108,11 @@ export default function SolutionPage() {
   }
 
   const features = serviceFeatures[service.slug] || [];
-  const crossSellServices = services.filter(s => s.id !== service.id).slice(0, 3);
+  const crossSellServices = getCrossSellServices(service);
 
   return (
     <MarketingLayout>
-      {/* 1. Hero */}
+      {/* ── 1. HERO ── */}
       <HeroSection
         headline={service.name}
         subtext={service.description}
@@ -115,7 +120,27 @@ export default function SolutionPage() {
         backgroundImage={service.heroImage}
       />
 
-      {/* 2. Key Features */}
+      {/* ── 2. PROBLEM ── */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-[#1E2738]/40">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-start gap-6">
+            <div className="hidden sm:flex w-14 h-14 rounded-lg bg-[#EF4444]/10 items-center justify-center flex-shrink-0 border border-[#EF4444]/20">
+              <AlertTriangle className="w-6 h-6 text-[#EF4444]" />
+            </div>
+            <div>
+              <span className="section-label text-[#EF4444]/80 mb-3 block">The Problem</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-5" style={{ fontFamily: 'Montserrat' }}>
+                Why {service.name}?
+              </h2>
+              <p className="text-[#A0A8B8] text-lg leading-relaxed">
+                {service.problem}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. FEATURES ── */}
       {features.length > 0 && (
         <FeatureGrid
           items={features}
@@ -125,12 +150,109 @@ export default function SolutionPage() {
         />
       )}
 
-      {/* 3. AI Features */}
+      {/* ── 4. HOW IT WORKS ── */}
+      {service.howItWorks.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }}>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <span className="section-label text-[#1DB8CE] mb-3 block">How It Works</span>
+              <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                Getting Started with {service.name}
+              </h2>
+            </div>
+
+            <div className="relative">
+              {/* Vertical connector line */}
+              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#1DB8CE]/40 via-[#8C34E9]/40 to-transparent hidden sm:block" />
+
+              <div className="space-y-8">
+                {service.howItWorks.map((step, i) => (
+                  <div key={step.step} className="flex items-start gap-5 sm:gap-8 relative">
+                    {/* Step number */}
+                    <div className="relative z-10 flex-shrink-0">
+                      <div
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl border-2"
+                        style={{
+                          fontFamily: 'Montserrat',
+                          background: `linear-gradient(135deg, ${i % 2 === 0 ? '#8C34E9' : '#1DB8CE'}20, transparent)`,
+                          borderColor: i % 2 === 0 ? '#8C34E9' : '#1DB8CE',
+                        }}
+                      >
+                        {step.step}
+                      </div>
+                    </div>
+
+                    {/* Step content */}
+                    <div className="pt-1 sm:pt-3 pb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                        {step.title}
+                      </h3>
+                      <p className="text-[#8890A0] leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 5. RESULTS ── */}
+      {service.results.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <span className="section-label text-[#22C55E] mb-3 block">Expected Outcomes</span>
+              <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
+                What You Can Expect
+              </h2>
+              <p className="text-[#8890A0] text-sm max-w-lg mx-auto">
+                All metrics are clearly labelled by evidence tier. We only publish claims we can substantiate.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {service.results.map((result, i) => (
+                <div
+                  key={i}
+                  className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#22C55E]/30 transition-colors"
+                >
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                      {result.value}
+                    </span>
+                    {getClaimTierLabel(result.tier) && (
+                      <span className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-semibold ${
+                        result.tier === 'verified'
+                          ? 'bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20'
+                          : 'bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20'
+                      }`}>
+                        {getClaimTierLabel(result.tier)}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[#A0A8B8] text-sm leading-relaxed">{result.label}</p>
+                  {result.source && (
+                    <p className="text-[#596475] text-xs mt-2 flex items-center gap-1.5">
+                      <BookOpen className="w-3 h-3" />
+                      {result.source}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 6. AI FEATURES ── */}
       {service.aiFeatures.length > 0 && (
         <AIFeatureList features={service.aiFeatures} />
       )}
 
-      {/* 4. Live Demo / See It In Action */}
+      {/* ── 7. DEMO ── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
@@ -145,9 +267,7 @@ export default function SolutionPage() {
             </p>
           </div>
 
-          {/* Demo Placeholder */}
           <div className="relative rounded-lg border border-[#1E2738] bg-[#0D1220] overflow-hidden">
-            {/* Mock browser chrome */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1E2738] bg-[#080C16]">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-[#EF4444]/60" />
@@ -161,14 +281,11 @@ export default function SolutionPage() {
               </div>
             </div>
 
-            {/* Demo content area */}
             <div className="aspect-video flex flex-col items-center justify-center p-8 text-center relative">
-              {/* Subtle grid pattern */}
               <div className="absolute inset-0 opacity-5" style={{
                 backgroundImage: 'linear-gradient(#8C34E9 1px, transparent 1px), linear-gradient(90deg, #8C34E9 1px, transparent 1px)',
                 backgroundSize: '40px 40px',
               }} />
-
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-full bg-[#8C34E9]/10 flex items-center justify-center mx-auto mb-6 border border-[#8C34E9]/20">
                   {service.status === 'live' ? (
@@ -186,8 +303,8 @@ export default function SolutionPage() {
                     : `We are building the ${service.name} demo experience. Register your interest to be notified when it is ready.`}
                 </p>
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple"
+                  href={service.status === 'live' ? '/contact' : '/contact'}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
                   style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
                 >
                   {service.status === 'live' ? 'Launch Demo' : 'Request Preview'}
@@ -199,7 +316,26 @@ export default function SolutionPage() {
         </div>
       </section>
 
-      {/* 5. Contact / Early Access Section */}
+      {/* ── 8. CROSS-SELL ── */}
+      {crossSellServices.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="section-label text-[#596475] mb-3 block">Works Great With</span>
+              <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                Related Solutions
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {crossSellServices.map(s => (
+                <ServiceCard key={s.id} service={s} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 9. CONTACT / EARLY ACCESS ── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#080C16' }}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
@@ -213,29 +349,12 @@ export default function SolutionPage() {
             </h2>
             <p className="text-[#8890A0]">
               {service.status === 'live'
-                ? 'Get in touch and we\'ll have you up and running in no time.'
-                : 'Register your interest and we\'ll notify you as soon as early access is available.'}
+                ? 'Get in touch and we will have you up and running in no time.'
+                : 'Register your interest and we will notify you as soon as early access is available.'}
             </p>
           </div>
           <div className="p-8 rounded-lg border border-[#1E2738] bg-[#0D1220]">
             <ContactForm context={service.name} />
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Cross-sell */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="section-label text-[#596475] mb-3 block">Explore More</span>
-            <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
-              Other Solutions
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {crossSellServices.map(s => (
-              <ServiceCard key={s.id} service={s} />
-            ))}
           </div>
         </div>
       </section>

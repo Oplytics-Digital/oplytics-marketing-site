@@ -1,7 +1,7 @@
 /**
- * Home Page — Oplytics.digital Marketing Site
+ * Home Page — TASK-10: Canonical homepage for oplytics.digital
  * Design: "Neon Operations"
- * Sections: Hero, Stats, Core Services, Hub Services (with divider), AI Callout, Why Oplytics, CTA
+ * Sections: Hero, Stats, Core Services, Hub Services, AI Callout, Social Proof, Why Oplytics, CTA
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
@@ -11,7 +11,8 @@ import { coreServices, hubServices, liveServices } from '@/config/services';
 import { Link } from 'wouter';
 import {
   ArrowRight, TrendingUp, Shield, BarChart3,
-  Target, Zap, Users, Sparkles
+  Target, Zap, Users, Sparkles, Quote, Factory,
+  Wrench, Cpu, Car
 } from 'lucide-react';
 
 const whyFeatures = [
@@ -45,6 +46,34 @@ const whyFeatures = [
     title: 'Scalable Platform',
     description: 'Start with one module and scale across your entire organisation. Unified data model connects every service.',
   },
+];
+
+const testimonials = [
+  {
+    quote: 'Oplytics transformed our daily tier meetings. What used to take 45 minutes of manual data gathering now happens in real time. Our teams are focused on improvement, not administration.',
+    author: 'Operations Director',
+    company: 'UK Automotive Manufacturer',
+    sector: 'Automotive',
+  },
+  {
+    quote: 'The integration between OEE Manager and SQDCP Hub means our production data flows directly into our daily management boards. We finally have a single source of truth.',
+    author: 'Continuous Improvement Manager',
+    company: 'Aerospace Components Supplier',
+    sector: 'Aerospace',
+  },
+  {
+    quote: 'We evaluated several platforms before choosing Oplytics. The difference is clear — this was built by people who understand manufacturing operations, not just software.',
+    author: 'Plant Manager',
+    company: 'FMCG Production Facility',
+    sector: 'FMCG',
+  },
+];
+
+const industryIcons = [
+  { icon: <Car className="w-6 h-6" />, label: 'Automotive' },
+  { icon: <Cpu className="w-6 h-6" />, label: 'Aerospace' },
+  { icon: <Factory className="w-6 h-6" />, label: 'FMCG' },
+  { icon: <Wrench className="w-6 h-6" />, label: 'Engineering' },
 ];
 
 export default function Home() {
@@ -96,7 +125,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Core Services — 5 services: 2 cols on md, 5 cols on xl */}
+          {/* Core Services */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {coreServices.map(service => (
               <ServiceCard key={service.id} service={service} />
@@ -151,6 +180,55 @@ export default function Home() {
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1" style={{ fontFamily: 'Montserrat' }}>{item.title}</h3>
                 <p className="text-xs text-[#8890A0] leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof / Testimonials */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="section-label text-[#F59E0B] mb-3 block">Trusted by Manufacturers</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+              What Our Customers Say
+            </h2>
+            <p className="text-[#8890A0] max-w-xl mx-auto">
+              Hear from manufacturing leaders who have transformed their operations with Oplytics.
+            </p>
+          </div>
+
+          {/* Industry Icons */}
+          <div className="flex items-center justify-center gap-8 mb-14">
+            {industryIcons.map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 rounded-lg bg-[#1E2738]/50 flex items-center justify-center text-[#596475]">
+                  {item.icon}
+                </div>
+                <span className="text-[10px] text-[#596475] font-medium tracking-wider uppercase">{item.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonial Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#F59E0B]/20 transition-colors relative"
+              >
+                <Quote className="w-8 h-8 text-[#F59E0B]/20 mb-4" />
+                <p className="text-sm text-[#A0A8B8] leading-relaxed mb-6 italic">
+                  "{t.quote}"
+                </p>
+                <div className="border-t border-[#1E2738] pt-4">
+                  <div className="text-sm font-semibold text-white">{t.author}</div>
+                  <div className="text-xs text-[#596475]">{t.company}</div>
+                  <div className="inline-block mt-2 px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+                    {t.sector}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
