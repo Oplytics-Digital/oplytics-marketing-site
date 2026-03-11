@@ -1,62 +1,109 @@
 /**
- * Contact Page
+ * Contact Page — TASK-12
  * Design: "Neon Operations"
+ *
+ * Sections: Hero, ContactForm, Office info, Social links, Response time
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
+import HeroSection from '@/components/shared/HeroSection';
 import ContactForm from '@/components/shared/ContactForm';
-import { Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock, Phone, Linkedin, Twitter, Globe } from 'lucide-react';
+
+const contactInfo = [
+  {
+    icon: <Mail className="w-5 h-5 text-[#C084FC]" />,
+    iconBg: 'bg-[#8C34E9]/10',
+    title: 'Email Us',
+    primary: 'hello@oplytics.digital',
+    secondary: 'For support: support@oplytics.digital',
+  },
+  {
+    icon: <Phone className="w-5 h-5 text-[#1DB8CE]" />,
+    iconBg: 'bg-[#1DB8CE]/10',
+    title: 'Call Us',
+    primary: '+44 (0) 800 123 4567',
+    secondary: 'Mon–Fri, 9:00 AM – 5:30 PM GMT',
+  },
+  {
+    icon: <MapPin className="w-5 h-5 text-[#F59E0B]" />,
+    iconBg: 'bg-[#F59E0B]/10',
+    title: 'Office',
+    primary: 'United Kingdom',
+    secondary: 'Serving manufacturers globally',
+  },
+  {
+    icon: <Clock className="w-5 h-5 text-[#22C55E]" />,
+    iconBg: 'bg-[#22C55E]/10',
+    title: 'Response Time',
+    primary: 'Within 24 hours',
+    secondary: 'We typically respond within one business day',
+  },
+];
+
+const socialLinks = [
+  { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', href: 'https://linkedin.com/company/oplytics' },
+  { icon: <Twitter className="w-5 h-5" />, label: 'X (Twitter)', href: 'https://twitter.com/oplytics' },
+  { icon: <Globe className="w-5 h-5" />, label: 'Website', href: 'https://oplytics.digital' },
+];
 
 export default function Contact() {
   return (
     <MarketingLayout>
-      <section className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="section-label text-[#8C34E9] mb-3 block">Contact</span>
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
-              Let's Talk
-            </h1>
-            <p className="text-lg text-[#8890A0] max-w-xl mx-auto">
-              Whether you want a demo, have a question, or are ready to get started — we are here to help.
-            </p>
-          </div>
+      {/* Hero */}
+      <HeroSection
+        headline="Get in Touch"
+        subtext="Whether you want a demo, have a question, or are ready to get started — we are here to help. Our team of manufacturing technology specialists is ready to discuss your requirements."
+        status="live"
+      />
 
+      {/* Main Content */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12">
             {/* Form */}
-            <div className="p-8 rounded-lg border border-[#1E2738] bg-[#0D1220]">
-              <ContactForm />
+            <div>
+              <div className="p-8 rounded-lg border border-[#1E2738] bg-[#0D1220]">
+                <h2 className="text-xl font-bold text-white mb-6" style={{ fontFamily: 'Montserrat' }}>
+                  Send Us a Message
+                </h2>
+                <ContactForm />
+              </div>
             </div>
 
             {/* Info Cards */}
-            <div className="space-y-6">
-              <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220]">
-                <div className="w-10 h-10 rounded-md bg-[#8C34E9]/10 flex items-center justify-center mb-4">
-                  <Mail className="w-5 h-5 text-[#C084FC]" />
+            <div className="space-y-5">
+              {contactInfo.map((item, i) => (
+                <div key={i} className="p-5 rounded-lg border border-[#1E2738] bg-[#0D1220]">
+                  <div className={`w-10 h-10 rounded-md ${item.iconBg} flex items-center justify-center mb-3`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-sm font-semibold text-white mb-1" style={{ fontFamily: 'Montserrat' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-white/90">{item.primary}</p>
+                  <p className="text-xs text-[#596475] mt-0.5">{item.secondary}</p>
                 </div>
-                <h3 className="text-base font-semibold text-white mb-1" style={{ fontFamily: 'Montserrat' }}>
-                  Email Us
-                </h3>
-                <p className="text-sm text-[#8890A0]">hello@oplytics.digital</p>
-              </div>
+              ))}
 
-              <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220]">
-                <div className="w-10 h-10 rounded-md bg-[#1DB8CE]/10 flex items-center justify-center mb-4">
-                  <MapPin className="w-5 h-5 text-[#1DB8CE]" />
-                </div>
-                <h3 className="text-base font-semibold text-white mb-1" style={{ fontFamily: 'Montserrat' }}>
-                  Location
+              {/* Social Links */}
+              <div className="p-5 rounded-lg border border-[#1E2738] bg-[#0D1220]">
+                <h3 className="text-sm font-semibold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
+                  Follow Us
                 </h3>
-                <p className="text-sm text-[#8890A0]">United Kingdom</p>
-              </div>
-
-              <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220]">
-                <div className="w-10 h-10 rounded-md bg-[#22C55E]/10 flex items-center justify-center mb-4">
-                  <Clock className="w-5 h-5 text-[#22C55E]" />
+                <div className="flex gap-3">
+                  {socialLinks.map((link, i) => (
+                    <a
+                      key={i}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-md bg-[#1E2738] flex items-center justify-center text-[#8890A0] hover:text-white hover:bg-[#8C34E9]/20 transition-all"
+                      title={link.label}
+                    >
+                      {link.icon}
+                    </a>
+                  ))}
                 </div>
-                <h3 className="text-base font-semibold text-white mb-1" style={{ fontFamily: 'Montserrat' }}>
-                  Response Time
-                </h3>
-                <p className="text-sm text-[#8890A0]">We typically respond within 24 hours.</p>
               </div>
             </div>
           </div>

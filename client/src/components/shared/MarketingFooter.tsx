@@ -74,13 +74,23 @@ export default function MarketingFooter() {
             <span className="section-label text-[#596475] mb-4 block">Company</span>
             <ul className="space-y-3">
               <li>
-                <Link href="/contact" className="text-sm text-[#8890A0] hover:text-white transition-colors">
-                  Contact
+                <Link href="/about" className="text-sm text-[#8890A0] hover:text-white transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
                 <Link href="/why-us" className="text-sm text-[#8890A0] hover:text-white transition-colors">
                   Why Oplytics
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-sm text-[#8890A0] hover:text-white transition-colors">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-sm text-[#8890A0] hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
               <li>

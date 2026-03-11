@@ -130,6 +130,8 @@ export default function MarketingHeader() {
             </div>
 
             <Link href="/why-us" className={navLinkClass('/why-us')}>Why Us</Link>
+            <Link href="/about" className={navLinkClass('/about')}>About</Link>
+            <Link href="/pricing" className={navLinkClass('/pricing')}>Pricing</Link>
             <Link href="/contact" className={navLinkClass('/contact')}>Contact</Link>
 
             <Link
@@ -201,6 +203,12 @@ export default function MarketingHeader() {
 
             <Link href="/why-us" className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors">
               Why Us
+            </Link>
+            <Link href="/about" className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors">
+              About
+            </Link>
+            <Link href="/pricing" className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors">
+              Pricing
             </Link>
             <Link href="/contact" className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors">
               Contact

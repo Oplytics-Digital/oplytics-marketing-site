@@ -1,9 +1,17 @@
 /**
- * TASK-07: LegalContentBlock Component
+ * TASK-07 / TASK-14 / TASK-15: LegalContentBlock Component
  * Design: "Neon Operations" — formatted legal text with auto-generated TOC
  * Used on /privacy and /terms pages.
+ *
+ * Features:
+ *   - Auto-generated table of contents from sections
+ *   - Sticky desktop sidebar TOC with scroll-spy
+ *   - Mobile dropdown TOC
+ *   - Section numbering
+ *   - Last updated date
  */
 import { useState, useEffect, useRef } from 'react';
+import { ChevronDown, ChevronUp, List } from 'lucide-react';
 
 interface LegalSection {
   id: string;
@@ -19,6 +27,7 @@ interface LegalContentBlockProps {
 
 export default function LegalContentBlock({ title, lastUpdated, sections }: LegalContentBlockProps) {
   const [activeSection, setActiveSection] = useState('');
+  const [mobileTocOpen, setMobileTocOpen] = useState(false);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
@@ -40,6 +49,14 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
     return () => observer.disconnect();
   }, [sections]);
 
+  function scrollToSection(id: string) {
+    const el = sectionRefs.current[id];
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setMobileTocOpen(false);
+    }
+  }
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       {/* Header */}
@@ -50,23 +67,61 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
         <p className="text-sm text-[#596475]">Last updated: {lastUpdated}</p>
       </div>
 
+      {/* Mobile TOC */}
+      <div className="lg:hidden mb-8">
+        <button
+          onClick={() => setMobileTocOpen(!mobileTocOpen)}
+          className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-[#1E2738] bg-[#0D1220] text-sm"
+        >
+          <span className="flex items-center gap-2 text-[#8890A0]">
+            <List className="w-4 h-4" />
+            Table of Contents
+          </span>
+          {mobileTocOpen ? (
+            <ChevronUp className="w-4 h-4 text-[#596475]" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-[#596475]" />
+          )}
+        </button>
+        {mobileTocOpen && (
+          <div className="mt-2 p-4 rounded-lg border border-[#1E2738] bg-[#0D1220]">
+            <ul className="space-y-2">
+              {sections.map((section, i) => (
+                <li key={section.id}>
+                  <button
+                    onClick={() => scrollToSection(section.id)}
+                    className={`text-left text-xs leading-relaxed transition-colors ${
+                      activeSection === section.id
+                        ? 'text-[#C084FC] font-medium'
+                        : 'text-[#596475] hover:text-[#8890A0]'
+                    }`}
+                  >
+                    {i + 1}. {section.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
-        {/* Table of Contents */}
+        {/* Desktop Table of Contents */}
         <nav className="hidden lg:block sticky top-24 self-start">
           <span className="section-label text-[#596475] mb-3 block">Contents</span>
           <ul className="space-y-2">
-            {sections.map(section => (
+            {sections.map((section, i) => (
               <li key={section.id}>
-                <a
-                  href={`#${section.id}`}
-                  className={`block text-xs leading-relaxed transition-colors ${
+                <button
+                  onClick={() => scrollToSection(section.id)}
+                  className={`text-left block text-xs leading-relaxed transition-colors ${
                     activeSection === section.id
                       ? 'text-[#C084FC] font-medium'
                       : 'text-[#596475] hover:text-[#8890A0]'
                   }`}
                 >
-                  {section.title}
-                </a>
+                  {i + 1}. {section.title}
+                </button>
               </li>
             ))}
           </ul>
@@ -74,14 +129,14 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
 
         {/* Content */}
         <div className="space-y-10">
-          {sections.map(section => (
+          {sections.map((section, i) => (
             <section
               key={section.id}
               id={section.id}
               ref={el => { sectionRefs.current[section.id] = el; }}
             >
               <h2 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
-                {section.title}
+                {i + 1}. {section.title}
               </h2>
               <div className="text-sm text-[#8890A0] leading-relaxed whitespace-pre-line">
                 {section.content}
