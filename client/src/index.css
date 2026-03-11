@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DESIGN: "Neon Operations" — Dark Industrial Dashboard Aesthetic
+ * Brand: Oplytics.digital
+ * Fonts: Montserrat (headings), Space Grotesk (body)
+ * Palette: Navy #0A0E1A, Purple #8C34E9, Teal #1DB8CE
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Oplytics brand tokens */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --color-oplytics-purple: oklch(0.50 0.25 295);
+  --color-oplytics-teal: oklch(0.70 0.12 195);
+  --color-oplytics-navy: oklch(0.12 0.02 260);
+  --color-oplytics-surface: oklch(0.14 0.02 260);
+  --color-oplytics-card: oklch(0.22 0.02 255);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.10 0.02 260);
+  --foreground: oklch(0.92 0.01 250);
+  --card: oklch(0.16 0.02 258);
+  --card-foreground: oklch(0.92 0.01 250);
+  --popover: oklch(0.14 0.02 258);
+  --popover-foreground: oklch(0.92 0.01 250);
+  --primary: oklch(0.50 0.25 295);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.22 0.02 255);
+  --secondary-foreground: oklch(0.80 0.01 250);
+  --muted: oklch(0.20 0.015 258);
+  --muted-foreground: oklch(0.60 0.02 255);
+  --accent: oklch(0.70 0.12 195);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.02 255);
+  --input: oklch(0.22 0.02 255);
+  --ring: oklch(0.50 0.25 295);
+  --chart-1: oklch(0.50 0.25 295);
+  --chart-2: oklch(0.70 0.12 195);
+  --chart-3: oklch(0.65 0.18 150);
+  --chart-4: oklch(0.70 0.15 60);
+  --chart-5: oklch(0.60 0.20 30);
+  --sidebar: oklch(0.12 0.02 260);
+  --sidebar-foreground: oklch(0.92 0.01 250);
+  --sidebar-primary: oklch(0.50 0.25 295);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.22 0.02 255);
+  --sidebar-accent-foreground: oklch(0.92 0.01 250);
+  --sidebar-border: oklch(0.25 0.02 255);
+  --sidebar-ring: oklch(0.50 0.25 295);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* Section label style */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Glow effects */
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(140, 52, 233, 0.15), 0 0 40px rgba(140, 52, 233, 0.05);
+  }
+  .glow-teal {
+    box-shadow: 0 0 20px rgba(29, 184, 206, 0.15), 0 0 40px rgba(29, 184, 206, 0.05);
+  }
+  .glow-purple-strong {
+    box-shadow: 0 0 30px rgba(140, 52, 233, 0.3), 0 0 60px rgba(140, 52, 233, 0.1);
+  }
+
+  /* Gradient border animation */
+  @keyframes gradient-rotate {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+  }
+}
+
+@layer utilities {
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #8C34E9, #C084FC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-teal {
+    background: linear-gradient(135deg, #1DB8CE, #34D399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-radial-purple {
+    background: radial-gradient(ellipse at 50% 30%, rgba(140,52,233,0.12) 0%, transparent 60%);
+  }
+  .bg-radial-teal {
+    background: radial-gradient(ellipse at 50% 30%, rgba(29,184,206,0.08) 0%, transparent 60%);
+  }
+}
