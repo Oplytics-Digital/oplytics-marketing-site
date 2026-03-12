@@ -4,6 +4,8 @@
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import FeatureGrid from '@/components/shared/FeatureGrid';
+import SEOHead from '@/components/shared/SEOHead';
+import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { Link } from 'wouter';
 import {
   ArrowRight, Zap, Shield, BarChart3, Target,
@@ -53,8 +55,13 @@ const metrics = [
 export default function WhyUs() {
   return (
     <MarketingLayout>
+      <SEOHead
+        title="Why Oplytics"
+        description="Why manufacturers choose Oplytics.digital. Purpose-built for manufacturing, unified data model, enterprise-grade security, and rapid deployment."
+      />
+
       {/* Hero */}
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 text-center relative">
+      <section className="pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center relative">
         <div className="absolute inset-0 bg-radial-purple pointer-events-none" />
         <div className="relative max-w-3xl mx-auto">
           <span className="section-label text-[#8C34E9] mb-3 block">Why Oplytics</span>
@@ -68,8 +75,8 @@ export default function WhyUs() {
       </section>
 
       {/* Metrics */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40">
+        <StaggerContainer className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" variant="scale-in" staggerDelay={0.1}>
           {metrics.map((m, i) => (
             <div key={i} className="text-center">
               <div className="text-4xl font-black text-gradient-purple mb-1" style={{ fontFamily: 'Montserrat' }}>
@@ -79,7 +86,7 @@ export default function WhyUs() {
               <div className="text-xs text-[#596475]">{m.sublabel}</div>
             </div>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* Differentiators */}

@@ -15,6 +15,7 @@ import Terms from "./pages/Terms";
 import Status from "./pages/Status";
 import Login from "./pages/Login";
 import About from "./pages/About";
+import Resources from "./pages/Resources";
 
 /** Scroll to top on every route change */
 function ScrollToTop() {
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/why-us" component={WhyUs} />
       <Route path="/about" component={About} />
+      <Route path="/resources" component={Resources} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/status" component={Status} />

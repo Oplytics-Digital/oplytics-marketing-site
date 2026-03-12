@@ -6,6 +6,7 @@
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import LegalContentBlock from '@/components/shared/LegalContentBlock';
+import SEOHead from '@/components/shared/SEOHead';
 
 const termsSections = [
   {
@@ -88,6 +89,10 @@ const termsSections = [
 export default function Terms() {
   return (
     <MarketingLayout>
+      <SEOHead
+        title="Terms of Service"
+        description="Oplytics.digital terms of service. Legal terms and conditions governing the use of our operational excellence platform."
+      />
       <div className="pt-16">
         <LegalContentBlock
           title="Terms of Service"

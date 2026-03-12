@@ -7,6 +7,8 @@
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
 import TeamMemberCard from '@/components/shared/TeamMemberCard';
+import SEOHead from '@/components/shared/SEOHead';
+import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { Link } from 'wouter';
 import { ArrowRight, Target, Zap, Users, Shield, TrendingUp, Globe } from 'lucide-react';
 
@@ -54,6 +56,11 @@ const teamMembers = [
 export default function About() {
   return (
     <MarketingLayout>
+      <SEOHead
+        title="About"
+        description="Learn about Oplytics.digital — the operational excellence platform built by manufacturing professionals for manufacturing professionals."
+      />
+
       {/* Hero */}
       <HeroSection
         headline="About Oplytics"
@@ -62,8 +69,8 @@ export default function About() {
       />
 
       {/* Mission */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-[#1E2738]/40">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#1E2738]/40">
+        <AnimateOnScroll variant="slide-up" className="max-w-4xl mx-auto text-center">
           <span className="section-label text-[#8C34E9] mb-4 block">Our Mission</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6" style={{ fontFamily: 'Montserrat' }}>
             Digitise Operational Excellence for Every Manufacturer
@@ -73,7 +80,7 @@ export default function About() {
             Critical data is trapped in silos. Improvement initiatives lose momentum. Strategic plans never reach the manufacturing floor.
             We are changing that — one service at a time.
           </p>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Story */}
@@ -117,7 +124,7 @@ export default function About() {
               What We Stand For
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.08}>
             {values.map((value, i) => (
               <div
                 key={i}
@@ -130,7 +137,7 @@ export default function About() {
                 <p className="text-sm text-[#8890A0] leading-relaxed">{value.description}</p>
               </div>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

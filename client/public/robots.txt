@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://oplytics.digital/sitemap.xml

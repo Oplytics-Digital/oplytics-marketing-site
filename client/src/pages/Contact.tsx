@@ -7,6 +7,8 @@
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
 import ContactForm from '@/components/shared/ContactForm';
+import SEOHead from '@/components/shared/SEOHead';
+import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
 import { Mail, MapPin, Clock, Phone, Linkedin, Twitter, Globe } from 'lucide-react';
 
 const contactInfo = [
@@ -49,6 +51,11 @@ const socialLinks = [
 export default function Contact() {
   return (
     <MarketingLayout>
+      <SEOHead
+        title="Contact"
+        description="Get in touch with the Oplytics team. Request a demo, ask a question, or discuss your manufacturing operations requirements."
+      />
+
       {/* Hero */}
       <HeroSection
         headline="Get in Touch"
@@ -57,9 +64,9 @@ export default function Contact() {
       />
 
       {/* Main Content */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <AnimateOnScroll variant="slide-up" className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-12">
             {/* Form */}
             <div>
               <div className="p-8 rounded-lg border border-[#1E2738] bg-[#0D1220]">
@@ -107,7 +114,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
     </MarketingLayout>
   );
