@@ -22,6 +22,8 @@ import HeroSection from '@/components/shared/HeroSection';
 import FeatureGrid from '@/components/shared/FeatureGrid';
 import ContactForm from '@/components/shared/ContactForm';
 import ServiceCard from '@/components/shared/ServiceCard';
+import SEOHead from '@/components/shared/SEOHead';
+import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { AIFeatureList } from '@/components/shared/AIBadge';
 import { getServiceBySlug, getCrossSellServices, getClaimTierLabel } from '@/config/services';
 import { Link } from 'wouter';
@@ -112,6 +114,12 @@ export default function SolutionPage() {
 
   return (
     <MarketingLayout>
+      <SEOHead
+        title={service.name}
+        description={service.description}
+        ogImage={service.heroImage}
+      />
+
       {/* ── 1. HERO ── */}
       <HeroSection
         headline={service.name}
@@ -121,9 +129,9 @@ export default function SolutionPage() {
       />
 
       {/* ── 2. PROBLEM ── */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-[#1E2738]/40">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-start gap-6">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#1E2738]/40">
+        <AnimateOnScroll variant="slide-up" className="max-w-4xl mx-auto">
+          <div className="flex items-start gap-4 sm:gap-6">
             <div className="hidden sm:flex w-14 h-14 rounded-lg bg-[#EF4444]/10 items-center justify-center flex-shrink-0 border border-[#EF4444]/20">
               <AlertTriangle className="w-6 h-6 text-[#EF4444]" />
             </div>
@@ -137,7 +145,7 @@ export default function SolutionPage() {
               </p>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* ── 3. FEATURES ── */}
@@ -318,19 +326,19 @@ export default function SolutionPage() {
 
       {/* ── 8. CROSS-SELL ── */}
       {crossSellServices.length > 0 && (
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-10">
+            <AnimateOnScroll variant="slide-up" className="text-center mb-10">
               <span className="section-label text-[#596475] mb-3 block">Works Great With</span>
               <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
                 Related Solutions
               </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            </AnimateOnScroll>
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.1}>
               {crossSellServices.map(s => (
                 <ServiceCard key={s.id} service={s} />
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
       )}

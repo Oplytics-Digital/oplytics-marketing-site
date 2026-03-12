@@ -14,6 +14,8 @@ import { useState } from 'react';
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import PricingTier, { type PricingPlan } from '@/components/shared/PricingTier';
 import ContactForm from '@/components/shared/ContactForm';
+import SEOHead from '@/components/shared/SEOHead';
+import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { inDevServices } from '@/config/services';
 import { Link } from 'wouter';
 import { Calculator, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
@@ -196,8 +198,13 @@ export default function Pricing() {
 
   return (
     <MarketingLayout>
+      <SEOHead
+        title="Pricing"
+        description="Simple, transparent pricing for Oplytics.digital. Start small, scale fast with plans for every manufacturing operation."
+      />
+
       {/* ── 1. Header ── */}
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 text-center">
+      <section className="pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="section-label text-[#8C34E9] mb-3 block">Pricing</span>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
@@ -230,12 +237,12 @@ export default function Pricing() {
       </section>
 
       {/* ── 2. Pricing Grid ── */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
+        <StaggerContainer className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" variant="slide-up" staggerDelay={0.1}>
           {plans.map((plan, i) => (
             <PricingTier key={i} plan={plan} />
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* ── 3. Coming Soon Services ── */}

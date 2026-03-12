@@ -1,12 +1,11 @@
 /**
- * TASK-03: Standardised MarketingFooter Component
+ * TASK-03/30/31: Standardised MarketingFooter Component
  * Design: "Neon Operations" — dark footer with core/hub service grouping
- * Used identically on all pages.
- *
- * Layout: Logo + copyright | Core services | Hub services | Legal links
+ * Includes Cookie Settings link (TASK-30) and Resources link (TASK-31).
  */
 import { Link } from 'wouter';
 import { coreServices, hubServices, getServiceStatusColor } from '@/config/services';
+import { reopenCookieConsent } from './CookieConsent';
 
 export default function MarketingFooter() {
   const currentYear = new Date().getFullYear();
@@ -69,7 +68,7 @@ export default function MarketingFooter() {
             </ul>
           </div>
 
-          {/* Column 4: Legal & Links */}
+          {/* Column 4: Company & Legal */}
           <div>
             <span className="section-label text-[#596475] mb-4 block">Company</span>
             <ul className="space-y-3">
@@ -81,6 +80,11 @@ export default function MarketingFooter() {
               <li>
                 <Link href="/why-us" className="text-sm text-[#8890A0] hover:text-white transition-colors">
                   Why Oplytics
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="text-sm text-[#8890A0] hover:text-white transition-colors">
+                  Resources
                 </Link>
               </li>
               <li>
@@ -130,6 +134,12 @@ export default function MarketingFooter() {
             <Link href="/terms" className="text-xs text-[#596475] hover:text-[#8890A0] transition-colors">
               Terms
             </Link>
+            <button
+              onClick={reopenCookieConsent}
+              className="text-xs text-[#596475] hover:text-[#8890A0] transition-colors"
+            >
+              Cookie Settings
+            </button>
           </div>
         </div>
       </div>

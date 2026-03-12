@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://oplytics.digital/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://oplytics.digital/solutions/policy-deployment</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://oplytics.digital/solutions/sqdcp-hub</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://oplytics.digital/solutions/oee-manager</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://oplytics.digital/solutions/smartconnect</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://oplytics.digital/solutions/action-manager</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://oplytics.digital/solutions/quality-manager</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/solutions/safety-manager</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/solutions/certification-manager</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/pricing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://oplytics.digital/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://oplytics.digital/why-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oplytics.digital/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://oplytics.digital/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

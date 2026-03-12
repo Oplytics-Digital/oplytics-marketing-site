@@ -6,6 +6,7 @@
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import LegalContentBlock from '@/components/shared/LegalContentBlock';
+import SEOHead from '@/components/shared/SEOHead';
 
 const privacySections = [
   {
@@ -78,6 +79,10 @@ const privacySections = [
 export default function Privacy() {
   return (
     <MarketingLayout>
+      <SEOHead
+        title="Privacy Policy"
+        description="Oplytics.digital privacy policy. How we collect, use, and protect your data in compliance with GDPR and UK data protection regulations."
+      />
       <div className="pt-16">
         <LegalContentBlock
           title="Privacy Policy"
