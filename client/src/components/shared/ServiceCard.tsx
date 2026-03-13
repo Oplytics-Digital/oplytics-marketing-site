@@ -1,12 +1,10 @@
 /**
- * TASK-05: ServiceCard Component
- * Design: "Neon Operations" — card with status badge, AI badge, glow on hover
+ * TASK-05 / TASK-36: ServiceCard Component
+ * Design: "Neon Operations" — card with dashboard screenshot, status badge, AI badge, glow on hover
  *
- * Service name, tagline, icon/illustration.
- * Status badge (Live / In Development) driven by config.
- * AI badge shown when service has aiFeatures.
- * Link to service solution page.
- * Consistent card sizing regardless of content length.
+ * TASK-36 update: Added demoImage thumbnail at top of card to harmonise
+ * homepage cards with solution page "See It In Action" dashboard screenshots.
+ * Uses the same CDN image URL from service.demoImage — no new assets.
  */
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
@@ -25,7 +23,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   return (
     <Link href={`/solutions/${service.slug}`}>
       <div
-        className="group relative h-full p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-opacity-60 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+        className="group relative h-full rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-opacity-60 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden"
         style={{
           borderColor: '#1E2738',
         }}
@@ -40,40 +38,57 @@ export default function ServiceCard({ service }: ServiceCardProps) {
       >
         {/* Top accent bar */}
         <div
-          className="absolute top-0 left-0 right-0 h-0.5 rounded-t-lg"
+          className="absolute top-0 left-0 right-0 h-0.5 rounded-t-lg z-10"
           style={{ background: service.accentColor }}
         />
 
-        {/* Status + AI Badges */}
-        <div className="flex items-center gap-2 mb-4 flex-wrap">
-          <span
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase"
-            style={{
-              background: statusColor + '15',
-              color: statusColor,
-              border: `1px solid ${statusColor}30`,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor }} />
-            {statusLabel}
-          </span>
-          {service.aiFeatures.length > 0 && <AIBadgeInline />}
-        </div>
+        {/* Dashboard screenshot thumbnail */}
+        {service.demoImage && (
+          <div className="relative w-full aspect-[16/10] overflow-hidden flex-shrink-0">
+            <img
+              src={service.demoImage}
+              alt={`${service.name} dashboard preview`}
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            {/* Gradient fade into card content */}
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0D1220] to-transparent" />
+          </div>
+        )}
 
-        {/* Service Name */}
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#C084FC] transition-colors" style={{ fontFamily: 'Montserrat' }}>
-          {service.name}
-        </h3>
+        {/* Card content */}
+        <div className="p-5 flex flex-col flex-1">
+          {/* Status + AI Badges */}
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase"
+              style={{
+                background: statusColor + '15',
+                color: statusColor,
+                border: `1px solid ${statusColor}30`,
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor }} />
+              {statusLabel}
+            </span>
+            {service.aiFeatures.length > 0 && <AIBadgeInline />}
+          </div>
 
-        {/* Description */}
-        <p className="text-sm text-[#8890A0] leading-relaxed flex-1 mb-4">
-          {service.description}
-        </p>
+          {/* Service Name */}
+          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#C084FC] transition-colors" style={{ fontFamily: 'Montserrat' }}>
+            {service.name}
+          </h3>
 
-        {/* Link */}
-        <div className="flex items-center gap-1 text-xs font-semibold text-[#8C34E9] group-hover:text-[#C084FC] transition-colors">
-          Learn more
-          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          {/* Description */}
+          <p className="text-sm text-[#8890A0] leading-relaxed flex-1 mb-4">
+            {service.description}
+          </p>
+
+          {/* Link */}
+          <div className="flex items-center gap-1 text-xs font-semibold text-[#8C34E9] group-hover:text-[#C084FC] transition-colors">
+            Learn more
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </div>
         </div>
       </div>
     </Link>
