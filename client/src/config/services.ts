@@ -54,6 +54,7 @@ export interface ServiceConfig {
   category: ServiceCategory;
   subdomain?: string;
   heroImage?: string;
+  demoImage?: string;
   aiFeatures: AIFeature[];
   problem: string;
   howItWorks: HowItWorksStep[];
@@ -86,6 +87,7 @@ export const services: ServiceConfig[] = [
       { value: '40%', label: 'Reduction in strategy-execution gap (industry research)', tier: 'research-backed', source: 'Hoshin Kanri effectiveness studies, Lean Enterprise Institute' },
       { value: 'Measurable', label: 'Progress tracking with automated bowling charts', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-policy-YkQnvYo8xjtKQmKoSKVDXW.webp',
     crossSellIds: ['sqdcp-hub', 'action-manager', 'oee-manager'],
     aiFeatures: [
       { title: 'AI Strategy Alignment', description: 'Machine learning identifies misalignment between strategic objectives and operational KPIs, suggesting corrective cascading adjustments.' },
@@ -115,6 +117,7 @@ export const services: ServiceConfig[] = [
       { value: '25%', label: 'Reduction in meeting duration (industry benchmarks)', tier: 'research-backed', source: 'Digital lean management studies, McKinsey Operations Practice' },
       { value: 'Real-time', label: 'Data aggregation replacing manual spreadsheet consolidation', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-sqdcp-9ZfUnEfV9W4Nit7Y6epdho.webp',
     crossSellIds: ['action-manager', 'policy-deployment', 'oee-manager'],
     aiFeatures: [
       { title: 'AI Anomaly Detection', description: 'Automatically flags unusual metric patterns across Safety, Quality, Delivery, Cost, and People dimensions before they escalate.' },
@@ -146,6 +149,7 @@ export const services: ServiceConfig[] = [
       { value: 'Immediate', label: 'Visibility into loss reasons as they occur', tier: 'neutral' },
       { value: 'Significant', label: 'Reduction in unplanned downtime through pattern detection', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-oee-QnRQ7NMUruu9AHLjseSSx2.webp',
     crossSellIds: ['smartconnect', 'sqdcp-hub', 'action-manager'],
     aiFeatures: [
       { title: 'AI Loss Classification', description: 'Automatically classifies downtime events and speed losses using machine learning, eliminating manual categorisation errors.' },
@@ -177,6 +181,7 @@ export const services: ServiceConfig[] = [
       { value: 'Unified', label: 'Data layer across all machines regardless of protocol', tier: 'neutral' },
       { value: 'Resilient', label: 'Edge buffering ensures no data loss during connectivity issues', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-connect-QpzAp7fYGbnsnuiT3dKihD.webp',
     crossSellIds: ['oee-manager', 'sqdcp-hub', 'quality-manager'],
     aiFeatures: [
       { title: 'AI Signal Mapping', description: 'Machine learning auto-detects and maps machine signals to Oplytics data points, reducing configuration time significantly.' },
@@ -206,6 +211,7 @@ export const services: ServiceConfig[] = [
       { value: 'Single', label: 'Source of truth replacing scattered spreadsheets and emails', tier: 'neutral' },
       { value: 'Automated', label: 'Escalation and notification for overdue actions', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-action-3Ctr5Ddy2xCm5tqouxWKrn.webp',
     crossSellIds: ['sqdcp-hub', 'safety-manager', 'quality-manager'],
     aiFeatures: [
       { title: 'AI Priority Scoring', description: 'Machine learning scores and prioritises actions based on impact, urgency, and historical closure patterns.' },
@@ -237,6 +243,7 @@ export const services: ServiceConfig[] = [
       { value: 'Improved', label: 'Pattern detection across quality events', tier: 'neutral' },
       { value: 'Traceable', label: 'End-to-end quality records for regulatory compliance', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-quality-CPaphZDUvQrJ9oQdRQZPJM.webp',
     crossSellIds: ['certification-manager', 'action-manager', 'sqdcp-hub'],
     aiFeatures: [
       { title: 'AI Defect Pattern Recognition', description: 'Machine learning identifies recurring defect patterns across products, lines, and suppliers to prevent repeat non-conformances.' },
@@ -267,6 +274,7 @@ export const services: ServiceConfig[] = [
       { value: 'Improved', label: 'Regulatory compliance through centralised tracking', tier: 'neutral' },
       { value: 'Data-driven', label: 'Risk identification replacing reactive incident management', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-safety-ZCTNQ8eJJmtZgD4CEtSFVD.webp',
     crossSellIds: ['action-manager', 'sqdcp-hub', 'certification-manager'],
     aiFeatures: [
       { title: 'AI Risk Prediction', description: 'Predictive models analyse incident history, near-miss data, and environmental factors to forecast high-risk areas and times.' },
@@ -296,6 +304,7 @@ export const services: ServiceConfig[] = [
       { value: 'Complete', label: 'Audit trail for every document, process, and decision', tier: 'neutral' },
       { value: 'Centralised', label: 'Multi-standard management in a single platform', tier: 'neutral' },
     ],
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-cert-cm2edFr6JvgfmkowUoXgtL.webp',
     crossSellIds: ['quality-manager', 'safety-manager', 'action-manager'],
     aiFeatures: [
       { title: 'AI Compliance Gap Analysis', description: 'Automatically scans your documentation and processes against standard requirements to identify gaps before auditors do.' },
