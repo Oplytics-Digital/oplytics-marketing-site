@@ -54,6 +54,7 @@ export interface ServiceConfig {
   category: ServiceCategory;
   subdomain?: string;
   heroImage?: string;
+  demoImage?: string;
   aiFeatures: AIFeature[];
   problem: string;
   howItWorks: HowItWorksStep[];
@@ -73,6 +74,7 @@ export const services: ServiceConfig[] = [
     icon: 'Target',
     accentColor: '#F59E0B',
     category: 'core',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-policy-YkQnvYo8xjtKQmKoSKVDXW.webp',
     problem: 'Strategic plans fail when they stay in the boardroom. Without a structured deployment process, objectives get lost in translation between management layers. Teams work hard on the wrong things, KPIs disconnect from strategy, and annual plans become shelf-ware within weeks.',
     howItWorks: [
       { step: 1, title: 'Define Strategic Objectives', description: 'Set your 3-5 year breakthrough objectives and annual priorities using the Hoshin Kanri methodology.' },
@@ -102,6 +104,7 @@ export const services: ServiceConfig[] = [
     icon: 'LayoutGrid',
     accentColor: '#1DB8CE',
     category: 'core',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-sqdcp-9ZfUnEfV9W4Nit7Y6epdho.webp',
     problem: 'Physical whiteboards are static, illegible from a distance, and impossible to aggregate across sites. Tier meetings rely on outdated data, actions get lost on sticky notes, and management has no visibility into daily performance without walking the floor.',
     howItWorks: [
       { step: 1, title: 'Configure Your Boards', description: 'Set up digital SQDCP boards for each team, cell, or value stream. Define metrics, targets, and escalation rules.' },
@@ -132,6 +135,7 @@ export const services: ServiceConfig[] = [
     accentColor: '#8C34E9',
     subdomain: 'oeemanager.oplytics.digital',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-oee-Th2ta3q9vx8SDihX3BBphp.webp',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-oee-QnRQ7NMUruu9AHLjseSSx2.webp',
     category: 'core',
     problem: 'Most manufacturers know their OEE is lower than it should be, but they cannot pinpoint why. Manual data collection is slow, inaccurate, and biased. By the time losses are identified, the shift is over and the opportunity is gone.',
     howItWorks: [
@@ -163,6 +167,7 @@ export const services: ServiceConfig[] = [
     icon: 'Plug',
     accentColor: '#1DB8CE',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-connect-BLrEbXt4nBnvZdECMPpzLm.webp',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-connect-QpzAp7fYGbnsnuiT3dKihD.webp',
     category: 'core',
     problem: 'Manufacturing data is trapped in silos — PLCs speak different protocols, legacy systems have no APIs, and connecting a new machine takes weeks of custom development. Without a unified connectivity layer, digital transformation stalls at the edge.',
     howItWorks: [
@@ -193,6 +198,7 @@ export const services: ServiceConfig[] = [
     icon: 'ClipboardCheck',
     accentColor: '#22C55E',
     category: 'core',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-action-3Ctr5Ddy2xCm5tqouxWKrn.webp',
     problem: 'Actions from audits, incidents, and meetings are scattered across spreadsheets, emails, and sticky notes. Without a single register, items get duplicated, forgotten, or closed without verification. The same problems recur because root causes are never properly addressed.',
     howItWorks: [
       { step: 1, title: 'Capture from Any Source', description: 'Raise actions from audits, incidents, tier meetings, or any Oplytics service. One unified action register.' },
@@ -224,6 +230,7 @@ export const services: ServiceConfig[] = [
     icon: 'CheckCircle',
     accentColor: '#22C55E',
     category: 'hub',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-quality-CPaphZDUvQrJ9oQdRQZPJM.webp',
     problem: 'Quality issues are managed in disconnected systems — non-conformances in one tool, CAPAs in another, audits in spreadsheets. This fragmentation means patterns are missed, corrective actions are not linked to root causes, and audit preparation consumes days of effort.',
     howItWorks: [
       { step: 1, title: 'Capture Non-Conformances', description: 'Log non-conformances from any source with full traceability. Attach photos, documents, and related records.' },
@@ -253,6 +260,7 @@ export const services: ServiceConfig[] = [
     icon: 'Shield',
     accentColor: '#EF4444',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-safety-6GF7P32Rwd5xBFHfEtSxvq.webp',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-safety-ZCTNQ8eJJmtZgD4CEtSFVD.webp',
     category: 'hub',
     problem: 'Safety incidents are under-reported because reporting is cumbersome. Paper forms, complex systems, and fear of blame create barriers. Without easy reporting and data-driven insights, organisations react to incidents instead of preventing them.',
     howItWorks: [
@@ -283,6 +291,7 @@ export const services: ServiceConfig[] = [
     icon: 'Award',
     accentColor: '#F97316',
     category: 'hub',
+    demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-cert-cm2edFr6JvgfmkowUoXgtL.webp',
     problem: 'Certification audits create panic because documentation is scattered, version control is manual, and compliance gaps are discovered too late. Organisations spend weeks preparing for audits that should be routine, and findings from previous audits are not systematically tracked.',
     howItWorks: [
       { step: 1, title: 'Map Your Standards', description: 'Import ISO, IATF, or other standard requirements. Map your existing processes and documents to each clause.' },

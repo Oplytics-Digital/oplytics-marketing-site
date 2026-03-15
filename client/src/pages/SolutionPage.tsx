@@ -289,37 +289,74 @@ export default function SolutionPage() {
               </div>
             </div>
 
-            <div className="aspect-video flex flex-col items-center justify-center p-8 text-center relative">
-              <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: 'linear-gradient(#8C34E9 1px, transparent 1px), linear-gradient(90deg, #8C34E9 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }} />
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-full bg-[#8C34E9]/10 flex items-center justify-center mx-auto mb-6 border border-[#8C34E9]/20">
-                  {service.status === 'live' ? (
-                    <Play className="w-7 h-7 text-[#C084FC] ml-1" />
-                  ) : (
-                    <Monitor className="w-7 h-7 text-[#C084FC]" />
-                  )}
+            {service.demoImage ? (
+              <div className="relative group">
+                <img
+                  src={service.demoImage}
+                  alt={`${service.name} dashboard screenshot`}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+                {/* Hover overlay with CTA */}
+                <div className="absolute inset-0 bg-[#080C16]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-[#8C34E9]/20 flex items-center justify-center mb-4 border border-[#8C34E9]/30">
+                    {service.status === 'live' ? (
+                      <Play className="w-7 h-7 text-[#C084FC] ml-1" />
+                    ) : (
+                      <Monitor className="w-7 h-7 text-[#C084FC]" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                    {service.status === 'live' ? 'Try It Live' : 'Preview Coming Soon'}
+                  </h3>
+                  <p className="text-sm text-[#A0A8B8] max-w-md mx-auto mb-4 text-center px-4">
+                    {service.status === 'live'
+                      ? `Launch a guided walkthrough of ${service.name} with sample manufacturing data.`
+                      : `Register your interest to be notified when ${service.name} launches.`}
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
+                    style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+                  >
+                    {service.status === 'live' ? 'Request Live Demo' : 'Register Interest'}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
-                  {service.status === 'live' ? 'Interactive Demo' : 'Preview Coming Soon'}
-                </h3>
-                <p className="text-sm text-[#8890A0] max-w-md mx-auto mb-6">
-                  {service.status === 'live'
-                    ? `Click below to launch a guided walkthrough of ${service.name} with sample manufacturing data.`
-                    : `We are building the ${service.name} demo experience. Register your interest to be notified when it is ready.`}
-                </p>
-                <Link
-                  href={service.status === 'live' ? '/contact' : '/contact'}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
-                  style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
-                >
-                  {service.status === 'live' ? 'Launch Demo' : 'Request Preview'}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
               </div>
-            </div>
+            ) : (
+              <div className="aspect-video flex flex-col items-center justify-center p-8 text-center relative">
+                <div className="absolute inset-0 opacity-5" style={{
+                  backgroundImage: 'linear-gradient(#8C34E9 1px, transparent 1px), linear-gradient(90deg, #8C34E9 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }} />
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-full bg-[#8C34E9]/10 flex items-center justify-center mx-auto mb-6 border border-[#8C34E9]/20">
+                    {service.status === 'live' ? (
+                      <Play className="w-7 h-7 text-[#C084FC] ml-1" />
+                    ) : (
+                      <Monitor className="w-7 h-7 text-[#C084FC]" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                    {service.status === 'live' ? 'Interactive Demo' : 'Preview Coming Soon'}
+                  </h3>
+                  <p className="text-sm text-[#8890A0] max-w-md mx-auto mb-6">
+                    {service.status === 'live'
+                      ? `Click below to launch a guided walkthrough of ${service.name} with sample manufacturing data.`
+                      : `We are building the ${service.name} demo experience. Register your interest to be notified when it is ready.`}
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
+                    style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+                  >
+                    {service.status === 'live' ? 'Launch Demo' : 'Request Preview'}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
