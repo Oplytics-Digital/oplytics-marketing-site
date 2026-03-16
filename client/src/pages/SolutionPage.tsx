@@ -16,6 +16,7 @@
  * CLAIMS POLICY: Results section enforces tier labels.
  * No pricing on service pages — CTAs link to /pricing.
  */
+import { Suspense } from 'react';
 import { useParams } from 'wouter';
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
@@ -26,6 +27,7 @@ import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { AIFeatureList } from '@/components/shared/AIBadge';
 import { getServiceBySlug, getCrossSellServices, getClaimTierLabel } from '@/config/services';
+import { demoComponents } from '@/components/demos';
 import { Link } from 'wouter';
 import {
   Gauge, LayoutGrid, ClipboardCheck, Shield, Target,
@@ -43,7 +45,7 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <Users className="w-5 h-5" />, title: 'Shift Handover', description: 'Digital shift handover reports with OEE summaries, open actions, and key events from the previous shift.' },
     { icon: <Target className="w-5 h-5" />, title: 'Target Management', description: 'Set OEE targets by line, product, and shift. Visual indicators show performance against target in real time.' },
   ],
-  'sqdcp': [
+  'sqdcp-hub': [
     { icon: <LayoutGrid className="w-5 h-5" />, title: 'Digital Tier Boards', description: 'Replace whiteboards with real-time digital SQDCP boards. Accessible from any device, anywhere.' },
     { icon: <Shield className="w-5 h-5" />, title: 'Safety First', description: 'Safety metrics front and centre. Track incidents, near-misses, and safety observations daily.' },
     { icon: <CheckCircle className="w-5 h-5" />, title: 'Quality Tracking', description: 'First-pass yield, scrap rates, and customer complaints. Quality data integrated from your QMS.' },
@@ -69,7 +71,7 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <TrendingUp className="w-5 h-5" />, title: 'Catchball Process', description: 'Facilitate the catchball process digitally. Align top-down objectives with bottom-up feedback.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Progress Reviews', description: 'Monthly and quarterly review cadence with automated status updates and bowling charts.' },
   ],
-  'connect': [
+  'smartconnect': [
     { icon: <Plug className="w-5 h-5" />, title: 'Machine Connectivity', description: 'Connect to PLCs, SCADA systems, and industrial sensors. Support for OPC-UA, MQTT, Modbus, and more.' },
     { icon: <Zap className="w-5 h-5" />, title: 'Zero-Code Configuration', description: 'Visual configuration interface. Map machine signals to Oplytics data points without writing code.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Data Transformation', description: 'Transform raw machine data into meaningful metrics. Built-in calculation engine for OEE, cycle times, and more.' },
@@ -289,74 +291,90 @@ export default function SolutionPage() {
               </div>
             </div>
 
-            {service.demoImage ? (
-              <div className="relative group">
-                <img
-                  src={service.demoImage}
-                  alt={`${service.name} dashboard screenshot`}
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
-                {/* Hover overlay with CTA */}
-                <div className="absolute inset-0 bg-[#080C16]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-[#8C34E9]/20 flex items-center justify-center mb-4 border border-[#8C34E9]/30">
-                    {service.status === 'live' ? (
-                      <Play className="w-7 h-7 text-[#C084FC] ml-1" />
-                    ) : (
-                      <Monitor className="w-7 h-7 text-[#C084FC]" />
-                    )}
+            {(() => {
+              const DemoComponent = demoComponents[service.slug];
+              if (DemoComponent) {
+                return (
+                  <Suspense fallback={
+                    <div className="aspect-video flex items-center justify-center">
+                      <div className="animate-pulse text-[#596475] text-sm">Loading demo...</div>
+                    </div>
+                  }>
+                    <DemoComponent />
+                  </Suspense>
+                );
+              }
+              if (service.demoImage) {
+                return (
+                  <div className="relative group">
+                    <img
+                      src={service.demoImage}
+                      alt={`${service.name} dashboard screenshot`}
+                      className="w-full h-auto"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-[#080C16]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-[#8C34E9]/20 flex items-center justify-center mb-4 border border-[#8C34E9]/30">
+                        {service.status === 'live' ? (
+                          <Play className="w-7 h-7 text-[#C084FC] ml-1" />
+                        ) : (
+                          <Monitor className="w-7 h-7 text-[#C084FC]" />
+                        )}
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                        {service.status === 'live' ? 'Try It Live' : 'Preview Coming Soon'}
+                      </h3>
+                      <p className="text-sm text-[#A0A8B8] max-w-md mx-auto mb-4 text-center px-4">
+                        {service.status === 'live'
+                          ? `Launch a guided walkthrough of ${service.name} with sample manufacturing data.`
+                          : `Register your interest to be notified when ${service.name} launches.`}
+                      </p>
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
+                        style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+                      >
+                        {service.status === 'live' ? 'Request Live Demo' : 'Register Interest'}
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
-                    {service.status === 'live' ? 'Try It Live' : 'Preview Coming Soon'}
-                  </h3>
-                  <p className="text-sm text-[#A0A8B8] max-w-md mx-auto mb-4 text-center px-4">
-                    {service.status === 'live'
-                      ? `Launch a guided walkthrough of ${service.name} with sample manufacturing data.`
-                      : `Register your interest to be notified when ${service.name} launches.`}
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
-                    style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
-                  >
-                    {service.status === 'live' ? 'Request Live Demo' : 'Register Interest'}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <div className="aspect-video flex flex-col items-center justify-center p-8 text-center relative">
-                <div className="absolute inset-0 opacity-5" style={{
-                  backgroundImage: 'linear-gradient(#8C34E9 1px, transparent 1px), linear-gradient(90deg, #8C34E9 1px, transparent 1px)',
-                  backgroundSize: '40px 40px',
-                }} />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-[#8C34E9]/10 flex items-center justify-center mx-auto mb-6 border border-[#8C34E9]/20">
-                    {service.status === 'live' ? (
-                      <Play className="w-7 h-7 text-[#C084FC] ml-1" />
-                    ) : (
-                      <Monitor className="w-7 h-7 text-[#C084FC]" />
-                    )}
+                );
+              }
+              return (
+                <div className="aspect-video flex flex-col items-center justify-center p-8 text-center relative">
+                  <div className="absolute inset-0 opacity-5" style={{
+                    backgroundImage: 'linear-gradient(#8C34E9 1px, transparent 1px), linear-gradient(90deg, #8C34E9 1px, transparent 1px)',
+                    backgroundSize: '40px 40px',
+                  }} />
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-full bg-[#8C34E9]/10 flex items-center justify-center mx-auto mb-6 border border-[#8C34E9]/20">
+                      {service.status === 'live' ? (
+                        <Play className="w-7 h-7 text-[#C084FC] ml-1" />
+                      ) : (
+                        <Monitor className="w-7 h-7 text-[#C084FC]" />
+                      )}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                      {service.status === 'live' ? 'Interactive Demo' : 'Preview Coming Soon'}
+                    </h3>
+                    <p className="text-sm text-[#8890A0] max-w-md mx-auto mb-6">
+                      {service.status === 'live'
+                        ? `Click below to launch a guided walkthrough of ${service.name} with sample manufacturing data.`
+                        : `We are building the ${service.name} demo experience. Register your interest to be notified when it is ready.`}
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
+                      style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+                    >
+                      {service.status === 'live' ? 'Launch Demo' : 'Request Preview'}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
-                    {service.status === 'live' ? 'Interactive Demo' : 'Preview Coming Soon'}
-                  </h3>
-                  <p className="text-sm text-[#8890A0] max-w-md mx-auto mb-6">
-                    {service.status === 'live'
-                      ? `Click below to launch a guided walkthrough of ${service.name} with sample manufacturing data.`
-                      : `We are building the ${service.name} demo experience. Register your interest to be notified when it is ready.`}
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
-                    style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
-                  >
-                    {service.status === 'live' ? 'Launch Demo' : 'Request Preview'}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
                 </div>
-              </div>
-            )}
+              );
+            })()}
           </div>
         </div>
       </section>
