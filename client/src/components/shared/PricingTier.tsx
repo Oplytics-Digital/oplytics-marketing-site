@@ -31,7 +31,7 @@ export default function PricingTier({ plan }: PricingTierProps) {
     description,
     features,
     highlighted = false,
-    ctaLabel = 'Get Started',
+    ctaLabel = 'See How It Works',
     ctaHref = '/contact',
   } = plan;
 

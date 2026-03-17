@@ -36,7 +36,7 @@ const resources: Resource[] = [
   {
     id: '1',
     title: 'How Digital SQDCP Boards Reduced Meeting Time by 40%',
-    excerpt: 'A UK automotive manufacturer replaced physical tier boards with Oplytics SQDCP Hub. Daily stand-ups became faster, data became real-time, and accountability improved across three shifts.',
+    excerpt: 'A UK automotive manufacturer replaced physical tier boards with Oplytics SQDCP Dashboard. Daily stand-ups became faster, data became real-time, and accountability improved across three shifts.',
     category: 'case-study',
     readTime: '6 min',
     date: '2026-02-15',

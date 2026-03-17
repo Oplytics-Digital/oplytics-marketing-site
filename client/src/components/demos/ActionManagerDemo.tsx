@@ -142,7 +142,7 @@ function ActionDetailDemo({ progress }: { progress: number }) {
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: 'Priority', value: 'High', color: '#f97316' },
-                { label: 'Source', value: 'SQDCP Hub', color: '#1DB8CE' },
+                { label: 'Source', value: 'SQDCP Dashboard', color: '#1DB8CE' },
                 { label: 'Owner', value: 'Paul Cox', color: '#c0c6d0' },
                 { label: 'Due Date', value: '25 Feb 2026', color: '#f59e0b' },
               ].map((f, i) => (
@@ -208,7 +208,7 @@ function ActionDetailDemo({ progress }: { progress: number }) {
 /* ─── Analytics ─── */
 function AnalyticsDemo({ progress }: { progress: number }) {
   const sourceData = [
-    { source: 'SQDCP Hub', count: 42, pct: 35 },
+    { source: 'SQDCP Dashboard', count: 42, pct: 35 },
     { source: 'Audits', count: 24, pct: 20 },
     { source: 'Safety', count: 18, pct: 15 },
     { source: 'Quality', count: 15, pct: 13 },

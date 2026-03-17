@@ -14,8 +14,7 @@ import { coreServices, hubServices, liveServices } from '@/config/services';
 import { Link } from 'wouter';
 import {
   ArrowRight, TrendingUp, Shield, BarChart3,
-  Target, Zap, Users, Sparkles, Quote, Factory,
-  Wrench, Cpu, Car
+  Target, Zap, Users, Sparkles
 } from 'lucide-react';
 
 const whyFeatures = [
@@ -51,33 +50,6 @@ const whyFeatures = [
   },
 ];
 
-const testimonials = [
-  {
-    quote: 'Oplytics transformed our daily tier meetings. What used to take 45 minutes of manual data gathering now happens in real time. Our teams are focused on improvement, not administration.',
-    author: 'Operations Director',
-    company: 'UK Automotive Manufacturer',
-    sector: 'Automotive',
-  },
-  {
-    quote: 'The integration between OEE Manager and SQDCP Hub means our production data flows directly into our daily management boards. We finally have a single source of truth.',
-    author: 'Continuous Improvement Manager',
-    company: 'Aerospace Components Supplier',
-    sector: 'Aerospace',
-  },
-  {
-    quote: 'We evaluated several platforms before choosing Oplytics. The difference is clear — this was built by people who understand manufacturing operations, not just software.',
-    author: 'Plant Manager',
-    company: 'FMCG Production Facility',
-    sector: 'FMCG',
-  },
-];
-
-const industryIcons = [
-  { icon: <Car className="w-5 h-5 sm:w-6 sm:h-6" />, label: 'Automotive' },
-  { icon: <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />, label: 'Aerospace' },
-  { icon: <Factory className="w-5 h-5 sm:w-6 sm:h-6" />, label: 'FMCG' },
-  { icon: <Wrench className="w-5 h-5 sm:w-6 sm:h-6" />, label: 'Engineering' },
-];
 
 export default function Home() {
   return (
@@ -101,7 +73,7 @@ export default function Home() {
         status="live"
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         customCtas={[
-          { label: 'Get Started', href: '/contact', variant: 'primary' },
+          { label: 'See How It Works', href: '/contact', variant: 'primary' },
           { label: 'Explore Solutions', href: '#solutions', variant: 'secondary' },
         ]}
       />
@@ -182,7 +154,7 @@ export default function Home() {
               Intelligence Built Into Every Service
             </h2>
             <p className="text-sm sm:text-lg text-[#8890A0] max-w-2xl mx-auto mb-10">
-              From predictive maintenance alerts in OEE Manager to smart anomaly detection in SQDCP Hub, AI is woven into the fabric of the platform — not bolted on as an afterthought.
+              From predictive maintenance alerts in OEE Manager to smart anomaly detection in SQDCP Dashboard, AI is woven into the fabric of the platform — not bolted on as an afterthought.
             </p>
           </AnimateOnScroll>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left" variant="slide-up" staggerDelay={0.1}>
@@ -203,54 +175,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof / Testimonials */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }} role="region" aria-label="Customer testimonials">
-        <div className="max-w-6xl mx-auto">
-          <AnimateOnScroll variant="slide-up" className="text-center mb-12 sm:mb-14">
-            <span className="section-label text-[#F59E0B] mb-3 block">Trusted by Manufacturers</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
-              What Our Customers Say
-            </h2>
-            <p className="text-sm sm:text-base text-[#8890A0] max-w-xl mx-auto">
-              Hear from manufacturing leaders who have transformed their operations with Oplytics.
-            </p>
-          </AnimateOnScroll>
-
-          {/* Industry Icons */}
-          <AnimateOnScroll variant="fade-in" className="flex items-center justify-center gap-4 sm:gap-8 mb-12 sm:mb-14 flex-wrap">
-            {industryIcons.map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 sm:gap-2">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#1E2738]/50 flex items-center justify-center text-[#596475]">
-                  {item.icon}
-                </div>
-                <span className="text-[9px] sm:text-[10px] text-[#596475] font-medium tracking-wider uppercase">{item.label}</span>
-              </div>
-            ))}
-          </AnimateOnScroll>
-
-          {/* Testimonial Cards */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.1}>
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="p-5 sm:p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#F59E0B]/20 transition-colors relative"
-              >
-                <Quote className="w-7 h-7 sm:w-8 sm:h-8 text-[#F59E0B]/20 mb-3 sm:mb-4" aria-hidden="true" />
-                <p className="text-xs sm:text-sm text-[#A0A8B8] leading-relaxed mb-5 sm:mb-6 italic">
-                  "{t.quote}"
-                </p>
-                <div className="border-t border-[#1E2738] pt-3 sm:pt-4">
-                  <div className="text-sm font-semibold text-white">{t.author}</div>
-                  <div className="text-xs text-[#596475]">{t.company}</div>
-                  <div className="inline-block mt-2 px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-                    {t.sector}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
 
       {/* Why Oplytics */}
       <FeatureGrid
@@ -275,7 +199,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple w-full sm:w-auto justify-center"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
-              Get Started
+              See How It Works
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

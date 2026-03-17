@@ -9,29 +9,36 @@ import HeroSection from '@/components/shared/HeroSection';
 import ContactForm from '@/components/shared/ContactForm';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
-import { Mail, MapPin, Clock, Phone, Linkedin, Twitter, Globe } from 'lucide-react';
+import { Mail, MapPin, Clock, Linkedin, Instagram } from 'lucide-react';
 
 const contactInfo = [
   {
     icon: <Mail className="w-5 h-5 text-[#C084FC]" />,
     iconBg: 'bg-[#8C34E9]/10',
-    title: 'Email Us',
-    primary: 'hello@oplytics.digital',
-    secondary: 'For support: support@oplytics.digital',
-  },
-  {
-    icon: <Phone className="w-5 h-5 text-[#1DB8CE]" />,
-    iconBg: 'bg-[#1DB8CE]/10',
-    title: 'Call Us',
-    primary: '+44 (0) 800 123 4567',
-    secondary: 'Mon–Fri, 9:00 AM – 5:30 PM GMT',
+    title: 'Speak to Paul',
+    primary: 'paul@oplytics.digital',
+    secondary: '',
   },
   {
     icon: <MapPin className="w-5 h-5 text-[#F59E0B]" />,
     iconBg: 'bg-[#F59E0B]/10',
-    title: 'Office',
-    primary: 'United Kingdom',
+    title: 'United Kingdom',
+    primary: 'Headquarters',
     secondary: 'Serving manufacturers globally',
+  },
+  {
+    icon: <MapPin className="w-5 h-5 text-[#1DB8CE]" />,
+    iconBg: 'bg-[#1DB8CE]/10',
+    title: 'South East Asia',
+    primary: 'Regional Office',
+    secondary: 'Supporting APAC operations',
+  },
+  {
+    icon: <MapPin className="w-5 h-5 text-[#22C55E]" />,
+    iconBg: 'bg-[#22C55E]/10',
+    title: 'Europe',
+    primary: 'Regional Office',
+    secondary: 'Supporting European operations',
   },
   {
     icon: <Clock className="w-5 h-5 text-[#22C55E]" />,
@@ -43,9 +50,8 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', href: 'https://linkedin.com/company/oplytics' },
-  { icon: <Twitter className="w-5 h-5" />, label: 'X (Twitter)', href: 'https://twitter.com/oplytics' },
-  { icon: <Globe className="w-5 h-5" />, label: 'Website', href: 'https://oplytics.digital' },
+  { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn — Coming Soon', href: '#' },
+  { icon: <Instagram className="w-5 h-5" />, label: 'Instagram — Coming Soon', href: '#' },
 ];
 
 export default function Contact() {
@@ -88,7 +94,9 @@ export default function Contact() {
                     {item.title}
                   </h3>
                   <p className="text-sm text-white/90">{item.primary}</p>
-                  <p className="text-xs text-[#596475] mt-0.5">{item.secondary}</p>
+                  {item.secondary && (
+                    <p className="text-xs text-[#596475] mt-0.5">{item.secondary}</p>
+                  )}
                 </div>
               ))}
 
@@ -99,18 +107,16 @@ export default function Contact() {
                 </h3>
                 <div className="flex gap-3">
                   {socialLinks.map((link, i) => (
-                    <a
+                    <div
                       key={i}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-md bg-[#1E2738] flex items-center justify-center text-[#8890A0] hover:text-white hover:bg-[#8C34E9]/20 transition-all"
+                      className="w-10 h-10 rounded-md bg-[#1E2738] flex items-center justify-center text-[#596475] cursor-default"
                       title={link.label}
                     >
                       {link.icon}
-                    </a>
+                    </div>
                   ))}
                 </div>
+                <p className="text-[10px] text-[#596475] mt-2 tracking-wider uppercase">Coming Soon</p>
               </div>
             </div>
           </div>

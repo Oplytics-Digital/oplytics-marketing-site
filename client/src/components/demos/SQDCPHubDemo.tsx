@@ -1,5 +1,5 @@
 /**
- * SQDCP Hub Animated Demo — 20-second looping
+ * SQDCP Dashboard Animated Demo — 20-second looping
  * Phases: Dashboard Overview, Data Entry, Trend Analysis, Action Tracker
  */
 import { AlertTriangle, CheckCircle2, TrendingUp, ClipboardList } from 'lucide-react';
@@ -14,7 +14,7 @@ const PHASES = [
 
 export default function SQDCPHubDemo() {
   return (
-    <AnimatedDemoShell serviceName="SQDCP Hub" accentColor="#10b981" phases={PHASES}>
+    <AnimatedDemoShell serviceName="SQDCP Dashboard" accentColor="#10b981" phases={PHASES}>
       {(currentPhase, phaseProgress) => (
         <>
           <DemoPhaseView active={currentPhase === 0}>

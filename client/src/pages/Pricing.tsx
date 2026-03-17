@@ -37,7 +37,7 @@ const plans: PlanTier[] = [
     description: 'Perfect for single-site operations getting started with digital management.',
     features: [
       'OEE Manager — 1 production line',
-      'SQDCP Hub — 1 team board',
+      'SQDCP Dashboard — 1 team board',
       'Policy Deployment — 1 X-matrix',
       'Action Manager — up to 50 actions',
       'Up to 10 users',
@@ -54,7 +54,7 @@ const plans: PlanTier[] = [
     description: 'For growing operations that need full visibility across multiple lines and teams.',
     features: [
       'OEE Manager — up to 10 lines',
-      'SQDCP Hub — unlimited boards',
+      'SQDCP Dashboard — unlimited boards',
       'Policy Deployment — unlimited',
       'Action Manager — unlimited actions',
       'Up to 50 users',
@@ -133,7 +133,7 @@ function calculateROI(inputs: ROIInputs) {
 const faqs = [
   {
     q: 'Can I start with just one service?',
-    a: 'Yes. All plans include access to the four live services (OEE Manager, SQDCP Hub, Policy Deployment, and Action Manager). You can use as many or as few as you need. Usage limits vary by plan tier.',
+    a: 'Yes. All plans include access to the four live services (OEE Manager, SQDCP Dashboard, Policy Deployment, and Action Manager). You can use as many or as few as you need. Usage limits vary by plan tier.',
   },
   {
     q: 'What happens when in-development services launch?',

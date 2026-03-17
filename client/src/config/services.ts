@@ -5,7 +5,7 @@
  * and the standardised service page template sections.
  *
  * ARCHITECTURE:
- *   - Core services: Policy Deployment, SQDCP Hub, OEE Manager, OplyticsConnect, Action Manager
+ *   - Core services: Policy Deployment, SQDCP Dashboard, OEE Manager, OplyticsConnect, Action Manager
  *   - Hub services: Quality Manager, Safety Manager, Certification Manager
  *   - `category`: 'core' | 'hub'
  *   - `aiFeatures`: AI capabilities built into each service
@@ -96,7 +96,7 @@ export const services: ServiceConfig[] = [
   },
   {
     id: 'sqdcp-hub',
-    name: 'SQDCP Hub',
+    name: 'SQDCP Dashboard',
     tagline: 'Daily management boards, digitised',
     description: 'Digital SQDCP boards that drive daily accountability. Safety, Quality, Delivery, Cost, and People metrics at a glance for every team.',
     status: 'live',
@@ -174,7 +174,7 @@ export const services: ServiceConfig[] = [
       { step: 1, title: 'Discover Devices', description: 'SmartConnect scans your network and identifies available PLCs, sensors, and industrial systems automatically.' },
       { step: 2, title: 'Map Signals', description: 'Visual drag-and-drop interface maps machine signals to Oplytics data points. No coding required.' },
       { step: 3, title: 'Transform Data', description: 'Built-in calculation engine converts raw signals into meaningful metrics — OEE, cycle times, energy consumption.' },
-      { step: 4, title: 'Stream to Platform', description: 'Data flows in real time to OEE Manager, SQDCP Hub, and other Oplytics services. Edge buffering ensures zero data loss.' },
+      { step: 4, title: 'Stream to Platform', description: 'Data flows in real time to OEE Manager, SQDCP Dashboard, and other Oplytics services. Edge buffering ensures zero data loss.' },
     ],
     results: [
       { value: 'Faster', label: 'Machine integration compared to custom development', tier: 'neutral' },
@@ -182,7 +182,7 @@ export const services: ServiceConfig[] = [
       { value: 'Unified', label: 'Data layer across all machines regardless of protocol', tier: 'neutral' },
       { value: 'Resilient', label: 'Edge buffering ensures no data loss during connectivity issues', tier: 'neutral' },
     ],
-    crossSellIds: ['oee-manager', 'sqdcp-hub', 'quality-manager'],
+    crossSellIds: ['oee-manager', 'sqdcp-hub'],
     aiFeatures: [
       { title: 'AI Signal Mapping', description: 'Machine learning auto-detects and maps machine signals to Oplytics data points, reducing configuration time significantly.' },
       { title: 'Intelligent Edge Processing', description: 'AI at the edge filters noise, detects anomalies in raw sensor data, and optimises data transmission to the cloud.' },
@@ -193,7 +193,7 @@ export const services: ServiceConfig[] = [
     name: 'Action Manager',
     tagline: 'Track every action to closure',
     description: 'Capture, assign, and track corrective and preventive actions from any source. Ensure nothing falls through the cracks.',
-    status: 'in-development',
+    status: 'live',
     slug: 'action-manager',
     icon: 'ClipboardCheck',
     accentColor: '#22C55E',

@@ -6,12 +6,12 @@
  *   1. Hero — Service name, tagline, status badge, primary CTA
  *   2. Problem — What problem does this service solve?
  *   3. Features — 4-6 key features with icons (FeatureGrid)
- *   4. How It Works — Step-by-step process (3-4 phases)
- *   5. Results — Verified metrics, research-backed stats, or neutral language
- *   6. AI Features — Built-in AI capabilities
- *   7. Demo — See It In Action (live demo or preview)
+ *   4. Demo — See It In Action (moved above How It Works)
+ *   5. How It Works — Step-by-step process (3-4 phases)
+ *   6. Results — Verified metrics, research-backed stats, or neutral language
+ *   7. AI Features — Built-in AI capabilities
  *   8. Cross-Sell — Related services
- *   9. Contact — Embedded enquiry form / early access
+ *   9. CTA — Simple contact CTA
  *
  * CLAIMS POLICY: Results section enforces tier labels.
  * No pricing on service pages — CTAs link to /pricing.
@@ -21,7 +21,6 @@ import { useParams } from 'wouter';
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
 import FeatureGrid from '@/components/shared/FeatureGrid';
-import ContactForm from '@/components/shared/ContactForm';
 import ServiceCard from '@/components/shared/ServiceCard';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
@@ -160,109 +159,7 @@ export default function SolutionPage() {
         />
       )}
 
-      {/* ── 4. HOW IT WORKS ── */}
-      {service.howItWorks.length > 0 && (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }}>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14">
-              <span className="section-label text-[#1DB8CE] mb-3 block">How It Works</span>
-              <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
-                Getting Started with {service.name}
-              </h2>
-            </div>
-
-            <div className="relative">
-              {/* Vertical connector line */}
-              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#1DB8CE]/40 via-[#8C34E9]/40 to-transparent hidden sm:block" />
-
-              <div className="space-y-8">
-                {service.howItWorks.map((step, i) => (
-                  <div key={step.step} className="flex items-start gap-5 sm:gap-8 relative">
-                    {/* Step number */}
-                    <div className="relative z-10 flex-shrink-0">
-                      <div
-                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl border-2"
-                        style={{
-                          fontFamily: 'Montserrat',
-                          background: `linear-gradient(135deg, ${i % 2 === 0 ? '#8C34E9' : '#1DB8CE'}20, transparent)`,
-                          borderColor: i % 2 === 0 ? '#8C34E9' : '#1DB8CE',
-                        }}
-                      >
-                        {step.step}
-                      </div>
-                    </div>
-
-                    {/* Step content */}
-                    <div className="pt-1 sm:pt-3 pb-2">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
-                        {step.title}
-                      </h3>
-                      <p className="text-[#8890A0] leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── 5. RESULTS ── */}
-      {service.results.length > 0 && (
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14">
-              <span className="section-label text-[#22C55E] mb-3 block">Expected Outcomes</span>
-              <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
-                What You Can Expect
-              </h2>
-              <p className="text-[#8890A0] text-sm max-w-lg mx-auto">
-                All metrics are clearly labelled by evidence tier. We only publish claims we can substantiate.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {service.results.map((result, i) => (
-                <div
-                  key={i}
-                  className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#22C55E]/30 transition-colors"
-                >
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
-                      {result.value}
-                    </span>
-                    {getClaimTierLabel(result.tier) && (
-                      <span className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-semibold ${
-                        result.tier === 'verified'
-                          ? 'bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20'
-                          : 'bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20'
-                      }`}>
-                        {getClaimTierLabel(result.tier)}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[#A0A8B8] text-sm leading-relaxed">{result.label}</p>
-                  {result.source && (
-                    <p className="text-[#596475] text-xs mt-2 flex items-center gap-1.5">
-                      <BookOpen className="w-3 h-3" />
-                      {result.source}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── 6. AI FEATURES ── */}
-      {service.aiFeatures.length > 0 && (
-        <AIFeatureList features={service.aiFeatures} />
-      )}
-
-      {/* ── 7. DEMO ── */}
+      {/* ── 4. DEMO (moved above How It Works) ── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
@@ -379,6 +276,110 @@ export default function SolutionPage() {
         </div>
       </section>
 
+      {/* ── 5. HOW IT WORKS ── */}
+      {service.howItWorks.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }}>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <span className="section-label text-[#1DB8CE] mb-3 block">How It Works</span>
+              <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                Getting Started with {service.name}
+              </h2>
+            </div>
+
+            <div className="relative">
+              {/* Vertical connector line */}
+              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#1DB8CE]/40 via-[#8C34E9]/40 to-transparent hidden sm:block" />
+
+              <div className="space-y-8">
+                {service.howItWorks.map((step, i) => (
+                  <div key={step.step} className="flex items-start gap-5 sm:gap-8 relative">
+                    {/* Step number */}
+                    <div className="relative z-10 flex-shrink-0">
+                      <div
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl border-2"
+                        style={{
+                          fontFamily: 'Montserrat',
+                          background: `linear-gradient(135deg, ${i % 2 === 0 ? '#8C34E9' : '#1DB8CE'}20, transparent)`,
+                          borderColor: i % 2 === 0 ? '#8C34E9' : '#1DB8CE',
+                        }}
+                      >
+                        {step.step}
+                      </div>
+                    </div>
+
+                    {/* Step content */}
+                    <div className="pt-1 sm:pt-3 pb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                        {step.title}
+                      </h3>
+                      <p className="text-[#8890A0] leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 5. RESULTS ── */}
+      {service.results.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <span className="section-label text-[#22C55E] mb-3 block">Expected Outcomes</span>
+              <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
+                What You Can Expect
+              </h2>
+              <p className="text-[#8890A0] text-sm max-w-lg mx-auto">
+                All metrics are clearly labelled by evidence tier. We only publish claims we can substantiate.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {service.results.map((result, i) => (
+                <div
+                  key={i}
+                  className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#22C55E]/30 transition-colors"
+                >
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="text-2xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                      {result.value}
+                    </span>
+                    {getClaimTierLabel(result.tier) && (
+                      <span className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-semibold ${
+                        result.tier === 'verified'
+                          ? 'bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20'
+                          : 'bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20'
+                      }`}>
+                        {getClaimTierLabel(result.tier)}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[#A0A8B8] text-sm leading-relaxed">{result.label}</p>
+                  {result.source && (
+                    <p className="text-[#596475] text-xs mt-2 flex items-center gap-1.5">
+                      <BookOpen className="w-3 h-3" />
+                      {result.source}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 6. AI FEATURES ── */}
+      {service.aiFeatures.length > 0 && (
+        <AIFeatureList features={service.aiFeatures} />
+      )}
+
+
+
       {/* ── 8. CROSS-SELL ── */}
       {crossSellServices.length > 0 && (
         <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
@@ -398,27 +399,23 @@ export default function SolutionPage() {
         </section>
       )}
 
-      {/* ── 9. CONTACT / EARLY ACCESS ── */}
+      {/* ── 9. CTA ── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#080C16' }}>
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="section-label text-[#8C34E9] mb-3 block">
-              {service.status === 'live' ? 'Get Started' : 'Early Access'}
-            </span>
-            <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
-              {service.status === 'live'
-                ? `Start Using ${service.name} Today`
-                : `Be First to Try ${service.name}`}
-            </h2>
-            <p className="text-[#8890A0]">
-              {service.status === 'live'
-                ? 'Get in touch and we will have you up and running in no time.'
-                : 'Register your interest and we will notify you as soon as early access is available.'}
-            </p>
-          </div>
-          <div className="p-8 rounded-lg border border-[#1E2738] bg-[#0D1220]">
-            <ContactForm context={service.name} />
-          </div>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+            Ready to see it in action?
+          </h2>
+          <p className="text-[#8890A0] mb-8">
+            Get in touch with our team.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple"
+            style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+          >
+            Contact Us
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
     </MarketingLayout>

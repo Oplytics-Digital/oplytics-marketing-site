@@ -28,7 +28,7 @@ export default function MarketingFooter() {
               Operational excellence platform for manufacturing. Real-time visibility, digital management, and continuous improvement.
             </p>
             <p className="text-xs text-[#596475]">
-              &copy; {currentYear} Oplytics.digital. All rights reserved.
+              &copy; {currentYear} Oplytics Digital Ltd. All rights reserved.
             </p>
           </div>
 
