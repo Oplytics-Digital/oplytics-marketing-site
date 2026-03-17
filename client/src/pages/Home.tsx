@@ -8,6 +8,7 @@ import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
 import ServiceCard from '@/components/shared/ServiceCard';
 import FeatureGrid from '@/components/shared/FeatureGrid';
+import PersonaSection from '@/components/shared/PersonaSection';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { coreServices, hubServices, liveServices } from '@/config/services';
@@ -113,7 +114,13 @@ export default function Home() {
             </p>
           </AnimateOnScroll>
 
-          {/* Core Services */}
+          {/* Core Platform */}
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase text-[#8C34E9] whitespace-nowrap">
+              Core Platform
+            </span>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#8C34E9]/20 to-transparent" />
+          </div>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.08}>
             {coreServices.map(service => (
               <ServiceCard key={service.id} service={service} />
@@ -160,7 +167,7 @@ export default function Home() {
           </AnimateOnScroll>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left" variant="slide-up" staggerDelay={0.1}>
             {[
-              { title: 'Predictive Analytics', desc: 'AI forecasts equipment failures, quality issues, and safety risks before they happen.' },
+              { title: 'Smart Guided CI Coaching', desc: 'Our AI Support Engineer coaches your teams through standard CI processes — from 5 Whys to corrective action planning — in real time.' },
               { title: 'Smart Automation', desc: 'Automatic loss classification, action prioritisation, and compliance gap detection.' },
               { title: 'Natural Language Insights', desc: 'AI generates plain-English summaries of trends, anomalies, and recommended actions.' },
             ].map((item, i) => (
@@ -184,6 +191,9 @@ export default function Home() {
         sectionLabel="Why Oplytics"
         sectionTitle="Built Different. Built Better."
       />
+
+      {/* Who Is Oplytics For? */}
+      <PersonaSection />
 
       {/* Bottom CTA */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8" role="region" aria-label="Call to action">

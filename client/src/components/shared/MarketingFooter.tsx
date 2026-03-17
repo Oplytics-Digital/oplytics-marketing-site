@@ -25,7 +25,7 @@ export default function MarketingFooter() {
               </span>
             </Link>
             <p className="text-sm text-[#596475] leading-relaxed max-w-xs">
-              Operational excellence platform for manufacturing. Real-time visibility, digital management, and continuous improvement.
+              Operational Excellence. One Digital Platform.
             </p>
             <p className="text-xs text-[#596475]">
               &copy; {currentYear} Oplytics Digital Ltd. All rights reserved.
@@ -125,7 +125,7 @@ export default function MarketingFooter() {
       <div className="border-t border-[#1E2738]/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-[#596475]">
-            Built for operational excellence in manufacturing.
+            Operational Excellence. One Digital Platform.
           </p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-xs text-[#596475] hover:text-[#8890A0] transition-colors">
