@@ -68,8 +68,9 @@ export default function Home() {
 
       {/* Hero */}
       <HeroSection
-        headline="Operational Excellence, Digitised."
-        subtext="The platform that connects your manufacturing floor to your boardroom. Real-time OEE, digital SQDCP boards, safety management, and continuous improvement — all in one place."
+        headline="Operational Excellence. One Digital Platform."
+        subheadline="Fully Integrated. Powered by AI."
+        subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. All supported by AI for better decision making and process compliance. All in one platform."
         status="live"
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         customCtas={[
@@ -154,7 +155,7 @@ export default function Home() {
               Intelligence Built Into Every Service
             </h2>
             <p className="text-sm sm:text-lg text-[#8890A0] max-w-2xl mx-auto mb-10">
-              From predictive maintenance alerts in OEE Manager to smart anomaly detection in SQDCP Dashboard, AI is woven into the fabric of the platform — not bolted on as an afterthought.
+              Every Oplytics service is supported by our AI Support Engineer — a smart guided coaching layer built into the platform. It doesn't just show you data, it helps your teams understand it, act on it, and improve continuously. From suggesting corrective actions to guiding users through standard processes, AI is woven into every step.
             </p>
           </AnimateOnScroll>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left" variant="slide-up" staggerDelay={0.1}>

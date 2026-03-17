@@ -13,6 +13,7 @@ import type { ServiceStatus } from '@/config/services';
 
 interface HeroSectionProps {
   headline: string;
+  subheadline?: string;
   subtext: string;
   status: ServiceStatus;
   backgroundImage?: string;
@@ -20,7 +21,7 @@ interface HeroSectionProps {
   customCtas?: { label: string; href: string; variant: 'primary' | 'secondary' }[];
 }
 
-export default function HeroSection({ headline, subtext, status, backgroundImage, customCtas }: HeroSectionProps) {
+export default function HeroSection({ headline, subheadline, subtext, status, backgroundImage, customCtas }: HeroSectionProps) {
   const isLive = status === 'live';
 
   const defaultCtas = isLive
@@ -73,6 +74,13 @@ export default function HeroSection({ headline, subtext, status, backgroundImage
         >
           {headline}
         </h1>
+
+        {/* Subheadline */}
+        {subheadline && (
+          <p className="text-xl sm:text-2xl font-semibold text-[#C084FC] mb-4" style={{ fontFamily: 'Montserrat' }}>
+            {subheadline}
+          </p>
+        )}
 
         {/* Subtext */}
         <p className="text-lg sm:text-xl text-[#8890A0] leading-relaxed max-w-2xl mx-auto mb-10">
