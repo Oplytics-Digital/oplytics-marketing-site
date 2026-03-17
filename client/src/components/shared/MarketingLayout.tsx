@@ -5,7 +5,7 @@
 import { type ReactNode } from 'react';
 import MarketingHeader from './MarketingHeader';
 import MarketingFooter from './MarketingFooter';
-import SimpleChatbotWidget from './SimpleChatbotWidget';
+import AISupportEngineer from './AISupportEngineer';
 import CookieConsent from './CookieConsent';
 
 interface MarketingLayoutProps {
@@ -27,7 +27,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       </main>
 
       <MarketingFooter />
-      <SimpleChatbotWidget />
+      <AISupportEngineer />
       <CookieConsent />
     </div>
   );
