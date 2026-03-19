@@ -17,9 +17,9 @@ export const CertificationManagerDemo = lazy(() => import('./CertificationManage
 /** Map from service slug → lazy demo component */
 export const demoComponents: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
   'policy-deployment': PolicyDeploymentDemo,
-  'sqdcp-hub': SQDCPHubDemo,
+  'sqdcp': SQDCPHubDemo,
   'oee-manager': OEEManagerDemo,
-  'smartconnect': ConnectDemo,
+  'connect': ConnectDemo,
   'action-manager': ActionManagerDemo,
   'quality-manager': QualityManagerDemo,
   'safety-manager': SafetyManagerDemo,
