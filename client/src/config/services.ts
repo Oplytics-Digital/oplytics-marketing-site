@@ -1,18 +1,10 @@
 /**
  * TASK-01 / TASK-16: Service Status Configuration & Standardised Template Data
- * Single source of truth for all service statuses, content, and page data.
- * Controls hero badges, CTAs, language, card displays, AI badges, ordering,
- * and the standardised service page template sections.
  *
- * ARCHITECTURE:
- *   - Core services: Policy Deployment, SQDCP Dashboard, OEE Manager, OplyticsConnect, Action Manager
- *   - Hub services: Quality Manager, Safety Manager, Certification Manager
- *   - `category`: 'core' | 'hub'
- *   - `aiFeatures`: AI capabilities built into each service
- *   - `problem`: What problem does this service solve?
- *   - `howItWorks`: Step-by-step process (3-4 phases)
- *   - `results`: Verified metrics, research-backed stats, or neutral language
- *   - `crossSellIds`: Related services that complement this one
+ * Shared identity fields (slug, name, tagline, description, icon, accentColor,
+ * status, category, subdomain) are imported from @pablo2410/shared-ui/services.
+ * Marketing-specific fields (heroImage, demoImage, problem, howItWorks, results,
+ * aiFeatures, crossSellIds) are extended locally below.
  *
  * CLAIMS POLICY (TASK-16):
  *   - Verified: Real customer data with permission to publish
@@ -20,8 +12,16 @@
  *   - Neutral: No specific numbers — directional language only
  */
 
-export type ServiceStatus = 'live' | 'in-development';
-export type ServiceCategory = 'core' | 'hub';
+import {
+  SERVICE_CATALOG,
+  type ServiceDefinition,
+  type ServiceStatus as SharedServiceStatus,
+  type ServiceCategory,
+} from '@pablo2410/shared-ui/services';
+
+// Re-export shared types for backward compatibility
+export type ServiceStatus = SharedServiceStatus | 'in-development';
+export type { ServiceCategory };
 export type ClaimTier = 'verified' | 'research-backed' | 'neutral';
 
 export interface AIFeature {
@@ -62,18 +62,26 @@ export interface ServiceConfig {
   crossSellIds: string[];
 }
 
-export const services: ServiceConfig[] = [
-  // ─── CORE SERVICES ───
-  {
+// ---------------------------------------------------------------------------
+// Marketing-specific extensions per service (keyed by slug)
+// ---------------------------------------------------------------------------
+interface MarketingExtension {
+  /** Legacy ID used for cross-sell references */
+  id: string;
+  /** Override description with longer marketing copy (optional) */
+  descriptionOverride?: string;
+  heroImage?: string;
+  demoImage?: string;
+  problem: string;
+  howItWorks: HowItWorksStep[];
+  results: ResultMetric[];
+  crossSellIds: string[];
+  aiFeatures: AIFeature[];
+}
+
+const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
+  'policy-deployment': {
     id: 'policy-deployment',
-    name: 'Policy Deployment',
-    tagline: 'Align strategy to execution',
-    description: 'Hoshin Kanri and X-matrix planning. Cascade strategic objectives through every level of your organisation.',
-    status: 'live',
-    slug: 'policy-deployment',
-    icon: 'Target',
-    accentColor: '#F59E0B',
-    category: 'core',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-policy-YkQnvYo8xjtKQmKoSKVDXW.webp',
     problem: 'Strategic plans fail when they stay in the boardroom. Without a structured deployment process, objectives get lost in translation between management layers. Teams work hard on the wrong things, KPIs disconnect from strategy, and annual plans become shelf-ware within weeks.',
     howItWorks: [
@@ -94,16 +102,8 @@ export const services: ServiceConfig[] = [
       { title: 'Predictive Goal Tracking', description: 'AI forecasts whether current trajectories will meet targets and flags at-risk objectives before they slip.' },
     ],
   },
-  {
+  'sqdcp': {
     id: 'sqdcp-hub',
-    name: 'SQDCP Dashboard',
-    tagline: 'Daily management boards, digitised',
-    description: 'Digital SQDCP boards that drive daily accountability. Safety, Quality, Delivery, Cost, and People metrics at a glance for every team.',
-    status: 'live',
-    slug: 'sqdcp',
-    icon: 'LayoutGrid',
-    accentColor: '#1DB8CE',
-    category: 'core',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/sqdcp-dashboard-real_bcc775e0.png',
     problem: 'Physical whiteboards are static, illegible from a distance, and impossible to aggregate across sites. Tier meetings rely on outdated data, actions get lost on sticky notes, and management has no visibility into daily performance without walking the floor.',
     howItWorks: [
@@ -124,19 +124,10 @@ export const services: ServiceConfig[] = [
       { title: 'Smart Trend Summaries', description: 'AI generates natural-language daily summaries highlighting key changes, emerging risks, and improvement opportunities.' },
     ],
   },
-  {
+  'oee-manager': {
     id: 'oee-manager',
-    name: 'OEE Manager',
-    tagline: 'Real-time equipment effectiveness tracking',
-    description: 'Monitor Overall Equipment Effectiveness in real-time. Track availability, performance, and quality metrics across your entire production line.',
-    status: 'live',
-    slug: 'oee-manager',
-    icon: 'Gauge',
-    accentColor: '#8C34E9',
-    subdomain: 'oeemanager.oplytics.digital',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-oee-Th2ta3q9vx8SDihX3BBphp.webp',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-oee-QnRQ7NMUruu9AHLjseSSx2.webp',
-    category: 'core',
     problem: 'Most manufacturers have a feel for their productivity losses, but few have the systems to capture the breakdown in real time, categorise it and attack those losses through structured improvement activity. OEE Manager gives your teams exactly that \u2014 live visibility of Availability, Performance and Quality losses, with the context and tools to act on them systematically.',
     howItWorks: [
       { step: 1, title: 'Connect Your Machines', description: 'Link PLCs, sensors, and manual inputs via SmartConnect. Data flows automatically with no operator intervention.' },
@@ -157,23 +148,16 @@ export const services: ServiceConfig[] = [
       { title: 'Smart Root Cause Analysis', description: 'AI correlates OEE drops with process variables, operator shifts, and material batches to surface root causes.' },
     ],
   },
-  {
+  'connect': {
     id: 'smartconnect',
-    name: 'OplyticsConnect',
-    tagline: 'Integrate machines, sensors, and systems',
-    description: 'OplyticsConnect is your platform integration hub. Connect machines, assets, ERP systems, and third-party data sources into a single unified data layer. Whether you\'re pulling live OEE data from the shop floor or syncing production targets from your ERP, OplyticsConnect manages every data feed in and out of the Oplytics platform. Integrated. Automated. Always live.',
-    status: 'in-development',
-    slug: 'connect',
-    icon: 'Plug',
-    accentColor: '#1DB8CE',
+    descriptionOverride: 'OplyticsConnect is your platform integration hub. Connect machines, assets, ERP systems, and third-party data sources into a single unified data layer. Whether you\'re pulling live OEE data from the shop floor or syncing production targets from your ERP, OplyticsConnect manages every data feed in and out of the Oplytics platform. Integrated. Automated. Always live.',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-connect-BLrEbXt4nBnvZdECMPpzLm.webp',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-connect-QpzAp7fYGbnsnuiT3dKihD.webp',
-    category: 'core',
-    problem: 'Manufacturing data is trapped in silos — PLCs speak different protocols, legacy systems have no APIs, and connecting a new machine takes weeks of custom development. Without a unified connectivity layer, digital transformation stalls at the edge.',
+    problem: 'Manufacturing data is trapped in silos \u2014 PLCs speak different protocols, legacy systems have no APIs, and connecting a new machine takes weeks of custom development. Without a unified connectivity layer, digital transformation stalls at the edge.',
     howItWorks: [
       { step: 1, title: 'Discover Devices', description: 'SmartConnect scans your network and identifies available PLCs, sensors, and industrial systems automatically.' },
       { step: 2, title: 'Map Signals', description: 'Visual drag-and-drop interface maps machine signals to Oplytics data points. No coding required.' },
-      { step: 3, title: 'Transform Data', description: 'Built-in calculation engine converts raw signals into meaningful metrics — OEE, cycle times, energy consumption.' },
+      { step: 3, title: 'Transform Data', description: 'Built-in calculation engine converts raw signals into meaningful metrics \u2014 OEE, cycle times, energy consumption.' },
       { step: 4, title: 'Stream to Platform', description: 'Data flows in real time to OEE Manager, SQDCP Dashboard, and other Oplytics services. Edge buffering ensures zero data loss.' },
     ],
     results: [
@@ -182,22 +166,14 @@ export const services: ServiceConfig[] = [
       { value: 'Unified', label: 'Data layer across all machines regardless of protocol', tier: 'neutral' },
       { value: 'Resilient', label: 'Edge buffering ensures no data loss during connectivity issues', tier: 'neutral' },
     ],
-    crossSellIds: ['oee-manager', 'sqdcp-hub'],
+    crossSellIds: ['oee-manager', 'sqdcp-hub', 'quality-manager'],
     aiFeatures: [
       { title: 'AI Signal Mapping', description: 'Machine learning auto-detects and maps machine signals to Oplytics data points, reducing configuration time significantly.' },
-      { title: 'Intelligent Edge Processing', description: 'AI at the edge filters noise, detects anomalies in raw sensor data, and optimises data transmission to the cloud.' },
+      { title: 'Intelligent Edge Processing', description: 'AI at the edge filters noise, detects anomalies, and pre-processes data before it reaches the platform.' },
     ],
   },
-  {
+  'action-manager': {
     id: 'action-manager',
-    name: 'Action Manager',
-    tagline: 'Track every action to closure',
-    description: 'Capture, assign, and track corrective and preventive actions from any source. Ensure nothing falls through the cracks. Action Manager integrates with your existing workflow. Assign actions, set deadlines, and track progress directly within the platform. Email notifications keep your team informed without needing to log in. Future integrations with external task management systems are on the roadmap \u2014 so your actions live where your teams work.',
-    status: 'live',
-    slug: 'action-manager',
-    icon: 'ClipboardCheck',
-    accentColor: '#22C55E',
-    category: 'core',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-action-3Ctr5Ddy2xCm5tqouxWKrn.webp',
     problem: 'Actions from audits, incidents, and meetings are scattered across spreadsheets, emails, and sticky notes. Without a single register, items get duplicated, forgotten, or closed without verification. The same problems recur because root causes are never properly addressed.',
     howItWorks: [
@@ -218,20 +194,10 @@ export const services: ServiceConfig[] = [
       { title: 'Smart Escalation', description: 'AI monitors action ageing and predicts which items are at risk of missing deadlines, triggering proactive escalation.' },
     ],
   },
-
-  // ─── HUB SERVICES ───
-  {
+  'quality-manager': {
     id: 'quality-manager',
-    name: 'Quality Manager',
-    tagline: 'End-to-end quality assurance',
-    description: 'Non-conformance tracking, CAPA management, audit scheduling, and quality metrics dashboards.',
-    status: 'in-development',
-    slug: 'quality-manager',
-    icon: 'CheckCircle',
-    accentColor: '#22C55E',
-    category: 'hub',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-quality-CPaphZDUvQrJ9oQdRQZPJM.webp',
-    problem: 'Quality issues are managed in disconnected systems — non-conformances in one tool, CAPAs in another, audits in spreadsheets. This fragmentation means patterns are missed, corrective actions are not linked to root causes, and audit preparation consumes days of effort.',
+    problem: 'Quality issues are managed in disconnected systems \u2014 non-conformances in one tool, CAPAs in another, audits in spreadsheets. This fragmentation means patterns are missed, corrective actions are not linked to root causes, and audit preparation consumes days of effort.',
     howItWorks: [
       { step: 1, title: 'Capture Non-Conformances', description: 'Log non-conformances from any source with full traceability. Attach photos, documents, and related records.' },
       { step: 2, title: 'Investigate Root Causes', description: 'Structured root cause analysis tools including 5-Why, Ishikawa, and 8D. Link findings to corrective actions.' },
@@ -250,18 +216,10 @@ export const services: ServiceConfig[] = [
       { title: 'Smart CAPA Recommendations', description: 'AI suggests corrective actions based on historical effectiveness data and similar past incidents.' },
     ],
   },
-  {
+  'safety-manager': {
     id: 'safety-manager',
-    name: 'Safety Manager',
-    tagline: 'Proactive safety culture, powered by data',
-    description: 'Incident reporting, hazard tracking, safety observations, and compliance management in one unified platform.',
-    status: 'in-development',
-    slug: 'safety-manager',
-    icon: 'Shield',
-    accentColor: '#EF4444',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-safety-6GF7P32Rwd5xBFHfEtSxvq.webp',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-safety-ZCTNQ8eJJmtZgD4CEtSFVD.webp',
-    category: 'hub',
     problem: 'Safety incidents are under-reported because reporting is cumbersome. Paper forms, complex systems, and fear of blame create barriers. Without easy reporting and data-driven insights, organisations react to incidents instead of preventing them.',
     howItWorks: [
       { step: 1, title: 'Report Incidents Easily', description: 'Mobile-first incident reporting. Capture details, photos, and witness statements in minutes from any device.' },
@@ -281,16 +239,8 @@ export const services: ServiceConfig[] = [
       { title: 'Smart Observation Analysis', description: 'Natural language processing categorises safety observations and extracts actionable insights from free-text reports.' },
     ],
   },
-  {
+  'certification-manager': {
     id: 'certification-manager',
-    name: 'Certification Manager',
-    tagline: 'Stay audit-ready, always',
-    description: 'Manage ISO, IATF, and other certification requirements. Document control, audit trails, and compliance tracking.',
-    status: 'in-development',
-    slug: 'certification-manager',
-    icon: 'Award',
-    accentColor: '#F97316',
-    category: 'hub',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-cert-cm2edFr6JvgfmkowUoXgtL.webp',
     problem: 'Certification audits create panic because documentation is scattered, version control is manual, and compliance gaps are discovered too late. Organisations spend weeks preparing for audits that should be routine, and findings from previous audits are not systematically tracked.',
     howItWorks: [
@@ -311,7 +261,54 @@ export const services: ServiceConfig[] = [
       { title: 'Smart Document Classification', description: 'AI categorises and tags documents by standard, clause, and revision status for instant retrieval during audits.' },
     ],
   },
-];
+};
+
+// ---------------------------------------------------------------------------
+// Merge shared catalog with marketing extensions
+// ---------------------------------------------------------------------------
+export const services: ServiceConfig[] = SERVICE_CATALOG.map((svc) => {
+  const ext = MARKETING_EXTENSIONS[svc.slug];
+  if (!ext) {
+    // Fallback for any new shared catalog entries without marketing extensions yet
+    return {
+      id: svc.slug,
+      name: svc.name,
+      tagline: svc.tagline,
+      description: svc.description,
+      status: svc.status === 'coming-soon' ? 'in-development' : svc.status,
+      slug: svc.slug,
+      icon: svc.icon,
+      accentColor: svc.accentColor,
+      category: svc.category,
+      subdomain: svc.subdomain ?? undefined,
+      problem: '',
+      howItWorks: [],
+      results: [],
+      crossSellIds: [],
+      aiFeatures: [],
+    };
+  }
+
+  return {
+    id: ext.id,
+    name: svc.name,
+    tagline: svc.tagline,
+    description: ext.descriptionOverride ?? svc.description,
+    status: svc.status === 'coming-soon' ? 'in-development' : svc.status,
+    slug: svc.slug,
+    icon: svc.icon,
+    accentColor: svc.accentColor,
+    category: svc.category,
+    subdomain: svc.subdomain ?? undefined,
+    heroImage: ext.heroImage,
+    demoImage: ext.demoImage,
+    problem: ext.problem,
+    howItWorks: ext.howItWorks,
+    results: ext.results,
+    crossSellIds: ext.crossSellIds,
+    aiFeatures: ext.aiFeatures,
+  };
+});
 
 // Derived lists
 export const coreServices = services.filter(s => s.category === 'core');
