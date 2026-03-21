@@ -251,13 +251,13 @@ export default function AnimatedServiceCard({ slug, name, tagline, color, route,
   return (
     <Link href={route}>
       <div
-        className="group rounded-xl overflow-hidden transition-all duration-300 hover:translate-y-[-4px] cursor-pointer h-full"
+        className="group rounded-xl overflow-hidden transition-all duration-300 hover:translate-y-[-4px] cursor-pointer h-full flex flex-col"
         style={{ background: '#0d1220', border: '1px solid #1e2738' }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = color + '40'; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1e2738'; }}
       >
-        {/* Animated graphic area */}
-        <div className="h-28 relative overflow-hidden" style={{ background: '#0a0e1a' }}>
+        {/* Graphic area — taller so screenshots are legible */}
+        <div className="h-40 relative overflow-hidden" style={{ background: '#0a0e1a' }}>
           {Graphic ? <Graphic /> : (
             <div className="w-full h-full flex items-center justify-center">
               <Icon className="w-8 h-8" style={{ color, opacity: 0.3 }} />
@@ -265,23 +265,21 @@ export default function AnimatedServiceCard({ slug, name, tagline, color, route,
           )}
         </div>
 
-        {/* Card content */}
-        <div className="p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: color + '15' }}>
-              <Icon className="w-3.5 h-3.5" style={{ color }} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-bold text-white truncate" style={{ fontFamily: 'Montserrat' }}>{name}</h3>
+        {/* Card content — tightened spacing, badge on its own row */}
+        <div className="px-3 pt-2.5 pb-3 flex flex-col flex-1">
+          <div className="flex items-center gap-1.5 mb-1">
+            <div className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: color + '15' }}>
+              <Icon className="w-3 h-3" style={{ color }} />
             </div>
             {status === 'live' ? (
-              <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: '#22C55E20', color: '#22C55E' }}>Live</span>
+              <span className="text-[7px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: '#22C55E20', color: '#22C55E' }}>Live</span>
             ) : (
-              <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: '#F59E0B20', color: '#F59E0B' }}>In Dev</span>
+              <span className="text-[7px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: '#F59E0B20', color: '#F59E0B' }}>In Dev</span>
             )}
           </div>
-          <p className="text-[11px] leading-relaxed mb-3" style={{ color: '#8890a0' }}>{tagline}</p>
-          <span className="text-[11px] font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ color }}>
+          <h3 className="text-[13px] font-bold text-white leading-tight mb-1" style={{ fontFamily: 'Montserrat' }}>{name}</h3>
+          <p className="text-[10px] leading-snug mb-2 flex-1" style={{ color: '#8890a0' }}>{tagline}</p>
+          <span className="text-[10px] font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ color }}>
             Learn More <ArrowRight className="w-3 h-3" />
           </span>
         </div>
