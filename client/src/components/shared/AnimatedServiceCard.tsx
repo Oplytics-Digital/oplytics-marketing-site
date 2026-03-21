@@ -271,7 +271,7 @@ interface AnimatedServiceCardProps {
   tagline: string;
   color: string;
   route: string;
-  status: 'live' | 'in-development';
+  status: 'live' | 'in-development' | 'coming-soon';
   iconName?: string;
 }
 
