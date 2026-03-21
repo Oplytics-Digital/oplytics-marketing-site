@@ -97,7 +97,7 @@ function SQDCPBoardGraphic() {
       <img
         src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663031899852/KrztKyLzJbeuhpNg.webp"
         alt="SQDCP Dashboard — real data"
-        className="w-full h-full object-cover object-top"
+        className="w-full h-full object-contain object-center"
         loading="lazy"
       />
     </div>

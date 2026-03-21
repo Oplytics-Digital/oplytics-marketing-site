@@ -127,7 +127,7 @@ export default function Home() {
             </span>
             <div className="flex-1 h-px bg-gradient-to-r from-[#8C34E9]/20 to-transparent" />
           </div>
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.08}>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" variant="slide-up" staggerDelay={0.08}>
             {coreServices.map(service => (
               <AnimatedServiceCard
                 key={service.id}
@@ -144,11 +144,10 @@ export default function Home() {
 
           {/* Delineation Line */}
           <div className="flex items-center gap-4 my-8 sm:my-10">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#1E2738] to-transparent" />
             <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase text-[#596475] whitespace-nowrap">
               Specialist Hubs
             </span>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#1E2738] to-transparent" />
+            <div className="flex-1 h-px bg-gradient-to-r from-[#1E2738]/40 to-transparent" />
           </div>
 
           {/* Hub Services */}
