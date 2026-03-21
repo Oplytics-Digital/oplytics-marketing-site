@@ -92,45 +92,14 @@ function OEEGaugeGraphic() {
 }
 
 function SQDCPBoardGraphic() {
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setActive(p => (p + 1) % 5), 1500);
-    return () => clearInterval(id);
-  }, []);
-  const pillars = [
-    { l: 'S', color: '#EF4444', status: 'green' },
-    { l: 'Q', color: '#8C34E9', status: 'amber' },
-    { l: 'D', color: '#1DB8CE', status: 'green' },
-    { l: 'C', color: '#F59E0B', status: 'red' },
-    { l: 'P', color: '#22C55E', status: 'green' },
-  ];
   return (
-    <div className="w-full h-full flex items-center justify-center p-3">
-      <div className="w-full">
-        <div className="text-[8px] font-bold mb-2 text-center" style={{ color: '#22C55E' }}>SQDCP Board</div>
-        <div className="flex gap-1 justify-center">
-          {pillars.map((p, i) => (
-            <div
-              key={p.l}
-              className="flex flex-col items-center gap-1 p-1.5 rounded transition-all duration-300"
-              style={{
-                background: active === i ? p.color + '25' : '#0d122080',
-                border: `1px solid ${active === i ? p.color + '50' : '#1e273800'}`,
-                minWidth: '28px',
-              }}
-            >
-              <span className="text-[9px] font-black" style={{ color: p.color }}>{p.l}</span>
-              <div
-                className="w-3 h-3 rounded-full transition-all duration-500"
-                style={{
-                  background: p.status === 'green' ? '#22C55E' : p.status === 'amber' ? '#F59E0B' : '#EF4444',
-                  opacity: active === i ? 1 : 0.5,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="w-full h-full">
+      <img
+        src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663031899852/KrztKyLzJbeuhpNg.webp"
+        alt="SQDCP Dashboard — real data"
+        className="w-full h-full object-cover object-top"
+        loading="lazy"
+      />
     </div>
   );
 }
