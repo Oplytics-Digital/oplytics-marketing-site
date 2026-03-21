@@ -225,8 +225,8 @@ function CertificationGraphic() {
 const graphicMap: Record<string, React.FC> = {
   'policy-deployment': PolicyDeploymentGraphic,
   'oee-manager': OEEGaugeGraphic,
-  'sqdcp': SQDCPBoardGraphic,
-  'connect': ConnectGraphic,
+  'sqdcp-hub': SQDCPBoardGraphic,
+  'smartconnect': ConnectGraphic,
   'action-manager': ActionKanbanGraphic,
   'safety-manager': SafetyGraphic,
   'quality-manager': QualityGraphic,
