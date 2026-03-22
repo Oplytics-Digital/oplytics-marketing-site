@@ -17,7 +17,7 @@ import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { inDevServices } from '@/config/services';
 import { Link } from 'wouter';
-import { Calculator, ChevronDown, ChevronUp, HelpCircle, Check, ArrowRight, MessageSquare } from 'lucide-react';
+import { Calculator, ChevronDown, ChevronUp, HelpCircle, Check, ArrowRight, MessageSquare, Star } from 'lucide-react';
 
 /* ── Plan Tiers (no prices) ── */
 interface PlanTier {
@@ -28,9 +28,27 @@ interface PlanTier {
   highlighted?: boolean;
   ctaLabel: string;
   ctaHref: string;
+  featured?: boolean;
+  price?: string;
 }
 
 const plans: PlanTier[] = [
+  {
+    name: 'Early Beta Partner',
+    tagline: 'Shape the platform with us',
+    description: 'Join a select group of manufacturers helping us build the future of operational excellence. Work directly with our team to deploy, test and refine the platform in your environment.',
+    features: [
+      'Full platform access across all live services',
+      'Direct line to the product team',
+      'Input into the product roadmap',
+      'Preferential pricing locked in for life',
+      'Dedicated onboarding support',
+    ],
+    featured: true,
+    ctaLabel: 'Apply to Partner',
+    ctaHref: '/contact',
+    price: 'Contact us',
+  },
   {
     name: 'Starter',
     tagline: 'Get started with digital operations management',
@@ -204,10 +222,73 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* ── 2. Plan Overview Grid (no prices) ── */}
+      {/* ── 2a. Beta Partner Featured Tier ── */}
+      {plans.filter(p => p.featured).map((plan, i) => (
+        <section key={`featured-${i}`} className="pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
+          <AnimateOnScroll variant="slide-up">
+            <div className="max-w-5xl mx-auto">
+              <div
+                className="relative rounded-lg border-2 border-[#22C55E]/50 bg-[#0D1220] p-8 sm:p-10"
+                style={{ boxShadow: '0 0 40px rgba(34, 197, 94, 0.08), 0 0 80px rgba(34, 197, 94, 0.04)' }}
+              >
+                {/* Featured badge */}
+                <div className="absolute -top-3.5 left-6">
+                  <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-white bg-[#22C55E]">
+                    <Star className="w-3 h-3" />
+                    Featured
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mt-2">
+                  {/* Left — copy */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+                      {plan.name}
+                    </h3>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#22C55E] mb-4">
+                      {plan.tagline}
+                    </p>
+                    <p className="text-sm text-[#8890A0] leading-relaxed mb-6">
+                      {plan.description}
+                    </p>
+                    <div className="mb-6">
+                      <span className="text-lg font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+                        {plan.price}
+                      </span>
+                    </div>
+                    <Link
+                      href={plan.ctaHref}
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md text-sm font-bold tracking-wider text-white transition-all duration-200 hover:opacity-90"
+                      style={{ background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)' }}
+                    >
+                      {plan.ctaLabel}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+
+                  {/* Right — features */}
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#596475] mb-4">What's included</div>
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, j) => (
+                        <li key={j} className="flex items-start gap-2.5">
+                          <Check className="w-4 h-4 text-[#22C55E] mt-0.5 shrink-0" />
+                          <span className="text-sm text-[#8890A0]">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </section>
+      ))}
+
+      {/* ── 2b. Plan Overview Grid (no prices) ── */}
       <section className="pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <StaggerContainer className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" variant="slide-up" staggerDelay={0.1}>
-          {plans.map((plan, i) => (
+          {plans.filter(p => !p.featured).map((plan, i) => (
             <div
               key={i}
               className={`relative flex flex-col p-8 rounded-lg border transition-all duration-300 ${
