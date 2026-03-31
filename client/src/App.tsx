@@ -32,6 +32,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/solutions" component={Home} />
       <Route path="/solutions/connect/checklist" component={ConnectChecklist} />
       <Route path="/solutions/connect/:role" component={ConnectRoleProposal} />
       <Route path="/solutions/:slug" component={SolutionPage} />

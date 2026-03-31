@@ -79,7 +79,7 @@ export default function Home() {
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         customCtas={[
           { label: 'See How It Works', href: '/contact', variant: 'primary' },
-          { label: 'Explore Solutions', href: '#solutions', variant: 'secondary' },
+          { label: 'Explore Solutions', href: '/solutions', variant: 'secondary' },
         ]}
       />
 

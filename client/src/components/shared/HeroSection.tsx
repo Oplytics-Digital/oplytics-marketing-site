@@ -2,7 +2,7 @@
  * TASK-04: Hero Section Component (Live / In-Development variants)
  * Design: "Neon Operations" — atmospheric hero with status-driven CTAs
  *
- * Live variant CTAs: 'See How It Works', 'View Plans' (links to /pricing)
+ * Live variant CTAs: 'View Plans' (links to /pricing)
  * In Development variant CTAs: 'Request Early Access', 'Join Waitlist'
  * Status badge: none for Live, purple 'In Development' badge for in-dev
  * Status driven by service config — no manual per-page edits.
@@ -26,8 +26,7 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
 
   const defaultCtas = isLive
     ? [
-        { label: 'See How It Works', href: '/contact', variant: 'primary' as const },
-        { label: 'View Plans', href: '/pricing', variant: 'secondary' as const },
+        { label: 'View Plans', href: '/pricing', variant: 'primary' as const },
       ]
     : [
         { label: 'Request Early Access', href: '/contact', variant: 'primary' as const },
