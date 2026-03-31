@@ -49,7 +49,7 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <Users className="w-5 h-5" />, title: 'Shift Handover', description: 'Digital shift handover reports with OEE summaries, open actions, and key events from the previous shift.' },
     { icon: <Target className="w-5 h-5" />, title: 'Target Management', description: 'Set OEE targets by line, product, and shift. Visual indicators show performance against target in real time.' },
   ],
-  'sqdcp-hub': [
+  'sqdcp': [
     { icon: <LayoutGrid className="w-5 h-5" />, title: 'Digital Tier Boards', description: 'Replace whiteboards with real-time digital SQDCP boards. Accessible from any device, anywhere.' },
     { icon: <Shield className="w-5 h-5" />, title: 'Safety First', description: 'Safety metrics front and centre. Track incidents, near-misses, and safety observations daily.' },
     { icon: <CheckCircle className="w-5 h-5" />, title: 'Quality Tracking', description: 'First-pass yield, scrap rates, and customer complaints. Quality data integrated from your QMS.' },
@@ -75,7 +75,7 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <TrendingUp className="w-5 h-5" />, title: 'Catchball Process', description: 'Facilitate the catchball process digitally. Align top-down objectives with bottom-up feedback.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Progress Reviews', description: 'Monthly and quarterly review cadence with automated status updates and bowling charts.' },
   ],
-  'smartconnect': [
+  'connect': [
     { icon: <Plug className="w-5 h-5" />, title: 'Machine Connectivity', description: 'Connect to PLCs, SCADA systems, and industrial sensors. Support for OPC-UA, MQTT, Modbus, and more.' },
     { icon: <Zap className="w-5 h-5" />, title: 'Zero-Code Configuration', description: 'Visual configuration interface. Map machine signals to Oplytics data points without writing code.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Data Transformation', description: 'Transform raw machine data into meaningful metrics. Built-in calculation engine for OEE, cycle times, and more.' },
@@ -129,6 +129,7 @@ export default function SolutionPage() {
       {/* ── 1. HERO ── */}
       <HeroSection
         headline={service.name}
+        subheadline={service.tagline}
         subtext={service.description}
         status={service.status}
         backgroundImage={service.heroImage}
