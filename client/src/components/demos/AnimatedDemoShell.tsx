@@ -58,7 +58,7 @@ export default function AnimatedDemoShell({ serviceName, accentColor, phases, ch
   })();
 
   return (
-    <div className="relative w-full rounded-lg overflow-hidden" style={{ background: '#0a0e1a', border: '1px solid #1e2738' }}>
+    <div className="relative w-full" style={{ background: '#0a0e1a' }}>
       {/* Demo header bar */}
       <div className="flex items-center justify-between px-4 py-2.5" style={{ background: '#0d1220', borderBottom: '1px solid #1e2738' }}>
         <div className="flex items-center gap-2">
