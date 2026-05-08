@@ -163,6 +163,9 @@ export default function Resources() {
                     </p>
                     <Link
                       href={`/resources/${article.slug}`}
+                      data-umami-event="content_click"
+                      data-umami-event-article={article.slug}
+                      data-umami-event-location="resources_grid"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8C34E9] hover:text-[#C084FC] transition-colors"
                     >
                       Read Article

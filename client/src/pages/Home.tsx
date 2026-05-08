@@ -236,6 +236,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
+              data-umami-event="cta_click"
+              data-umami-event-button="see_how_it_works"
+              data-umami-event-location="home_bottom"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple w-full sm:w-auto justify-center"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
@@ -244,6 +247,9 @@ export default function Home() {
             </Link>
             <Link
               href="/pricing"
+              data-umami-event="cta_click"
+              data-umami-event-button="view_plans"
+              data-umami-event-location="home_bottom"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/40 hover:text-white bg-[#0D1220]/60 w-full sm:w-auto justify-center"
             >
               View Plans

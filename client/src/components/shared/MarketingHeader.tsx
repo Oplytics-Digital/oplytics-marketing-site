@@ -90,6 +90,9 @@ export default function MarketingHeader() {
                           <Link
                             key={service.id}
                             href={`/solutions/${service.slug}`}
+                            data-umami-event="nav_click"
+                            data-umami-event-service={service.slug}
+                            data-umami-event-location="header_dropdown"
                             className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-[#1E2738]/60 transition-colors group"
                           >
                             <div className="w-2 h-2 rounded-full" style={{ background: getServiceStatusColor(service.status) }} />
@@ -114,6 +117,9 @@ export default function MarketingHeader() {
                           <Link
                             key={service.id}
                             href={`/solutions/${service.slug}`}
+                            data-umami-event="nav_click"
+                            data-umami-event-service={service.slug}
+                            data-umami-event-location="header_dropdown"
                             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#1E2738]/60 transition-colors group"
                           >
                             <div className="w-1.5 h-1.5 rounded-full" style={{ background: getServiceStatusColor(service.status) }} />
@@ -137,6 +143,9 @@ export default function MarketingHeader() {
 
             <Link
               href="/login"
+              data-umami-event="cta_click"
+              data-umami-event-button="sign_in"
+              data-umami-event-location="header"
               className="px-5 py-2 rounded-md text-xs font-bold text-white tracking-wider transition-all duration-200 hover:opacity-90"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
@@ -220,6 +229,9 @@ export default function MarketingHeader() {
 
             <Link
               href="/login"
+              data-umami-event="cta_click"
+              data-umami-event-button="sign_in"
+              data-umami-event-location="header_mobile"
               className="block w-full text-center px-5 py-3 rounded-md text-sm font-bold text-white"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >

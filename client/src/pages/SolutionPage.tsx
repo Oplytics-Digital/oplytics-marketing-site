@@ -204,6 +204,10 @@ export default function SolutionPage() {
                 </p>
                 <Link
                   href="/contact"
+                  data-umami-event="cta_click"
+                  data-umami-event-button={service.status === 'live' ? 'request_live_demo' : 'register_interest'}
+                  data-umami-event-location="solution_demo"
+                  data-umami-event-service={service.slug}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all hover:scale-105"
                   style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
                 >

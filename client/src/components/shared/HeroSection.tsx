@@ -92,6 +92,9 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
             <Link
               key={i}
               href={cta.href}
+              data-umami-event="cta_click"
+              data-umami-event-button={cta.label.toLowerCase().replace(/\s+/g, '_')}
+              data-umami-event-location="hero"
               className={`inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider transition-all duration-200 ${
                 cta.variant === 'primary'
                   ? 'text-white hover:opacity-90 glow-purple'
