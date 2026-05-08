@@ -40,7 +40,11 @@ export default function ContactForm({ context, compact = false }: ContactFormPro
     e.preventDefault();
     if (!validate()) return;
 
-    setSubmitting(true);
+      setSubmitting(true);
+    // Track form submission event
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('contact_form_submit', { context: context || 'marketing-site' });
+    }
     try {
       const res = await fetch('https://portal.oplytics.digital/api/leads', {
         method: 'POST',
@@ -87,7 +91,7 @@ export default function ContactForm({ context, compact = false }: ContactFormPro
     }`;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5" data-umami-event="contact_form_start" data-umami-event-context={context || 'marketing-site'}>
       {context && <input type="hidden" name="context" value={context} />}
 
       <div className={compact ? 'space-y-4' : 'grid grid-cols-1 sm:grid-cols-2 gap-5'}>

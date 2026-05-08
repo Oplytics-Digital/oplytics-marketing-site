@@ -194,6 +194,10 @@ export default function Pricing() {
   function handleSizeChange(size: CompanySize) {
     setRoiSize(size);
     setRoiInputs({ size, ...sizePresets[size] });
+    // Track ROI calculator interaction
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('roi_calculator_use', { company_size: size });
+    }
   }
 
   return (
@@ -258,6 +262,10 @@ export default function Pricing() {
                     </div>
                     <Link
                       href={plan.ctaHref}
+                      data-umami-event="cta_click"
+                      data-umami-event-button={plan.ctaLabel.toLowerCase().replace(/\s+/g, '_')}
+                      data-umami-event-location="pricing_featured"
+                      data-umami-event-plan={plan.name.toLowerCase().replace(/\s+/g, '_')}
                       className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md text-sm font-bold tracking-wider text-white transition-all duration-200 hover:opacity-90"
                       style={{ background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)' }}
                     >
@@ -322,6 +330,10 @@ export default function Pricing() {
               </ul>
               <Link
                 href={plan.ctaHref}
+                data-umami-event="cta_click"
+                data-umami-event-button={plan.ctaLabel.toLowerCase().replace(/\s+/g, '_')}
+                data-umami-event-location="pricing_grid"
+                data-umami-event-plan={plan.name.toLowerCase().replace(/\s+/g, '_')}
                 className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-md text-sm font-bold tracking-wider transition-all duration-200 ${
                   plan.highlighted
                     ? 'text-white hover:opacity-90'
@@ -488,6 +500,9 @@ export default function Pricing() {
                 </p>
                 <Link
                   href="/contact"
+                  data-umami-event="cta_click"
+                  data-umami-event-button="get_personalised_roi_analysis"
+                  data-umami-event-location="pricing_roi_calculator"
                   className="inline-flex items-center gap-2 px-5 py-2 rounded-md text-sm font-bold text-white transition-all hover:opacity-90"
                   style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
                 >
