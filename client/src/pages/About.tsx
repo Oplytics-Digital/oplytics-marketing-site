@@ -47,9 +47,9 @@ const values = [
 
 const teamMembers = [
   {
-    name: 'Paul Anderson',
+    name: 'Paul J Cox',
     role: 'Founder and CEO',
-    bio: 'Manufacturing technology specialist with over 15 years of experience in operational excellence and digital transformation across automotive, aerospace, and FMCG sectors.',
+    bio: 'Operations excellence specialist with over 20 years of experience driving continuous improvement across aerospace & defence, HVAC, and chemical manufacturing industries.',
   },
 ];
 
