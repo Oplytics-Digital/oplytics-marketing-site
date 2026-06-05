@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { invokeLLM } from "./llm";
 import { ENV } from "./env";
+import { checkBudget, reportUsage, buildUsage } from "./aiUsageClient";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,17 +32,46 @@ async function startServer() {
   // AI Chat Endpoint
   app.post("/api/ai/chat", async (req, res) => {
     try {
-      const { messages } = req.body;
-      
+      const { messages, page } = req.body ?? {};
+      const history: any[] = messages ?? [];
+      const promptText = history
+        .map((m) => (typeof m.content === "string" ? m.content : ""))
+        .join(" ");
+
+      // Cost control: ask the ledger's budget guard before spending.
+      const verdict = await checkBudget({
+        app: "marketing-site",
+        mode: "marketing",
+        estPromptTokens: Math.ceil(promptText.length / 4),
+      });
+      if (!verdict.allowed) {
+        return res.json({
+          content: verdict.reason ?? "Opi's having a quick breather — try again shortly.",
+        });
+      }
+
       const response = await invokeLLM({
         messages: [
           { role: "system", content: SUPPORT_ENGINEER_PERSONA },
-          ...messages
+          ...history,
         ],
         model: "gemini-2.5-flash", // Using the default model from invokeLLM
       });
 
-      res.json({ content: response.choices[0].message.content });
+      const content = response.choices[0].message.content;
+
+      // Metering: record the call (best-effort, fails open).
+      await reportUsage(
+        buildUsage({
+          model: response.model,
+          usage: response.usage,
+          promptText,
+          completionText: typeof content === "string" ? content : "",
+          page,
+        })
+      );
+
+      res.json({ content });
     } catch (error) {
       console.error("AI Chat Error:", error);
       res.status(500).json({ error: "Failed to generate response" });
