@@ -2,26 +2,29 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import { invokeLLM } from "./llm";
+import { createSupportEngine, LLMBudgetError } from "@pablo2410/core-server";
 import { ENV } from "./env";
-import { checkBudget, reportUsage, buildUsage } from "./aiUsageClient";
+import { createLedgerHooks } from "./aiUsageClient";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SUPPORT_ENGINEER_PERSONA = `
-You are the Oplytics AI Support Engineer, a knowledgeable and friendly assistant for the Oplytics platform.
-Your personality is relaxed, cheeky, and fun, but you are highly competent and professional when it comes to operational safety and platform technicals.
-Think of yourself as a "knowledgeable mate on the factory floor" rather than a corporate FAQ bot.
-
-Key Guidelines:
-- Use a conversational, slightly informal tone (e.g., "Alright mate," "No worries," "Spot on").
-- Be proactive in helping users with platform setup, training, and troubleshooting.
-- For safety or incident reporting, maintain a serious and helpful demeanor while keeping the relaxed tone.
-- If you don\'t know something, be honest but try to guide the user to the right place.
-- You are currently on the Public Marketing Site. Focus on features, benefits, and booking demos.
-- Never discuss competitor products. If asked about pricing, direct the user to the contact page at /contact.
-`;
+// Opi — the shared support engine in marketing mode. Persona + Oplytics
+// knowledge base live in @pablo2410/core-server; metering + budget guard are
+// injected so every call is recorded and cost-controlled via the ledger.
+const supportEngine = createSupportEngine(
+  { forgeApiUrl: ENV.FORGE_API_URL ?? "", forgeApiKey: ENV.FORGE_API_KEY },
+  {
+    knowledgeLimit: 6,
+    metering: {
+      app: "marketing-site",
+      ...createLedgerHooks({
+        ledgerUrl: ENV.AI_USAGE_LEDGER_URL,
+        secret: ENV.AI_USAGE_INGEST_SECRET,
+      }),
+    },
+  }
+);
 
 async function startServer() {
   const app = express();
@@ -29,50 +32,23 @@ async function startServer() {
   
   app.use(express.json());
 
-  // AI Chat Endpoint
+  // AI Chat Endpoint — Opi (marketing persona + shared knowledge base).
+  // Knowledge retrieval, persona, metering and the budget guard are all handled
+  // inside the engine; we just pass the conversation and the current page.
   app.post("/api/ai/chat", async (req, res) => {
     try {
       const { messages, page } = req.body ?? {};
-      const history: any[] = messages ?? [];
-      const promptText = history
-        .map((m) => (typeof m.content === "string" ? m.content : ""))
-        .join(" ");
-
-      // Cost control: ask the ledger's budget guard before spending.
-      const verdict = await checkBudget({
-        app: "marketing-site",
+      const { content } = await supportEngine.chat({
         mode: "marketing",
-        estPromptTokens: Math.ceil(promptText.length / 4),
+        messages: messages ?? [],
+        context: { page },
       });
-      if (!verdict.allowed) {
-        return res.json({
-          content: verdict.reason ?? "Opi's having a quick breather — try again shortly.",
-        });
-      }
-
-      const response = await invokeLLM({
-        messages: [
-          { role: "system", content: SUPPORT_ENGINEER_PERSONA },
-          ...history,
-        ],
-        model: "gemini-2.5-flash", // Using the default model from invokeLLM
-      });
-
-      const content = response.choices[0].message.content;
-
-      // Metering: record the call (best-effort, fails open).
-      await reportUsage(
-        buildUsage({
-          model: response.model,
-          usage: response.usage,
-          promptText,
-          completionText: typeof content === "string" ? content : "",
-          page,
-        })
-      );
-
       res.json({ content });
     } catch (error) {
+      // Budget guard / kill-switch blocked the call — surface its friendly reason.
+      if (error instanceof LLMBudgetError) {
+        return res.json({ content: error.message });
+      }
       console.error("AI Chat Error:", error);
       res.status(500).json({ error: "Failed to generate response" });
     }

@@ -1,107 +1,81 @@
 /**
- * Client for the central AI usage ledger (Business Hub).
+ * Ledger hooks for core-server's createLLMClient — reports AI usage and checks
+ * budgets against the central ledger (Business Hub).
  *
- * The marketing site reports every Opi call here and asks the budget guard
- * before spending. Both are best-effort and FAIL-OPEN: if the ledger isn't
- * configured or is unreachable, Opi keeps working (just un-metered) so the
- * marketing site is never taken down by the ledger.
+ * Fail-open and best-effort: if the ledger isn't configured (no URL/secret) or
+ * is unreachable, calls are allowed and usage is silently dropped, so the ledger
+ * never affects this app. Translates core-server's event shape to the ledger's
+ * REST contract (flattening user → userRole/enterpriseId).
  */
-import { ENV } from "./env";
+import type {
+  UsageEvent,
+  GuardRequest,
+  GuardResult,
+  LLMClientOptions,
+} from "@pablo2410/core-server";
 
-// gemini-2.5-flash pricing (USD per 1k tokens) — keep in sync with core-server.
-const COST_RATE = { inputPer1k: 0.000075, outputPer1k: 0.0003 };
-const estTokens = (s: string) => Math.ceil((s?.length ?? 0) / 4);
+type LedgerConfig = { ledgerUrl?: string; secret?: string };
 
-const ledgerBase = () => ENV.AI_USAGE_LEDGER_URL?.replace(/\/$/, "");
-const configured = () => !!ledgerBase() && !!ENV.AI_USAGE_INGEST_SECRET;
+const toEnterpriseId = (v: unknown): number | undefined => {
+  const n = typeof v === "number" ? v : typeof v === "string" ? parseInt(v, 10) : NaN;
+  return Number.isFinite(n) ? n : undefined;
+};
 
-const headers = () => ({
-  "content-type": "application/json",
-  "x-ai-usage-secret": ENV.AI_USAGE_INGEST_SECRET as string,
-});
+export function createLedgerHooks(
+  config: LedgerConfig
+): Pick<LLMClientOptions, "onUsage" | "guard"> {
+  const base = config.ledgerUrl?.replace(/\/$/, "");
+  const configured = !!base && !!config.secret;
+  const headers = () => ({
+    "content-type": "application/json",
+    "x-ai-usage-secret": config.secret as string,
+  });
 
-export interface BudgetVerdict {
-  allowed: boolean;
-  reason?: string;
-}
-
-/** Ask the ledger whether this call may proceed. Defaults to allow. */
-export async function checkBudget(req: {
-  app: string;
-  mode?: string;
-  enterpriseId?: number;
-  estPromptTokens?: number;
-}): Promise<BudgetVerdict> {
-  if (!configured()) return { allowed: true };
-  try {
-    const r = await fetch(`${ledgerBase()}/api/ai-usage/check`, {
-      method: "POST",
-      headers: headers(),
-      body: JSON.stringify(req),
-    });
-    if (!r.ok) return { allowed: true };
-    return (await r.json()) as BudgetVerdict;
-  } catch {
-    return { allowed: true };
-  }
-}
-
-export interface UsageEvent {
-  app: string;
-  label?: string;
-  mode?: string;
-  model?: string;
-  promptTokens: number;
-  completionTokens: number;
-  totalTokens: number;
-  estCostUsd: number;
-  estimated: boolean;
-  page?: string;
-}
-
-/** Record one usage event. Best-effort; never throws. */
-export async function reportUsage(event: UsageEvent): Promise<void> {
-  if (!configured()) return;
-  try {
-    await fetch(`${ledgerBase()}/api/ai-usage/ingest`, {
-      method: "POST",
-      headers: headers(),
-      body: JSON.stringify(event),
-    });
-  } catch {
-    /* best-effort */
-  }
-}
-
-/** Build a usage event from an LLM response, using real token counts when present. */
-export function buildUsage(opts: {
-  model?: string;
-  usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
-  promptText: string;
-  completionText: string;
-  page?: string;
-}): UsageEvent {
-  const provided = opts.usage;
-  const estimated = !provided;
-  const promptTokens = provided?.prompt_tokens ?? estTokens(opts.promptText);
-  const completionTokens = provided?.completion_tokens ?? estTokens(opts.completionText);
-  const totalTokens = provided?.total_tokens ?? promptTokens + completionTokens;
-  const estCostUsd =
-    Math.round(
-      ((promptTokens / 1000) * COST_RATE.inputPer1k +
-        (completionTokens / 1000) * COST_RATE.outputPer1k) *
-        1e6
-    ) / 1e6;
-  return {
-    app: "marketing-site",
-    label: "opi",
-    mode: "marketing",
-    model: opts.model,
-    promptTokens,
-    completionTokens,
-    totalTokens,
-    estCostUsd,
-    estimated,
-    page: opts.page,
+  const guard = async (req: GuardRequest): Promise<GuardResult> => {
+    if (!configured) return { allowed: true };
+    try {
+      const r = await fetch(`${base}/api/ai-usage/check`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({
+          app: req.app,
+          mode: req.mode,
+          enterpriseId: toEnterpriseId(req.user?.enterpriseId),
+          estPromptTokens: req.estPromptTokens,
+        }),
+      });
+      if (!r.ok) return { allowed: true };
+      return (await r.json()) as GuardResult;
+    } catch {
+      return { allowed: true };
+    }
   };
+
+  const onUsage = async (event: UsageEvent): Promise<void> => {
+    if (!configured) return;
+    try {
+      await fetch(`${base}/api/ai-usage/ingest`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({
+          app: event.app,
+          label: event.label,
+          mode: event.mode,
+          model: event.model,
+          promptTokens: event.promptTokens,
+          completionTokens: event.completionTokens,
+          totalTokens: event.totalTokens,
+          estCostUsd: event.estCostUsd,
+          estimated: event.estimated,
+          userRole: event.user?.role,
+          enterpriseId: toEnterpriseId(event.user?.enterpriseId),
+          page: event.page,
+        }),
+      });
+    } catch {
+      /* best-effort */
+    }
+  };
+
+  return { onUsage, guard };
 }
