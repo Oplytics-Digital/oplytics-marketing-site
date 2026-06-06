@@ -129,7 +129,10 @@ export default function MarketingAssistant() {
         const response = await fetch('/api/ai/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: newMessages }),
+          body: JSON.stringify({
+            messages: newMessages,
+            page: typeof window !== 'undefined' ? window.location.pathname : undefined,
+          }),
         });
         if (!response.ok) throw new Error('Failed to chat');
         const data = await response.json();

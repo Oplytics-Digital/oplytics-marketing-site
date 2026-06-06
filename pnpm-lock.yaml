@@ -19,6 +19,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.71.2(react@19.2.4))
+      '@pablo2410/core-server':
+        specifier: ^0.3.0
+        version: 0.3.0(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)
       '@pablo2410/shared-ui':
         specifier: 0.3.5
         version: 0.3.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)
@@ -861,6 +864,24 @@ packages:
 
   '@mermaid-js/parser@1.0.1':
     resolution: {integrity: sha512-opmV19kN1JsK0T6HhhokHpcVkqKpF+x2pPDKKM2ThHtZAB5F4PROopk0amuVYK5qMrIA4erzpNm8gmPNJgMDxQ==}
+
+  '@pablo2410/core-server@0.3.0':
+    resolution: {integrity: sha512-jhbh6jpgiVmtJnMhml6qjuY2toZICmux9hbmpRENtKnpdK2loItJ3QBQpmi1zNtw4KWbGzn7P1JvGVxR63grHQ==}
+    peerDependencies:
+      '@trpc/server': '>=11.0.0'
+      axios: '>=1.0.0'
+      cookie: '>=0.6.0'
+      express: '>=4.0.0'
+      jose: '>=5.0.0'
+    peerDependenciesMeta:
+      axios:
+        optional: true
+      cookie:
+        optional: true
+      express:
+        optional: true
+      jose:
+        optional: true
 
   '@pablo2410/shared-ui@0.3.5':
     resolution: {integrity: sha512-gcjeIsoQSdDdTLcJDNzZpU8dsslBf+zLg524PWYx2JvYSgULOMCwWHFFhmUAakNTTvdq628RaMoHWmISIREokg==}
@@ -1775,6 +1796,12 @@ packages:
     resolution: {integrity: sha512-TBf2sJjYeb28jD2U/OhwdW0bbOsxkWPwQ7SrqGf9sVcoYwZj7rkXljroBO9wKBut9XnmQLXanuDUeqQK0lGg/w==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
+
+  '@trpc/server@11.17.0':
+    resolution: {integrity: sha512-jbAOUe0PpUTCYqziyu+8vYXZdDXPudZgnEhWCQ2NjKnVEjfE93RqHTt1oycZJv/HNf51YlRXfEEwSIAbb161rw==}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=5.7.2'
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -4278,6 +4305,14 @@ snapshots:
     dependencies:
       langium: 4.2.1
 
+  '@pablo2410/core-server@0.3.0(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)':
+    dependencies:
+      '@trpc/server': 11.17.0(typescript@5.6.3)
+    optionalDependencies:
+      axios: 1.13.6
+      cookie: 0.7.2
+      express: 4.22.1
+
   '@pablo2410/shared-ui@0.3.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)':
     dependencies:
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -5203,6 +5238,10 @@ snapshots:
       '@tailwindcss/oxide': 4.2.1
       tailwindcss: 4.2.1
       vite: 7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)
+
+  '@trpc/server@11.17.0(typescript@5.6.3)':
+    dependencies:
+      typescript: 5.6.3
 
   '@types/babel__core@7.20.5':
     dependencies:
