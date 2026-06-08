@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 // knowledge base live in @pablo2410/core-server; metering + budget guard are
 // injected so every call is recorded and cost-controlled via the ledger.
 const supportEngine = createSupportEngine(
-  { forgeApiUrl: ENV.FORGE_API_URL ?? "", forgeApiKey: ENV.FORGE_API_KEY },
+  { forgeApiUrl: ENV.FORGE_API_URL ?? "", forgeApiKey: ENV.FORGE_API_KEY ?? "" },
   {
     knowledgeLimit: 6,
     metering: {
@@ -49,8 +49,12 @@ async function startServer() {
       if (error instanceof LLMBudgetError) {
         return res.json({ content: error.message });
       }
-      console.error("AI Chat Error:", error);
-      res.status(500).json({ error: "Failed to generate response" });
+      // Surface the real failure (core-server / Forge HTTP status + body, or
+      // the thrown message) in the response, not just the server logs — the
+      // engine's errors never include the API key.
+      const detail = error instanceof Error ? error.message : String(error);
+      console.error("AI Chat Error:", detail);
+      res.status(500).json({ error: "Failed to generate response", detail });
     }
   });
 
