@@ -31,7 +31,7 @@ const SUGGESTED_PROMPTS = [
 ];
 
 const GREETING =
-  "Alright! 👋 I'm Opi, your Oplytics guide. Ask me anything — what we do, how it works, or book a demo.";
+  "Hi 👋 I'm Opi, your Oplytics guide. Ask me anything — what we do, how it works, or book a demo.";
 
 /** Brand-coloured animated gradient orb. Used for the launcher and the avatars. */
 function Orb({
@@ -71,7 +71,7 @@ export default function MarketingAssistant() {
   // Proactive greeting nudge — fire once, a few seconds after landing.
   useEffect(() => {
     if (hasOpened) return;
-    const t = setTimeout(() => setShowNudge(true), 6000);
+    const t = setTimeout(() => setShowNudge(true), 3000);
     return () => clearTimeout(t);
   }, [hasOpened]);
 
@@ -205,7 +205,10 @@ export default function MarketingAssistant() {
                 <div className="space-y-4 py-4 text-center">
                   <Orb size={64} className="mx-auto" />
                   <p className="px-4 text-sm leading-relaxed text-white/80">{GREETING}</p>
-                  <div className="flex flex-wrap justify-center gap-2 pt-2">
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-white/40">
+                    Here's what I can help with
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2 pt-1">
                     {SUGGESTED_PROMPTS.map((p) => (
                       <button
                         key={p}
@@ -273,14 +276,18 @@ export default function MarketingAssistant() {
             className="oa-nudge flex max-w-[240px] items-center gap-2 rounded-2xl rounded-br-sm border border-[#1E2738] bg-[#0D1220] px-3.5 py-2.5 text-left text-xs font-medium text-white shadow-xl"
           >
             <Sparkles className="h-3.5 w-3.5 shrink-0 text-[#1DB8CE]" />
-            Got a question? Ask Opi 👋
+            Questions about Oplytics? I can help 👋
           </button>
         )}
 
-        {/* ─── Launcher orb ─── */}
+        {/* ─── Launcher: orb + persistent "Ask Opi" label ─── */}
         {!isOpen && (
-          <button onClick={openPanel} aria-label="Open AI assistant" className="oa-launcher transition-transform duration-300 hover:scale-110">
-            <Orb size={60} />
+          <button onClick={openPanel} aria-label="Ask Opi — open AI assistant" className="oa-launcher">
+            <span className="oa-launcher__orb">
+              <span className="oa-launcher__ping" aria-hidden />
+              <Orb size={48} />
+            </span>
+            <span className="oa-launcher__label">Ask Opi</span>
           </button>
         )}
       </div>
@@ -325,6 +332,9 @@ const ORB_STYLES = `
 @keyframes oa-spin { to { transform: rotate(360deg); } }
 @keyframes oa-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 @keyframes oa-pop { 0% { opacity: 0; transform: translateY(8px) scale(.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes oa-ping { 0% { transform: scale(1); opacity: .5; } 70%,100% { transform: scale(2); opacity: 0; } }
+@keyframes oa-glow { 0%,100% { filter: drop-shadow(0 6px 18px rgba(140,52,233,0.40)); } 50% { filter: drop-shadow(0 8px 26px rgba(29,184,206,0.55)); } }
+@keyframes oa-bounce-in { 0% { opacity: 0; transform: translateY(14px) scale(.85); } 60% { transform: translateY(-3px) scale(1.03); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
 .oa-orb { position: relative; display: inline-block; border-radius: 9999px; flex: none;
   animation: oa-breathe 4s ease-in-out infinite; }
@@ -338,12 +348,32 @@ const ORB_STYLES = `
 .oa-orb--active { animation-duration: 1.6s; }
 .oa-orb--active .oa-orb__core { animation-duration: 2s; }
 
-.oa-launcher { display: block; line-height: 0; border-radius: 9999px;
-  filter: drop-shadow(0 8px 24px rgba(140,52,233,0.45)); }
+/* Launcher: orb + persistent "Ask Opi" label, with a gentle pulse, glow and entrance bounce. */
+.oa-launcher { display: flex; align-items: center; gap: 10px;
+  padding: 8px 18px 8px 8px; border-radius: 9999px;
+  background: rgba(13,18,32,0.82); border: 1px solid #1E2738;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  animation: oa-bounce-in .55s cubic-bezier(.34,1.56,.64,1) backwards,
+             oa-glow 3.4s ease-in-out .6s infinite;
+  transition: transform .25s ease, border-color .25s ease; }
+.oa-launcher:hover { transform: scale(1.04); border-color: #8C34E9; }
+.oa-launcher__orb { position: relative; display: inline-flex; line-height: 0; }
+.oa-launcher__ping { position: absolute; inset: 0; border-radius: 9999px;
+  border: 2px solid rgba(140,52,233,0.6); pointer-events: none;
+  animation: oa-ping 2.6s cubic-bezier(0,0,.2,1) infinite; }
+.oa-launcher__label { font-size: 14px; font-weight: 600; color: #fff;
+  white-space: nowrap; letter-spacing: .01em; }
 .oa-nudge { animation: oa-pop .3s ease-out both; }
 .oa-panel { background: #080C16; border: 1px solid #1E2738;
   box-shadow: 0 24px 64px rgba(0,0,0,0.6); animation: oa-pop .3s ease-out both; }
 .oa-prose p { margin: 0; }
 .oa-prose p + p { margin-top: .5rem; }
 .oa-prose a { color: #1DB8CE; }
+
+/* Respect users who prefer reduced motion — keep it calm and static. */
+@media (prefers-reduced-motion: reduce) {
+  .oa-orb, .oa-orb__core, .oa-launcher, .oa-launcher__ping, .oa-nudge, .oa-panel {
+    animation: none !important;
+  }
+}
 `;
