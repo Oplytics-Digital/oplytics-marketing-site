@@ -1,15 +1,11 @@
 /**
- * Policy Deployment Demo — Real screenshot from portal.oplytics.digital
+ * Policy Deployment Demo — an auto-playing guided tour of the real product
+ * (oplytics-policy-deployment), framed in the app's own sidebar/header chrome.
+ * It walks Dashboard → X-Matrix → Catchball → Bowling, then settles on the live,
+ * clickable X-Matrix. Uses fictional Testa Group sample data; no auth, no backend.
  */
+import PolicyDeploymentTour from './policy/PolicyDeploymentTour';
+
 export default function PolicyDeploymentDemo() {
-  return (
-    <div className="w-full">
-      <img
-        src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/WWAck7XNk78XRtLpvPRn3L/Image31-03-2026at18.24_25a1d67b.png"
-        alt="Policy Deployment X-Matrix — The Vita Group — real data"
-        className="w-full h-auto block"
-        loading="lazy"
-      />
-    </div>
-  );
+  return <PolicyDeploymentTour />;
 }

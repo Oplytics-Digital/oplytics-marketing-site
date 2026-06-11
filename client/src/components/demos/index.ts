@@ -25,3 +25,13 @@ export const demoComponents: Record<string, React.LazyExoticComponent<React.Comp
   'safety-manager': SafetyManagerDemo,
   'certification-manager': CertificationManagerDemo,
 };
+
+/**
+ * Slugs whose demo is a live, user-driven component (not a static screenshot or
+ * auto-playing animation). SolutionPage renders these WITHOUT the full-cover
+ * "Try It Live" overlay so the mouse can reach the demo; it shows a small,
+ * non-blocking corner CTA instead.
+ */
+export const interactiveDemos = new Set<string>([
+  'policy-deployment',
+]);
