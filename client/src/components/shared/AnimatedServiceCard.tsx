@@ -3,7 +3,7 @@
  * Each card shows a mini animated graphic — X-Matrix for Policy Deployment,
  * OEE gauge for OEE Manager, SQDCP board for SQDCP Dashboard, etc.
  */
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'wouter';
 import { ArrowRight, Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, CheckCircle, Award } from 'lucide-react';
 import XMatrixDemo from '@/components/demos/xmatrix/XMatrixDemo';
@@ -28,11 +28,31 @@ function PolicyDeploymentGraphic() {
   );
   const highlightId = useAutoHighlight(tourIds, 1800);
 
+  // Scale the matrix to exactly fill the card's width, then crop the height with a
+  // soft bottom fade so the thumbnail reads as a deliberate preview, not a hard cut.
+  const ref = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.32);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const DESIGN_WIDTH = 1100; // the X-Matrix table's natural min-width
+    const update = () => setScale(el.clientWidth / DESIGN_WIDTH);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const fade = 'linear-gradient(to bottom, #000 66%, transparent 100%)';
   return (
-    <div className="w-full h-full overflow-hidden relative" style={{ background: '#0a0e1a' }}>
+    <div
+      ref={ref}
+      className="w-full h-full overflow-hidden relative"
+      style={{ background: '#0a0e1a', maskImage: fade, WebkitMaskImage: fade }}
+    >
       <div
         className="absolute top-0 left-0 origin-top-left pointer-events-none"
-        style={{ transform: 'scale(0.26)', width: '1180px' }}
+        style={{ transform: `scale(${scale})`, width: '1100px' }}
       >
         <XMatrixDemo externalHighlightId={highlightId} />
       </div>
