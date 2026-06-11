@@ -3,9 +3,12 @@
  * Each card shows a mini animated graphic — X-Matrix for Policy Deployment,
  * OEE gauge for OEE Manager, SQDCP board for SQDCP Dashboard, etc.
  */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'wouter';
 import { ArrowRight, Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, CheckCircle, Award } from 'lucide-react';
+import XMatrixDemo from '@/components/demos/xmatrix/XMatrixDemo';
+import { useAutoHighlight } from '@/components/demos/xmatrix/useAutoHighlight';
+import { testaPolicyPlan } from '@/components/demos/data/testaPolicyPlan';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, CheckCircle, Award,
@@ -14,39 +17,24 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 /* ─── Mini Animated Graphics ─── */
 
 function PolicyDeploymentGraphic() {
-  const [phase, setPhase] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setPhase(p => (p + 1) % 4), 2000);
-    return () => clearInterval(id);
-  }, []);
-  const cells = [
-    ['Strategy', 'KPIs', 'Targets', 'Actions'],
-    ['Growth', '↑12%', '£2.4M', '●●●○'],
-    ['Quality', '98.2%', '99%', '●●○○'],
-    ['Safety', '0 LTI', '0', '●●●●'],
-  ];
+  // Auto-play tour: rotate the highlight through annual objectives then projects so
+  // the mini X-Matrix continuously traces its own correlations, no interaction needed.
+  const tourIds = useMemo(
+    () => [
+      ...testaPolicyPlan.annualObjectives.map(a => a.id),
+      ...testaPolicyPlan.projects.map(p => p.id),
+    ],
+    []
+  );
+  const highlightId = useAutoHighlight(tourIds, 1800);
+
   return (
-    <div className="w-full h-full flex items-center justify-center p-3">
-      <div className="w-full">
-        <div className="text-[8px] font-bold mb-1.5 text-center" style={{ color: '#8C34E9' }}>X-Matrix</div>
-        <div className="grid grid-cols-4 gap-[2px]">
-          {cells.map((row, ri) =>
-            row.map((cell, ci) => (
-              <div
-                key={`${ri}-${ci}`}
-                className="text-[6px] text-center py-1 px-0.5 rounded-sm transition-all duration-500"
-                style={{
-                  background: ri === 0 ? '#8C34E920' : phase === ri - 1 ? '#8C34E930' : '#0d122080',
-                  color: ri === 0 ? '#8C34E9' : phase === ri - 1 ? '#fff' : '#596475',
-                  fontWeight: ri === 0 ? 700 : 400,
-                  fontFamily: 'Montserrat',
-                }}
-              >
-                {cell}
-              </div>
-            ))
-          )}
-        </div>
+    <div className="w-full h-full overflow-hidden relative" style={{ background: '#0a0e1a' }}>
+      <div
+        className="absolute top-0 left-0 origin-top-left pointer-events-none"
+        style={{ transform: 'scale(0.26)', width: '1180px' }}
+      >
+        <XMatrixDemo externalHighlightId={highlightId} />
       </div>
     </div>
   );
