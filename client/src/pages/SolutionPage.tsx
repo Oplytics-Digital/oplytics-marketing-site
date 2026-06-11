@@ -233,7 +233,7 @@ export default function SolutionPage() {
                   </Suspense>
                   <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-[#1E2738] flex-wrap">
                     <span className="text-xs text-[#596475]">
-                      Guided tour with sample data — it settles on the live X-Matrix: hover a row to trace its correlations, click the dots to edit links.
+                      Guided tour with sample data — it settles on a live, interactive dashboard you can explore.
                     </span>
                     <Link
                       href="/contact"

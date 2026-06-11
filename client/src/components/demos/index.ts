@@ -34,4 +34,5 @@ export const demoComponents: Record<string, React.LazyExoticComponent<React.Comp
  */
 export const interactiveDemos = new Set<string>([
   'policy-deployment',
+  'sqdcp',
 ]);
