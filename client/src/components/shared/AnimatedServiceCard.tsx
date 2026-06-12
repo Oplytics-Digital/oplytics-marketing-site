@@ -9,8 +9,6 @@ import { ArrowRight, Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, Ch
 import XMatrixDemo from '@/components/demos/xmatrix/XMatrixDemo';
 import { useAutoHighlight } from '@/components/demos/xmatrix/useAutoHighlight';
 import { testaPolicyPlan } from '@/components/demos/data/testaPolicyPlan';
-import SqdcpBoardDemo from '@/components/demos/sqdcp/SqdcpBoardDemo';
-import { TESTA_SQDCP_BOARD } from '@/components/demos/data/testaSqdcpBoard';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, CheckCircle, Award,
@@ -96,40 +94,6 @@ function OEEGaugeGraphic() {
             <div className="text-[8px] font-bold text-white">{m.v}</div>
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function SQDCPBoardGraphic() {
-  // Compact live SQDCP tier board, auto-cycling the pillar spotlight.
-  const ids = useMemo(() => TESTA_SQDCP_BOARD.map(p => p.code), []);
-  const highlightId = useAutoHighlight(ids, 1500);
-  const ref = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.28);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const DESIGN_WIDTH = 1300; // wide enough for the 5-across board
-    const update = () => setScale(el.clientWidth / DESIGN_WIDTH);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const fade = 'linear-gradient(to bottom, #000 66%, transparent 100%)';
-  return (
-    <div
-      ref={ref}
-      className="w-full h-full overflow-hidden relative"
-      style={{ background: '#0a0e1a', maskImage: fade, WebkitMaskImage: fade }}
-    >
-      <div
-        className="absolute top-0 left-0 origin-top-left pointer-events-none"
-        style={{ transform: `scale(${scale})`, width: '1300px' }}
-      >
-        <SqdcpBoardDemo externalHighlightId={highlightId} columns={5} />
       </div>
     </div>
   );
@@ -256,7 +220,6 @@ function CertificationGraphic() {
 const graphicMap: Record<string, React.FC> = {
   'policy-deployment': PolicyDeploymentGraphic,
   'oee-manager': OEEGaugeGraphic,
-  'sqdcp-hub': SQDCPBoardGraphic,
   'smartconnect': ConnectGraphic,
   'action-manager': ActionKanbanGraphic,
   'safety-manager': SafetyGraphic,
