@@ -7,7 +7,7 @@ import MarketingLayout from '@/components/shared/MarketingLayout';
 import { Link } from 'wouter';
 import { ExternalLink, Loader2 } from 'lucide-react';
 
-const PLATFORM_LOGIN_URL = 'https://portal.oplytics.digital/login';
+const PLATFORM_LOGIN_URL = 'https://portal.oplyticsdigital.net/login';
 
 export default function Login() {
   useEffect(() => {
