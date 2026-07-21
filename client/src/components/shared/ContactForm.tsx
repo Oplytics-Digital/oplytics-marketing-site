@@ -46,7 +46,7 @@ export default function ContactForm({ context, compact = false }: ContactFormPro
       (window as any).umami.track('contact_form_submit', { context: context || 'marketing-site' });
     }
     try {
-      const res = await fetch('https://portal.oplytics.digital/api/leads', {
+      const res = await fetch('https://portal.oplyticsdigital.net/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
