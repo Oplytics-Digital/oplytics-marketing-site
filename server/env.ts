@@ -10,6 +10,10 @@ const envSchema = z.object({
   // (not at construction), so Opi degrades to a friendly 500 while the site
   // stays up.
   FORGE_API_KEY: z.string().min(1).optional(),
+  // Opi's LLM backend — Gemini directly (see createSupportEngine below), not
+  // Forge. Same optional-at-boot rationale as FORGE_API_KEY above.
+  GEMINI_API_URL: z.string().url().optional(),
+  GEMINI_API_KEY: z.string().min(1).optional(),
   // AI usage ledger (Business Hub). Both optional — metering is skipped (fail-open)
   // until they're set, so the site runs fine without them.
   AI_USAGE_LEDGER_URL: z.string().url().optional(),
