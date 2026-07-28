@@ -79,6 +79,7 @@ const plans: PlanTier[] = [
       'Priority support',
       'Advanced analytics and dashboards',
       'AI-powered insights',
+      'AI Facilitator — SQDCP huddle assistant',
       'API access',
       'Custom integrations',
       'Shift handover reports',

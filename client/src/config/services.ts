@@ -122,6 +122,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     aiFeatures: [
       { title: 'AI Anomaly Detection', description: 'Automatically flags unusual metric patterns across Safety, Quality, Delivery, Cost, and People dimensions before they escalate.' },
       { title: 'Smart Trend Summaries', description: 'AI generates natural-language daily summaries highlighting key changes, emerging risks, and improvement opportunities.' },
+      { title: 'AI Facilitator', description: 'Runs your daily SQDCP huddle for you — surfaces what’s red, drafts root cause with a starter 5-Why, and tracks who owns what by when.' },
     ],
   },
   'oee-manager': {
