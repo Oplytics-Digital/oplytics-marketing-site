@@ -139,6 +139,7 @@ export default function Home() {
                 route={`/solutions/${service.slug}`}
                 status={service.status}
                 iconName={service.icon}
+                demoScreenshots={service.demoScreenshots}
               />
             ))}
           </StaggerContainer>
@@ -163,6 +164,7 @@ export default function Home() {
                 route={`/solutions/${service.slug}`}
                 status={service.status}
                 iconName={service.icon}
+                demoScreenshots={service.demoScreenshots}
               />
             ))}
           </StaggerContainer>
