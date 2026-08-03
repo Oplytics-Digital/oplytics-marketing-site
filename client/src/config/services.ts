@@ -92,8 +92,8 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     id: 'policy-deployment',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-policy-YkQnvYo8xjtKQmKoSKVDXW.webp',
     demoScreenshots: [
-      { src: '/screenshots/policy-deployment/01.png', caption: 'Strategic Plan dashboard with Opi Insights — cascade strength scored live at 92' },
       { src: '/screenshots/policy-deployment/02.png', caption: 'X-Matrix — Hoshin Kanri correlations between tactics, projects, and objectives' },
+      { src: '/screenshots/policy-deployment/01.png', caption: 'Strategic Plan dashboard with Opi Insights — cascade strength scored live at 92' },
       { src: '/screenshots/policy-deployment/03.png', caption: 'Catchball — goal cascade from breakthrough objectives to KPIs, with named owners' },
     ],
     problem: 'Strategic plans fail when they stay in the boardroom. Without a structured deployment process, objectives get lost in translation between management layers. Teams work hard on the wrong things, KPIs disconnect from strategy, and annual plans become shelf-ware within weeks.',
