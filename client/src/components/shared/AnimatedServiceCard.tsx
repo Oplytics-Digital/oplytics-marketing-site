@@ -9,6 +9,8 @@ import { ArrowRight, Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, Ch
 import XMatrixDemo from '@/components/demos/xmatrix/XMatrixDemo';
 import { useAutoHighlight } from '@/components/demos/xmatrix/useAutoHighlight';
 import { testaPolicyPlan } from '@/components/demos/data/testaPolicyPlan';
+import CardScreenshotCarousel from './CardScreenshotCarousel';
+import type { DemoScreenshot } from '@/config/services';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Target, LayoutGrid, Gauge, Plug, ClipboardCheck, Shield, CheckCircle, Award,
@@ -230,11 +232,14 @@ interface AnimatedServiceCardProps {
   route: string;
   status: 'live' | 'in-development' | 'coming-soon';
   iconName?: string;
+  /** Real product screenshots — takes priority over the hardcoded mini-graphic when present */
+  demoScreenshots?: DemoScreenshot[];
 }
 
-export default function AnimatedServiceCard({ slug, name, tagline, color, route, status, iconName }: AnimatedServiceCardProps) {
+export default function AnimatedServiceCard({ slug, name, tagline, color, route, status, iconName, demoScreenshots }: AnimatedServiceCardProps) {
   const Icon = (iconName && iconMap[iconName]) || Target;
   const Graphic = graphicMap[slug];
+  const hasScreenshots = demoScreenshots && demoScreenshots.length > 0;
 
   return (
     <Link href={route}>
@@ -244,11 +249,17 @@ export default function AnimatedServiceCard({ slug, name, tagline, color, route,
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = color + '40'; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1e2738'; }}
       >
-        {/* Graphic area — taller so screenshots are legible */}
-        <div className="h-40 relative overflow-hidden" style={{ background: '#0a0e1a' }}>
-          {Graphic ? <Graphic /> : (
-            <div className="w-full h-full flex items-center justify-center">
-              <Icon className="w-8 h-8" style={{ color, opacity: 0.3 }} />
+        {/* Graphic area — real screenshots take priority; native ratio preserved, no crop */}
+        <div className="relative overflow-hidden" style={{ background: '#0a0e1a' }}>
+          {hasScreenshots ? (
+            <CardScreenshotCarousel slides={demoScreenshots} serviceName={name} />
+          ) : (
+            <div className="h-40">
+              {Graphic ? <Graphic /> : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <Icon className="w-8 h-8" style={{ color, opacity: 0.3 }} />
+                </div>
+              )}
             </div>
           )}
         </div>

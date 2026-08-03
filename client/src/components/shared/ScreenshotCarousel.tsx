@@ -52,13 +52,14 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
       aria-roledescription="carousel"
       aria-label={`${serviceName} product screenshots`}
     >
-      <div className="relative aspect-[16/10] bg-[#080C16]">
+      {/* Frame matches the screenshots' native 2980:1556 ratio exactly — full image visible, no crop */}
+      <div className="relative aspect-[2980/1556] bg-[#080C16]">
         <AnimatePresence mode="wait">
           <motion.img
             key={current.src}
             src={current.src}
             alt={`${serviceName} — ${current.caption}`}
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-contain"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -66,12 +67,6 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
             loading={index === 0 ? 'eager' : 'lazy'}
           />
         </AnimatePresence>
-
-        {/* Caption bar */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-5 py-3 bg-gradient-to-t from-[#080C16] via-[#080C16]/90 to-transparent">
-          <p className="text-xs sm:text-sm text-white font-medium">{current.caption}</p>
-          <p className="text-[10px] text-[#596475] uppercase tracking-wider mt-0.5">Real product · live customer data</p>
-        </div>
 
         {/* Prev/next arrows — only when more than one slide */}
         {slides.length > 1 && (
@@ -94,6 +89,12 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
             </button>
           </>
         )}
+      </div>
+
+      {/* Caption — below the frame, never overlapping the screenshot */}
+      <div className="px-4 sm:px-5 py-3 border-t border-[#1E2738]">
+        <p className="text-xs sm:text-sm text-white font-medium">{current.caption}</p>
+        <p className="text-[10px] text-[#596475] uppercase tracking-wider mt-0.5">Real product · live customer data</p>
       </div>
 
       {/* Dot indicators */}
