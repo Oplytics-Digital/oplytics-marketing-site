@@ -7,6 +7,7 @@
  * Status badge: none for Live, purple 'In Development' badge for in-dev
  * Status driven by service config — no manual per-page edits.
  */
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import type { ServiceStatus } from '@/config/services';
@@ -17,12 +18,23 @@ interface HeroSectionProps {
   subtext: string;
   status: ServiceStatus;
   backgroundImage?: string;
-  /** Override CTAs if needed */
+  /** Looping background video — takes priority over backgroundImage when set. Respects prefers-reduced-motion. */
+  backgroundVideo?: string;
   customCtas?: { label: string; href: string; variant: 'primary' | 'secondary' }[];
 }
 
-export default function HeroSection({ headline, subheadline, subtext, status, backgroundImage, customCtas }: HeroSectionProps) {
+export default function HeroSection({ headline, subheadline, subtext, status, backgroundImage, backgroundVideo, customCtas }: HeroSectionProps) {
   const isLive = status === 'live';
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(query.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    query.addEventListener('change', handler);
+    return () => query.removeEventListener('change', handler);
+  }, []);
 
   const defaultCtas = isLive
     ? [
@@ -37,8 +49,23 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
 
   return (
     <section className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
-      {backgroundImage && (
+      {/* Background video (takes priority) or image */}
+      {backgroundVideo && !reducedMotion ? (
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover opacity-30"
+            src={backgroundVideo}
+            poster={backgroundImage}
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080C16]/60 via-[#0A0E1A]/80 to-[#0A0E1A]" />
+        </div>
+      ) : backgroundImage && (
         <div className="absolute inset-0 z-0">
           <img
             src={backgroundImage}

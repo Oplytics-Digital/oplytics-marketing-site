@@ -77,6 +77,7 @@ export default function Home() {
         subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. All supported by AI for better decision making and process compliance. All in one platform."
         status="live"
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
+        backgroundVideo="/video/hero-microchip.mp4"
         customCtas={[
           { label: 'See How It Works', href: '/contact', variant: 'primary' },
           { label: 'Explore Solutions', href: '/solutions', variant: 'secondary' },

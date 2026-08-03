@@ -21,6 +21,7 @@ import { Suspense } from 'react';
 import { useParams } from 'wouter';
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
+import ScreenshotCarousel from '@/components/shared/ScreenshotCarousel';
 import FeatureGrid from '@/components/shared/FeatureGrid';
 import ServiceCard from '@/components/shared/ServiceCard';
 import ContactForm from '@/components/shared/ContactForm';
@@ -174,14 +175,20 @@ export default function SolutionPage() {
               {service.name} Demo
             </h2>
             <p className="text-[#8890A0] max-w-xl mx-auto">
-              {service.status === 'live'
+              {service.demoScreenshots.length > 0
+                ? `Real screens from ${service.name}, captured from a live customer deployment.`
+                : service.status === 'live'
                 ? `Experience ${service.name} with a live interactive walkthrough. See how it works in a real manufacturing environment.`
                 : `Preview the ${service.name} experience. Full interactive demos will be available when the service launches.`}
             </p>
           </div>
 
-          {/* All demos: no browser chrome, "Try It Live" hover overlay */}
-          {(() => {
+          {/* Real product screenshots take priority over the animated recreation */}
+          {service.demoScreenshots.length > 0 ? (
+            <ScreenshotCarousel slides={service.demoScreenshots} serviceName={service.name} />
+          ) : (
+          /* All demos: no browser chrome, "Try It Live" hover overlay */
+          (() => {
             const DemoComponent = demoComponents[service.slug];
 
             /* ── Shared "Try It Live" overlay ── */
@@ -313,7 +320,8 @@ export default function SolutionPage() {
                 {overlay}
               </div>
             );
-          })()}
+          })()
+          )}
         </div>
       </section>
 

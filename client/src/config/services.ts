@@ -42,6 +42,11 @@ export interface ResultMetric {
   source?: string;
 }
 
+export interface DemoScreenshot {
+  src: string;
+  caption: string;
+}
+
 export interface ServiceConfig {
   id: string;
   name: string;
@@ -55,6 +60,7 @@ export interface ServiceConfig {
   subdomain?: string;
   heroImage?: string;
   demoImage?: string;
+  demoScreenshots: DemoScreenshot[];
   aiFeatures: AIFeature[];
   problem: string;
   howItWorks: HowItWorksStep[];
@@ -72,6 +78,8 @@ interface MarketingExtension {
   descriptionOverride?: string;
   heroImage?: string;
   demoImage?: string;
+  /** Real product screenshots shown in the "See It In Action" carousel */
+  demoScreenshots?: DemoScreenshot[];
   problem: string;
   howItWorks: HowItWorksStep[];
   results: ResultMetric[];
@@ -83,6 +91,11 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
   'policy-deployment': {
     id: 'policy-deployment',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-policy-YkQnvYo8xjtKQmKoSKVDXW.webp',
+    demoScreenshots: [
+      { src: '/screenshots/policy-deployment/01.png', caption: 'Strategic Plan dashboard with Opi Insights — cascade strength scored live at 92' },
+      { src: '/screenshots/policy-deployment/02.png', caption: 'X-Matrix — Hoshin Kanri correlations between tactics, projects, and objectives' },
+      { src: '/screenshots/policy-deployment/03.png', caption: 'Catchball — goal cascade from breakthrough objectives to KPIs, with named owners' },
+    ],
     problem: 'Strategic plans fail when they stay in the boardroom. Without a structured deployment process, objectives get lost in translation between management layers. Teams work hard on the wrong things, KPIs disconnect from strategy, and annual plans become shelf-ware within weeks.',
     howItWorks: [
       { step: 1, title: 'Define Strategic Objectives', description: 'Set your 3-5 year breakthrough objectives and annual priorities using the Hoshin Kanri methodology.' },
@@ -105,6 +118,14 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
   'sqdcp': {
     id: 'sqdcp-hub',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/sqdcp-dashboard-real_bcc775e0.png',
+    demoScreenshots: [
+      { src: '/screenshots/sqdcp/01.png', caption: 'Dashboard — Safety, Quality, Delivery, Cost, and People status at a glance' },
+      { src: '/screenshots/sqdcp/02.png', caption: 'Action Tracker — every open, in-progress, and closed action from the huddle' },
+      { src: '/screenshots/sqdcp/03.png', caption: 'AI Facilitator — hierarchy-aware huddle rooms, from plant review down to area teams' },
+      { src: '/screenshots/sqdcp/04.png', caption: 'Huddle room overview — check in, see every pillar’s status, start the huddle' },
+      { src: '/screenshots/sqdcp/05.png', caption: 'Metric drill-down — 90-day trend with green/amber/red zones and target line' },
+      { src: '/screenshots/sqdcp/06.png', caption: 'Pillar review — Opi calls out streaks live: “Green streak now 4 days — the longest run in this window”' },
+    ],
     problem: 'Physical whiteboards are static, illegible from a distance, and impossible to aggregate across sites. Tier meetings rely on outdated data, actions get lost on sticky notes, and management has no visibility into daily performance without walking the floor.',
     howItWorks: [
       { step: 1, title: 'Configure Your Boards', description: 'Set up digital SQDCP boards for each team, cell, or value stream. Define metrics, targets, and escalation rules.' },
@@ -122,12 +143,18 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     aiFeatures: [
       { title: 'AI Anomaly Detection', description: 'Automatically flags unusual metric patterns across Safety, Quality, Delivery, Cost, and People dimensions before they escalate.' },
       { title: 'Smart Trend Summaries', description: 'AI generates natural-language daily summaries highlighting key changes, emerging risks, and improvement opportunities.' },
+      { title: 'AI Facilitator', description: 'Runs your daily SQDCP huddle for you — surfaces what’s red, drafts root cause with a starter 5-Why, and tracks who owns what by when.' },
     ],
   },
   'oee-manager': {
     id: 'oee-manager',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-oee-Th2ta3q9vx8SDihX3BBphp.webp',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-oee-QnRQ7NMUruu9AHLjseSSx2.webp',
+    demoScreenshots: [
+      { src: '/screenshots/oee-manager/01.png', caption: 'Loss Insights — attackable loss value with Opi Coaching flags on biggest movers' },
+      { src: '/screenshots/oee-manager/02.png', caption: 'League Table — assets ranked by OEE, availability, performance, and quality' },
+      { src: '/screenshots/oee-manager/03.png', caption: 'Classic Analysis dashboard — OEE trend, output, and loss tree breakdown' },
+    ],
     problem: 'Most manufacturers have a feel for their productivity losses, but few have the systems to capture the breakdown in real time, categorise it and attack those losses through structured improvement activity. OEE Manager gives your teams exactly that \u2014 live visibility of Availability, Performance and Quality losses, with the context and tools to act on them systematically.',
     howItWorks: [
       { step: 1, title: 'Connect Your Machines', description: 'Link PLCs, sensors, and manual inputs via SmartConnect. Data flows automatically with no operator intervention.' },
@@ -150,6 +177,10 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
   },
   'connect': {
     id: 'smartconnect',
+    demoScreenshots: [
+      { src: '/screenshots/connect/01.png', caption: 'Dashboard — real-time overview of active IoT connections and signal health' },
+      { src: '/screenshots/connect/02.png', caption: 'Demo Mode — simulated live machine data streaming from a CNC lathe, conveyor, and injection moulder' },
+    ],
     descriptionOverride: 'OplyticsConnect is your platform integration hub. Connect machines, assets, ERP systems, and third-party data sources into a single unified data layer. Whether you\'re pulling live OEE data from the shop floor or syncing production targets from your ERP, OplyticsConnect manages every data feed in and out of the Oplytics platform. Integrated. Automated. Always live.',
     heroImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-connect-BLrEbXt4nBnvZdECMPpzLm.webp',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-connect-QpzAp7fYGbnsnuiT3dKihD.webp',
@@ -175,6 +206,11 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
   'action-manager': {
     id: 'action-manager',
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-action-3Ctr5Ddy2xCm5tqouxWKrn.webp',
+    demoScreenshots: [
+      { src: '/screenshots/action-manager/01.png', caption: 'Kanban board — To Do, In Progress, Review, and Done, with owners and due dates' },
+      { src: '/screenshots/action-manager/02.png', caption: 'Analytics — status distribution and priority breakdown at a glance' },
+      { src: '/screenshots/action-manager/03.png', caption: 'Integrations — Outlook, Teams, and calendar reminders wired to every action' },
+    ],
     problem: 'Actions from audits, incidents, and meetings are scattered across spreadsheets, emails, and sticky notes. Without a single register, items get duplicated, forgotten, or closed without verification. The same problems recur because root causes are never properly addressed.',
     howItWorks: [
       { step: 1, title: 'Capture from Any Source', description: 'Raise actions from audits, incidents, tier meetings, or any Oplytics service. One unified action register.' },
@@ -281,6 +317,7 @@ export const services: ServiceConfig[] = SERVICE_CATALOG.map((svc) => {
       accentColor: svc.accentColor,
       category: svc.category,
       subdomain: svc.subdomainLabel ?? undefined,
+      demoScreenshots: [],
       problem: '',
       howItWorks: [],
       results: [],
@@ -302,6 +339,7 @@ export const services: ServiceConfig[] = SERVICE_CATALOG.map((svc) => {
     subdomain: svc.subdomainLabel ?? undefined,
     heroImage: ext.heroImage,
     demoImage: ext.demoImage,
+    demoScreenshots: ext.demoScreenshots ?? [],
     problem: ext.problem,
     howItWorks: ext.howItWorks,
     results: ext.results,
