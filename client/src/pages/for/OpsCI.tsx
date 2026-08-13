@@ -1,8 +1,10 @@
 /**
- * Dedicated persona landing page — OpEx / CI Leader
+ * Dedicated persona landing page — Operational Excellence Leader
  * Route: /for/ops-ci
  * Ad-landable, standalone from any single product module (unlike the old
  * Connect-scoped role pages this replaces). Own hero, own proof points.
+ * AI-led messaging: root-cause speed, guided facilitation, $ impact,
+ * ISO-aligned compliance automation.
  */
 import MarketingLayout from '@/components/shared/MarketingLayout';
 import HeroSection from '@/components/shared/HeroSection';
@@ -14,7 +16,7 @@ import { sizePresets, calculateROI } from '@/lib/roiCalculator';
 import { Link } from 'wouter';
 import {
   ArrowRight, Target, Layers, GitBranch, CheckCircle2,
-  ClipboardList, TrendingUp,
+  ClipboardList, Sparkles, Users, ShieldCheck, Gauge,
 } from 'lucide-react';
 
 const roiResults = calculateROI({ size: 'medium', ...sizePresets.medium });
@@ -22,7 +24,7 @@ const roiResults = calculateROI({ size: 'medium', ...sizePresets.medium });
 const painPoints = [
   {
     icon: <ClipboardList className="w-5 h-5" />,
-    title: 'CI runs on spreadsheets and memory',
+    title: 'Operational Excellence runs on spreadsheets and memory',
     description: 'Actions from tier meetings live in someone\'s notebook. Hoshin plans get reviewed once a quarter and forgotten in between. Nothing connects to anything else.',
   },
   {
@@ -33,7 +35,30 @@ const painPoints = [
   {
     icon: <Target className="w-5 h-5" />,
     title: 'No one can prove the $ impact',
-    description: 'You know the CI programme is working. You can\'t easily show finance which action, on which line, produced which saving — so the programme competes for budget every year.',
+    description: 'You know the improvement programme is working. You can\'t easily show finance which action, on which line, produced which saving — so the programme competes for budget every year.',
+  },
+];
+
+const aiFeatures = [
+  {
+    icon: <Sparkles className="w-5 h-5" />,
+    title: 'AI Facilitator Gets You to Root Cause Faster',
+    description: 'It surfaces what\'s red before the meeting starts, drafts a starter 5-Why from the actual data, and turns a 45-minute huddle into a focused 15-minute review.',
+  },
+  {
+    icon: <Users className="w-5 h-5" />,
+    title: 'Guided Facilitation for Team Leaders & Supervisors',
+    description: 'Your frontline leaders don\'t need years of Lean training to run a sharp tier meeting. The AI prompts the next question, flags who owns what, and keeps the huddle moving.',
+  },
+  {
+    icon: <Gauge className="w-5 h-5" />,
+    title: 'Every Action Priced in $, Not Just Ranked',
+    description: 'AI scores and prioritises the action backlog by real impact and urgency — so the improvement programme has a number finance can put in a budget line, not just a status.',
+  },
+  {
+    icon: <ShieldCheck className="w-5 h-5" />,
+    title: 'ISO-Aligned Playbook, Audit-Ready by Default',
+    description: 'Certification Manager maps your processes to ISO and IATF clauses automatically, tracks compliance in real time, and lets you walk a regulator through the evidence without weeks of prep.',
   },
 ];
 
@@ -49,7 +74,7 @@ const whatYouGet = [
     description: 'No action lives outside the platform. Raise it from an audit, a tier meeting, or an OEE loss — it gets an owner, a due date, and tracks through to verified closure.',
   },
   {
-    icon: <TrendingUp className="w-5 h-5" />,
+    icon: <Sparkles className="w-5 h-5" />,
     title: 'AI That Runs the Huddle With You',
     description: 'The AI Facilitator surfaces what\'s red, drafts a starter 5-Why, and tracks who owns what by when — so tier meetings run on data, not on who remembered to update the board.',
   },
@@ -59,14 +84,14 @@ export default function OpsCI() {
   return (
     <MarketingLayout>
       <SEOHead
-        title="Oplytics for OpEx & CI Leaders"
-        description="Stop running Continuous Improvement on spreadsheets and sticky notes. Oplytics gives CI leaders one connected platform from Policy Deployment to verified action closure — with the $ impact attached."
+        title="Oplytics for Operational Excellence Leaders"
+        description="AI-driven root cause, guided facilitation for team leaders, every action priced in $, and an ISO-aligned playbook that's audit-ready by default. One connected platform from Policy Deployment to verified action closure."
       />
 
       <HeroSection
-        headline="Finally, CI Infrastructure That Works the Way CI Should"
-        subheadline="For OpEx & Continuous Improvement Leaders"
-        subtext="You live and breathe continuous improvement. Oplytics connects Policy Deployment, SQDCP Dashboards, OEE tracking, and structured problem solving into one platform — so every improvement effort is traceable, not just believed."
+        headline="AI-Driven Operational Excellence, Built for the Real Floor"
+        subheadline="For Operational Excellence Leaders"
+        subtext="Oplytics is driven by AI at every layer — get to root cause faster, give your team leaders and supervisors guided facilitation instead of a blank whiteboard, and turn every improvement into a number finance believes. Policy Deployment, SQDCP, OEE, and Action Manager, connected."
         status="live"
         customCtas={[
           { label: 'Try It Free', href: '/contact', variant: 'primary' },
@@ -80,7 +105,7 @@ export default function OpsCI() {
           <AnimateOnScroll variant="slide-up" className="text-center mb-12">
             <span className="section-label text-[#EF4444] mb-3 block">The Problem</span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
-              You Know CI Works. Proving It Is the Hard Part.
+              You Know Operational Excellence Works. Proving It Is the Hard Part.
             </h2>
           </AnimateOnScroll>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -97,11 +122,19 @@ export default function OpsCI() {
         </div>
       </section>
 
+      {/* AI-led feature grid — the primary sell */}
+      <FeatureGrid
+        items={aiFeatures}
+        columns={4}
+        sectionLabel="Driven by AI"
+        sectionTitle="AI Isn't a Feature Here — It's How the Platform Works"
+      />
+
       {/* What you get */}
       <FeatureGrid
         items={whatYouGet}
         columns={3}
-        sectionLabel="Built for CI"
+        sectionLabel="Built for Operational Excellence"
         sectionTitle="One Platform, Not Another Tool to Maintain"
       />
 
@@ -115,6 +148,35 @@ export default function OpsCI() {
             </h2>
           </AnimateOnScroll>
           <SystemFlowDiagram />
+        </div>
+      </section>
+
+      {/* ISO / compliance */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <AnimateOnScroll variant="slide-up" className="text-center mb-10">
+            <span className="section-label text-[#F97316] mb-3 block">Audit-Ready by Default</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+              An ISO-Aligned Playbook, Not a Panic Every Audit Season
+            </h2>
+            <p className="text-base sm:text-lg text-[#A0A8B8] leading-relaxed max-w-2xl mx-auto">
+              Certification Manager maps your existing processes to ISO and IATF clauses, keeps a live compliance dashboard against every requirement, and gives you the evidence trail to walk a regulator through your infrastructure — instead of losing weeks to audit prep every time.
+            </p>
+          </AnimateOnScroll>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+            <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] text-center">
+              <div className="text-sm font-semibold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>Map Your Standards</div>
+              <p className="text-sm text-[#8890A0] leading-relaxed">Import ISO, IATF, or other standard requirements and map them to your existing processes and documents, clause by clause.</p>
+            </div>
+            <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] text-center">
+              <div className="text-sm font-semibold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>AI Gap Analysis</div>
+              <p className="text-sm text-[#8890A0] leading-relaxed">AI scans your documentation and processes against every clause and flags gaps before an auditor finds them.</p>
+            </div>
+            <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] text-center">
+              <div className="text-sm font-semibold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>Walk the Auditor Through It</div>
+              <p className="text-sm text-[#8890A0] leading-relaxed">Every finding, corrective action, and piece of evidence in one place — regulators see a live system, not a scramble.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -157,7 +219,7 @@ export default function OpsCI() {
             See It Running on Your Own Data
           </h2>
           <p className="text-[#8890A0] mb-8">
-            Try it free and walk through Policy Deployment, SQDCP, and Action Manager connected the way your CI programme needs them to be.
+            Try it free and walk through Policy Deployment, SQDCP, and Action Manager connected the way your Operational Excellence programme needs them to be.
           </p>
           <Link
             href="/contact"
