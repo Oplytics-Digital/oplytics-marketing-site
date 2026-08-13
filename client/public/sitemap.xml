@@ -13,13 +13,7 @@
   <url><loc>https://oplytics.digital/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oplytics.digital/why-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://oplytics.digital/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/ceo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/factory-manager</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/it</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/safety</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/improvement</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://oplytics.digital/solutions/connect/maintenance</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://oplytics.digital/for/ops-ci</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://oplytics.digital/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://oplytics.digital/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://oplytics.digital/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>

@@ -15,11 +15,14 @@ import PersonaSection from '@/components/shared/PersonaSection';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll, { StaggerContainer } from '@/components/shared/AnimateOnScroll';
 import { coreServices, hubServices, liveServices } from '@/config/services';
+import { sizePresets, calculateROI } from '@/lib/roiCalculator';
 import { Link } from 'wouter';
 import {
   ArrowRight, TrendingUp, Shield, BarChart3,
-  Target, Zap, Users, Sparkles
+  Target, Zap, Users, Sparkles, Calculator
 } from 'lucide-react';
+
+const roiTeaserResults = calculateROI({ size: 'medium', ...sizePresets.medium });
 
 const whyFeatures = [
   {
@@ -74,15 +77,22 @@ export default function Home() {
       <HeroSection
         headline="Operational Excellence. One Digital Platform."
         subheadline="Fully Integrated. Powered by AI."
-        subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. All supported by AI for better decision making and process compliance. All in one platform."
+        subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. When an OEE loss triggers an action, that action flows into the SQDCP board, links to the relevant Hoshin objective, and tracks through to verified closure — every improvement effort traceable to its result. All supported by AI for better decision making and process compliance. All in one platform."
         status="live"
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         backgroundVideo="/video/hero-microchip.mp4"
         customCtas={[
-          { label: 'See How It Works', href: '/contact', variant: 'primary' },
+          { label: 'Book a Demo', href: '/contact', variant: 'primary' },
           { label: 'Explore Solutions', href: '/solutions', variant: 'secondary' },
         ]}
       />
+
+      {/* Founder credibility strap */}
+      <section className="py-4 px-4 sm:px-6 lg:px-8 text-center" role="region" aria-label="Founder background">
+        <p className="text-xs sm:text-sm text-[#596475] max-w-2xl mx-auto">
+          Built by an operations excellence specialist with over 20 years driving continuous improvement across aerospace &amp; defence, HVAC, and chemical manufacturing.
+        </p>
+      </section>
 
       {/* Stats Bar */}
       <section className="py-10 sm:py-12 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" role="region" aria-label="Platform statistics">
@@ -216,6 +226,43 @@ export default function Home() {
       </section>
 
 
+      {/* ROI Teaser — precomputed medium-org estimate, full calculator lives on /pricing */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" role="region" aria-label="Estimated benefit">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimateOnScroll variant="scale-in">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border border-[#22C55E]/20 bg-[#22C55E]/5">
+              <Calculator className="w-4 h-4 text-[#22C55E]" />
+              <span className="text-xs font-bold tracking-wider uppercase text-[#22C55E]">
+                Benefit Estimator
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+              See the £ Before You Sign
+            </h2>
+            <p className="text-sm sm:text-lg text-[#8890A0] max-w-2xl mx-auto mb-10">
+              A mid-sized manufacturer ({sizePresets.medium.headcount} employees, {sizePresets.medium.lines} lines, {sizePresets.medium.sites} sites) digitising with Oplytics has an estimated annual benefit of:
+            </p>
+            <div className="text-5xl sm:text-6xl font-black text-[#22C55E] mb-3" style={{ fontFamily: 'Montserrat' }}>
+              £{roiTeaserResults.totalAnnualBenefit.toLocaleString()}
+            </div>
+            <p className="text-xs text-[#596475] max-w-xl mx-auto mb-8">
+              Estimate based on time savings, OEE-driven throughput gain, and meeting efficiency. Based on conservative industry benchmarks — actual results vary by operation.
+            </p>
+            <Link
+              href="/pricing"
+              data-umami-event="cta_click"
+              data-umami-event-button="calculate_your_savings"
+              data-umami-event-location="home_roi_teaser"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple"
+              style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+            >
+              Calculate Your Savings
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* Why Oplytics */}
       <FeatureGrid
         items={whyFeatures}
@@ -234,18 +281,18 @@ export default function Home() {
             Ready to Transform Your Operations?
           </h2>
           <p className="text-sm sm:text-base text-[#8890A0] mb-8 max-w-xl mx-auto">
-            Join leading manufacturers who have already digitised their operational excellence journey with Oplytics.
+            Start your operational excellence journey with a platform built for manufacturing, not adapted for it.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
               data-umami-event="cta_click"
-              data-umami-event-button="see_how_it_works"
+              data-umami-event-button="book_a_demo"
               data-umami-event-location="home_bottom"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple w-full sm:w-auto justify-center"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
-              See How It Works
+              Book a Demo
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

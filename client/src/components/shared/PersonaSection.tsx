@@ -19,11 +19,17 @@ interface Persona {
 
 const personas: Persona[] = [
   {
+    id: 'plant-manager',
+    title: 'Plant Managers & Supervisors',
+    icon: <HardHat className="w-5 h-5" />,
+    description: "You run the floor. You know every problem before it gets escalated — but you're spending your day in meetings, chasing updates and firefighting. Oplytics puts structured improvement into the hands of your teams, so problems get contained, root causes get found, and actions get closed. Less firefighting. More leading.",
+    isChampion: true,
+  },
+  {
     id: 'opex',
     title: 'OpEx / CI Leader',
     icon: <Target className="w-5 h-5" />,
     description: 'You live and breathe continuous improvement. But without the right digital infrastructure, your CI programmes rely on spreadsheets, manual updates and people remembering to follow the process. Oplytics is built for you — Policy Deployment, SQDCP Dashboards, OEE tracking and structured problem solving, all connected in one platform. Finally, a system that works the way CI should.',
-    isChampion: true,
   },
   {
     id: 'ops-director',
@@ -42,12 +48,6 @@ const personas: Persona[] = [
     title: 'CFO / Finance',
     icon: <DollarSign className="w-5 h-5" />,
     description: "Every improvement initiative costs money before it saves it. Oplytics makes the ROI visible — real-time OEE data, structured action tracking, and policy deployment that connects strategy to shop floor execution. You'll see where the losses are, what's being done about them, and whether it's working.",
-  },
-  {
-    id: 'plant-manager',
-    title: 'Plant Managers & Supervisors',
-    icon: <HardHat className="w-5 h-5" />,
-    description: "You run the floor. You know every problem before it gets escalated — but you're spending your day in meetings, chasing updates and firefighting. Oplytics puts structured improvement into the hands of your teams, so problems get contained, root causes get found, and actions get closed. Less firefighting. More leading.",
   },
   {
     id: 'hse',
@@ -76,7 +76,7 @@ const personas: Persona[] = [
 ];
 
 export default function PersonaSection() {
-  const [activeId, setActiveId] = useState('opex');
+  const [activeId, setActiveId] = useState('plant-manager');
   const active = personas.find(p => p.id === activeId) || personas[0];
 
   return (

@@ -16,8 +16,7 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/ResourceArticle";
-import ConnectChecklist from "./pages/ConnectChecklist";
-import ConnectRoleProposal from "./pages/ConnectRoleProposal";
+import OpsCI from "./pages/for/OpsCI";
 
 /** Scroll to top on every route change */
 function ScrollToTop() {
@@ -33,9 +32,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/solutions" component={Home} />
-      <Route path="/solutions/connect/checklist" component={ConnectChecklist} />
-      <Route path="/solutions/connect/:role" component={ConnectRoleProposal} />
       <Route path="/solutions/:slug" component={SolutionPage} />
+      <Route path="/for/ops-ci" component={OpsCI} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/contact" component={Contact} />
       <Route path="/why-us" component={WhyUs} />
