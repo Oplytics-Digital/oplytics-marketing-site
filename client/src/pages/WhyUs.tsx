@@ -46,10 +46,10 @@ const differentiators = [
 ];
 
 const metrics = [
-  { value: '35%', label: 'Average OEE Improvement', sublabel: 'within first 6 months' },
-  { value: '60%', label: 'Reduction in Downtime', sublabel: 'through proactive monitoring' },
-  { value: '90%', label: 'Action Closure Rate', sublabel: 'vs. 40% industry average' },
-  { value: '4x', label: 'Faster Incident Response', sublabel: 'with digital reporting' },
+  { value: '8', label: 'Connected Services', sublabel: 'one shared data model' },
+  { value: 'Days', label: 'To First Live Board', sublabel: 'not months, like a typical MES rollout' },
+  { value: '100%', label: 'Actions Traceable to Closure', sublabel: 'no action raised outside the platform' },
+  { value: 'Real-Time', label: 'Cross-Site Visibility', sublabel: 'no walking the floor required' },
 ];
 
 export default function WhyUs() {

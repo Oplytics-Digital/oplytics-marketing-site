@@ -1,10 +1,12 @@
 import express from "express";
 import { createServer } from "http";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { createSupportEngine, LLMBudgetError } from "@pablo2410/core-server";
 import { ENV } from "./env";
 import { createLedgerHooks } from "./aiUsageClient";
+import { injectPageMeta } from "./pageMeta";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -69,11 +71,25 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  // Exclude index.html from the static handler so every route falls through
+  // to the per-request meta injection below — express.static would otherwise
+  // serve the raw file as-is for a direct "/" request.
+  app.use(express.static(staticPath, { index: false }));
 
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  // Handle client-side routing - serve index.html for all routes, with the
+  // <title>/description/OG tags rewritten per-route so crawlers, link-preview
+  // unfurlers, and any tool that doesn't execute JS see real page-specific
+  // content instead of the same static fallback on every URL.
+  const indexHtmlPath = path.join(staticPath, "index.html");
+  app.get("*", (req, res) => {
+    fs.readFile(indexHtmlPath, "utf8", (err, html) => {
+      if (err) {
+        res.sendFile(indexHtmlPath);
+        return;
+      }
+      res.set("Content-Type", "text/html");
+      res.send(injectPageMeta(html, req.path));
+    });
   });
 
   const port = ENV.PORT;

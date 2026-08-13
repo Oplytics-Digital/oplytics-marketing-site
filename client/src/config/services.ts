@@ -157,7 +157,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     ],
     problem: 'Most manufacturers have a feel for their productivity losses, but few have the systems to capture the breakdown in real time, categorise it and attack those losses through structured improvement activity. OEE Manager gives your teams exactly that \u2014 live visibility of Availability, Performance and Quality losses, with the context and tools to act on them systematically.',
     howItWorks: [
-      { step: 1, title: 'Connect Your Machines', description: 'Link PLCs, sensors, and manual inputs via SmartConnect. Data flows automatically with no operator intervention.' },
+      { step: 1, title: 'Connect Your Machines', description: 'Link PLCs, sensors, and manual inputs via OplyticsConnect. Data flows automatically with no operator intervention.' },
       { step: 2, title: 'Track in Real Time', description: 'Live OEE dashboards show availability, performance, and quality for every machine and line as it happens.' },
       { step: 3, title: 'Classify Losses', description: 'Downtime and speed losses are automatically categorised. Pareto analysis reveals your biggest opportunities.' },
       { step: 4, title: 'Drive Improvement', description: 'Use trend analysis, shift comparisons, and root cause tools to systematically eliminate losses.' },
@@ -186,7 +186,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     demoImage: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/demo-connect-QpzAp7fYGbnsnuiT3dKihD.webp',
     problem: 'Manufacturing data is trapped in silos \u2014 PLCs speak different protocols, legacy systems have no APIs, and connecting a new machine takes weeks of custom development. Without a unified connectivity layer, digital transformation stalls at the edge.',
     howItWorks: [
-      { step: 1, title: 'Discover Devices', description: 'SmartConnect scans your network and identifies available PLCs, sensors, and industrial systems automatically.' },
+      { step: 1, title: 'Discover Devices', description: 'OplyticsConnect scans your network and identifies available PLCs, sensors, and industrial systems automatically.' },
       { step: 2, title: 'Map Signals', description: 'Visual drag-and-drop interface maps machine signals to Oplytics data points. No coding required.' },
       { step: 3, title: 'Transform Data', description: 'Built-in calculation engine converts raw signals into meaningful metrics \u2014 OEE, cycle times, energy consumption.' },
       { step: 4, title: 'Stream to Platform', description: 'Data flows in real time to OEE Manager, SQDCP Dashboard, and other Oplytics services. Edge buffering ensures zero data loss.' },

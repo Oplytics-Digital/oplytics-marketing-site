@@ -46,7 +46,7 @@ const serviceFeatures: Record<string, { icon: React.ReactNode; title: string; de
     { icon: <Gauge className="w-5 h-5" />, title: 'Real-Time OEE Tracking', description: 'Monitor availability, performance, and quality metrics as they happen across every machine and line.' },
     { icon: <BarChart3 className="w-5 h-5" />, title: 'Loss Categorisation', description: 'Automatically categorise downtime and speed losses. Pareto analysis identifies your biggest improvement opportunities.' },
     { icon: <TrendingUp className="w-5 h-5" />, title: 'Trend Analysis', description: 'Historical OEE trends by shift, line, product, and operator. Spot patterns before they become problems.' },
-    { icon: <Zap className="w-5 h-5" />, title: 'Automated Data Collection', description: 'Connect directly to PLCs and sensors via SmartConnect. Eliminate manual data entry errors.' },
+    { icon: <Zap className="w-5 h-5" />, title: 'Automated Data Collection', description: 'Connect directly to PLCs and sensors via OplyticsConnect. Eliminate manual data entry errors.' },
     { icon: <Users className="w-5 h-5" />, title: 'Shift Handover', description: 'Digital shift handover reports with OEE summaries, open actions, and key events from the previous shift.' },
     { icon: <Target className="w-5 h-5" />, title: 'Target Management', description: 'Set OEE targets by line, product, and shift. Visual indicators show performance against target in real time.' },
   ],
