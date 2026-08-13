@@ -124,7 +124,7 @@ const PERSONA_PAGE_META: Record<string, PageMeta> = {
   "ops-ci": {
     title: "Oplytics for Operational Excellence Leaders — Meet Opi",
     description:
-      "Opi is Oplytics' AI teammate — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default.",
+      "Opi is Oplytics' AI CI Engineer — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle and in the sidebar of every service. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default.",
   },
 };
 

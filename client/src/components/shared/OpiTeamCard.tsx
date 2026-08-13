@@ -10,7 +10,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
 const INSIGHT_CARDS = [
-  { label: 'AI Facilitator', text: 'Root cause drafted — starter 5-Why ready', color: '#8C34E9' },
+  { label: 'AI Facilitator', text: 'Root cause scored — 2 improvement actions suggested', color: '#8C34E9' },
   { label: 'Opi Insights', text: 'Cascade strength scored live at 92', color: '#F59E0B' },
   { label: 'Opi Coaching', text: 'Green streak now 4 days — longest run this window', color: '#1DB8CE' },
 ];
@@ -37,12 +37,12 @@ export default function OpiTeamCard() {
           </div>
 
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
-            Opi is on shift 24/7
+            Your AI CI Engineer, On Shift 24/7
           </h3>
           <p className="text-sm sm:text-base text-[#A0A8B8] max-w-lg leading-relaxed mb-8">
             Every Oplytics module is taught on the same Lean and Six Sigma playbooks — Opi is the AI that
-            actually applies them, live, alongside your team. Not here to replace the huddle. Here to make
-            every huddle sharper.
+            actually applies them, live, in the huddle and in the sidebar of every service. Not here to
+            replace the huddle. Here to make every huddle sharper.
           </p>
 
           {/* Live insight feed */}
