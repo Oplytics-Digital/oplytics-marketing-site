@@ -9,6 +9,7 @@ import HeroSection from '@/components/shared/HeroSection';
 import FeatureGrid from '@/components/shared/FeatureGrid';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
+import SystemFlowDiagram from '@/components/shared/SystemFlowDiagram';
 import { sizePresets, calculateROI } from '@/lib/roiCalculator';
 import { Link } from 'wouter';
 import {
@@ -68,7 +69,7 @@ export default function OpsCI() {
         subtext="You live and breathe continuous improvement. Oplytics connects Policy Deployment, SQDCP Dashboards, OEE tracking, and structured problem solving into one platform — so every improvement effort is traceable, not just believed."
         status="live"
         customCtas={[
-          { label: 'Book a Demo', href: '/contact', variant: 'primary' },
+          { label: 'Try It Free', href: '/contact', variant: 'primary' },
           { label: 'See the Platform', href: '/why-us', variant: 'secondary' },
         ]}
       />
@@ -106,16 +107,14 @@ export default function OpsCI() {
 
       {/* Traceability mechanism — the actual differentiator */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40" style={{ background: 'linear-gradient(180deg, #080C16 0%, #0D1220 100%)' }}>
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <AnimateOnScroll variant="scale-in">
             <span className="section-label text-[#1DB8CE] mb-4 block">How It Connects</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6" style={{ fontFamily: 'Montserrat' }}>
-              When an OEE Loss Triggers an Action
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-10" style={{ fontFamily: 'Montserrat' }}>
+              One Cascade, From Strategy to the Shop Floor
             </h2>
-            <p className="text-base sm:text-lg text-[#A0A8B8] leading-relaxed">
-              That action flows into the SQDCP board, links to the relevant Hoshin objective, and tracks through to verified closure. No spreadsheet reconciliation. No "what happened to that action from Q1." One shared data model, so the CI programme you're running is the CI programme leadership can actually see.
-            </p>
           </AnimateOnScroll>
+          <SystemFlowDiagram />
         </div>
       </section>
 
@@ -158,17 +157,17 @@ export default function OpsCI() {
             See It Running on Your Own Data
           </h2>
           <p className="text-[#8890A0] mb-8">
-            Book a demo and walk through Policy Deployment, SQDCP, and Action Manager connected the way your CI programme needs them to be.
+            Try it free and walk through Policy Deployment, SQDCP, and Action Manager connected the way your CI programme needs them to be.
           </p>
           <Link
             href="/contact"
             data-umami-event="cta_click"
-            data-umami-event-button="book_a_demo"
+            data-umami-event-button="try_it_free"
             data-umami-event-location="for_ops_ci_bottom"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple"
             style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
           >
-            Book a Demo
+            Try It Free
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

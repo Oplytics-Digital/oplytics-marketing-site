@@ -178,7 +178,7 @@ export default function About() {
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-white font-semibold transition-all hover:scale-105"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
-              Book a Demo
+              Try It Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
