@@ -104,14 +104,14 @@ export default function WhyUs() {
             See It In Action
           </h2>
           <p className="text-[#8890A0] mb-8">
-            Book a personalised demo and see how Oplytics can transform your operations.
+            Try it free and see how Oplytics can transform your operations.
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple"
             style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
           >
-            Book a Demo
+            Try It Free
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

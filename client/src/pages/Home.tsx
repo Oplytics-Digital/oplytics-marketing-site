@@ -82,7 +82,7 @@ export default function Home() {
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         backgroundVideo="/video/hero-microchip.mp4"
         customCtas={[
-          { label: 'Book a Demo', href: '/contact', variant: 'primary' },
+          { label: 'Try It Free', href: '/contact', variant: 'primary' },
           { label: 'Explore Solutions', href: '/solutions', variant: 'secondary' },
         ]}
       />
@@ -287,12 +287,12 @@ export default function Home() {
             <Link
               href="/contact"
               data-umami-event="cta_click"
-              data-umami-event-button="book_a_demo"
+              data-umami-event-button="try_it_free"
               data-umami-event-location="home_bottom"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold text-white tracking-wider hover:opacity-90 glow-purple w-full sm:w-auto justify-center"
               style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
             >
-              Book a Demo
+              Try It Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
