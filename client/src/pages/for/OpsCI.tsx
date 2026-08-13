@@ -44,17 +44,17 @@ const aiFeatures = [
   {
     icon: <Users className="w-5 h-5" />,
     title: 'AI Facilitation — Enhance, Not Replace',
-    description: 'Opi doesn\'t run the meeting instead of your team leader — it standardises how every tier meeting runs, so a first-week supervisor facilitates as sharply as a ten-year veteran.',
+    description: 'Opi structures the noise, focuses the attention, and supports the analysis — standardising how every tier meeting runs, so a first-week supervisor can facilitate as sharply as a ten-year veteran.',
   },
   {
     icon: <Zap className="w-5 h-5" />,
     title: 'Effective Root Cause, Strong Bias for Action',
-    description: 'Opi surfaces what\'s red before the meeting starts and drafts a starter 5-Why from the actual data — less time diagnosing, more time already fixing it.',
+    description: 'Opi coaches and drives effective root cause analysis — it scores the analysis and suggests improvements to the actions, so you get to fixes, and the future state, faster.',
   },
   {
     icon: <LayoutGrid className="w-5 h-5" />,
-    title: 'Insights on Every Page',
-    description: 'A live Opi score and effectiveness summary follows you through Policy Deployment, SQDCP, OEE, and Action Manager — never a dashboard you have to go hunting through separately.',
+    title: 'Opi Insights, Everywhere You Work',
+    description: 'Always-on suggestions in the sidebar of every service, driving the improvement process faster — never a dashboard you have to go hunting through separately.',
   },
   {
     icon: <Radar className="w-5 h-5" />,
@@ -86,8 +86,8 @@ const whatYouGet = [
   },
   {
     icon: <Sparkles className="w-5 h-5" />,
-    title: 'AI That Runs the Huddle With You',
-    description: 'The AI Facilitator surfaces what\'s red, drafts a starter 5-Why, and tracks who owns what by when — so tier meetings run on data, not on who remembered to update the board.',
+    title: 'Opi Runs the Huddle With You',
+    description: 'Guided digital tier meeting facilitation that structures the discussion and tracks who owns what by when — so tier meetings run on data, not on who remembered to update the board.',
   },
 ];
 
@@ -96,13 +96,13 @@ export default function OpsCI() {
     <MarketingLayout>
       <SEOHead
         title="Oplytics for Operational Excellence Leaders — Meet Opi"
-        description="Opi is Oplytics' AI teammate — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default."
+        description="Opi is Oplytics' AI CI Engineer — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle and in the sidebar of every service. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default."
       />
 
       <HeroSection
-        headline="Add Opi to Your Team"
+        headline="Recruit Opi, Your Always-Available CI Employee"
         subheadline="For Operational Excellence Leaders"
-        subtext="Opi is Oplytics' AI — live, taught on every Lean and Six Sigma playbook there is, and in the room for every huddle. It gets you to root cause faster, gives your team leaders and supervisors guided facilitation instead of a blank whiteboard, and turns every improvement into a number finance believes."
+        subtext="Opi is Oplytics' AI CI Engineer — live, taught on every Lean and Six Sigma playbook there is, in the room for every huddle and in the sidebar of every service. Opi helps your team get to root cause faster, provides guided digital tier meeting facilitation, and turns every improvement into a number finance believes in."
         status="live"
         customCtas={[
           { label: 'Try It Free', href: '/contact', variant: 'primary' },
