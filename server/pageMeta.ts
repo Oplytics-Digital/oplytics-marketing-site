@@ -122,9 +122,9 @@ const SOLUTION_PAGE_META: Record<string, PageMeta> = {
 // any single product module.
 const PERSONA_PAGE_META: Record<string, PageMeta> = {
   "ops-ci": {
-    title: "Oplytics for Operational Excellence Leaders",
+    title: "Oplytics for Operational Excellence Leaders — Meet Opi",
     description:
-      "AI-driven root cause, guided facilitation for team leaders, every action priced in $, and an ISO-aligned playbook that's audit-ready by default. One connected platform from Policy Deployment to verified action closure.",
+      "Opi is Oplytics' AI teammate — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default.",
   },
 };
 
