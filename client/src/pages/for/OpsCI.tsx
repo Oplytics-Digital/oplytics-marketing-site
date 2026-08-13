@@ -12,11 +12,12 @@ import FeatureGrid from '@/components/shared/FeatureGrid';
 import SEOHead from '@/components/shared/SEOHead';
 import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
 import SystemFlowDiagram from '@/components/shared/SystemFlowDiagram';
+import OpiTeamCard from '@/components/shared/OpiTeamCard';
 import { sizePresets, calculateROI } from '@/lib/roiCalculator';
 import { Link } from 'wouter';
 import {
   ArrowRight, Target, Layers, GitBranch, CheckCircle2,
-  ClipboardList, Sparkles, Users, ShieldCheck, Gauge,
+  ClipboardList, Sparkles, Users, ShieldCheck, Gauge, Zap, LayoutGrid, Radar,
 } from 'lucide-react';
 
 const roiResults = calculateROI({ size: 'medium', ...sizePresets.medium });
@@ -41,14 +42,24 @@ const painPoints = [
 
 const aiFeatures = [
   {
-    icon: <Sparkles className="w-5 h-5" />,
-    title: 'AI Facilitator Gets You to Root Cause Faster',
-    description: 'It surfaces what\'s red before the meeting starts, drafts a starter 5-Why from the actual data, and turns a 45-minute huddle into a focused 15-minute review.',
+    icon: <Users className="w-5 h-5" />,
+    title: 'AI Facilitation — Enhance, Not Replace',
+    description: 'Opi doesn\'t run the meeting instead of your team leader — it standardises how every tier meeting runs, so a first-week supervisor facilitates as sharply as a ten-year veteran.',
   },
   {
-    icon: <Users className="w-5 h-5" />,
-    title: 'Guided Facilitation for Team Leaders & Supervisors',
-    description: 'Your frontline leaders don\'t need years of Lean training to run a sharp tier meeting. The AI prompts the next question, flags who owns what, and keeps the huddle moving.',
+    icon: <Zap className="w-5 h-5" />,
+    title: 'Effective Root Cause, Strong Bias for Action',
+    description: 'Opi surfaces what\'s red before the meeting starts and drafts a starter 5-Why from the actual data — less time diagnosing, more time already fixing it.',
+  },
+  {
+    icon: <LayoutGrid className="w-5 h-5" />,
+    title: 'Insights on Every Page',
+    description: 'A live Opi score and effectiveness summary follows you through Policy Deployment, SQDCP, OEE, and Action Manager — never a dashboard you have to go hunting through separately.',
+  },
+  {
+    icon: <Radar className="w-5 h-5" />,
+    title: 'Opi Watches the Whole Suite for Gaps',
+    description: 'Across Plant Management and the shop floor, Opi spots where performance is slipping and tells you exactly where to focus resource and attention next.',
   },
   {
     icon: <Gauge className="w-5 h-5" />,
@@ -84,20 +95,25 @@ export default function OpsCI() {
   return (
     <MarketingLayout>
       <SEOHead
-        title="Oplytics for Operational Excellence Leaders"
-        description="AI-driven root cause, guided facilitation for team leaders, every action priced in $, and an ISO-aligned playbook that's audit-ready by default. One connected platform from Policy Deployment to verified action closure."
+        title="Oplytics for Operational Excellence Leaders — Meet Opi"
+        description="Opi is Oplytics' AI teammate — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default."
       />
 
       <HeroSection
-        headline="AI-Driven Operational Excellence, Built for the Real Floor"
+        headline="Add Opi to Your Team"
         subheadline="For Operational Excellence Leaders"
-        subtext="Oplytics is driven by AI at every layer — get to root cause faster, give your team leaders and supervisors guided facilitation instead of a blank whiteboard, and turn every improvement into a number finance believes. Policy Deployment, SQDCP, OEE, and Action Manager, connected."
+        subtext="Opi is Oplytics' AI — live, taught on every Lean and Six Sigma playbook there is, and in the room for every huddle. It gets you to root cause faster, gives your team leaders and supervisors guided facilitation instead of a blank whiteboard, and turns every improvement into a number finance believes."
         status="live"
         customCtas={[
           { label: 'Try It Free', href: '/contact', variant: 'primary' },
           { label: 'See the Platform', href: '/why-us', variant: 'secondary' },
         ]}
       />
+
+      {/* Opi — the AI teammate, sold up front */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+        <OpiTeamCard />
+      </section>
 
       {/* Pain points */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40">
@@ -125,7 +141,7 @@ export default function OpsCI() {
       {/* AI-led feature grid — the primary sell */}
       <FeatureGrid
         items={aiFeatures}
-        columns={4}
+        columns={3}
         sectionLabel="Driven by AI"
         sectionTitle="AI Isn't a Feature Here — It's How the Platform Works"
       />
