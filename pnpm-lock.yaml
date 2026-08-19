@@ -21,10 +21,10 @@ importers:
         version: 5.2.2(react-hook-form@7.71.2(react@19.2.4))
       '@pablo2410/core-server':
         specifier: ^0.6.1
-        version: 0.6.1(@pablo2410/shared-ui@0.13.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)
+        version: 0.6.1(@pablo2410/shared-ui@0.18.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)
       '@pablo2410/shared-ui':
-        specifier: ^0.13.0
-        version: 0.13.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)
+        specifier: ^0.18.0
+        version: 0.18.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -886,8 +886,8 @@ packages:
       jose:
         optional: true
 
-  '@pablo2410/shared-ui@0.13.0':
-    resolution: {integrity: sha512-TDIy5L/8Zh5WosVM1bgTR2Bj9sl+rItgmChhOY6Ra2d7SJB0zGCCxuum8ColYLerHqGPmR3ZPp+/ryseinEleg==}
+  '@pablo2410/shared-ui@0.18.0':
+    resolution: {integrity: sha512-gcURbOP/1cRatYR9DF2tuUZszJjNK7087z3pA8J1PdpJn+Ywcz7ukOSNQpkVcbe7mpKTIZJb5WfJAZ2YhzkUkw==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -4310,16 +4310,16 @@ snapshots:
     dependencies:
       langium: 4.2.1
 
-  '@pablo2410/core-server@0.6.1(@pablo2410/shared-ui@0.13.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)':
+  '@pablo2410/core-server@0.6.1(@pablo2410/shared-ui@0.18.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.13.6)(cookie@0.7.2)(express@4.22.1)':
     dependencies:
       '@trpc/server': 11.17.0(typescript@5.6.3)
     optionalDependencies:
-      '@pablo2410/shared-ui': 0.13.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)
+      '@pablo2410/shared-ui': 0.18.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)
       axios: 1.13.6
       cookie: 0.7.2
       express: 4.22.1
 
-  '@pablo2410/shared-ui@0.13.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)':
+  '@pablo2410/shared-ui@0.18.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@18.3.1)(react@19.2.4)(redux@5.0.1)':
     dependencies:
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@radix-ui/react-alert-dialog': 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
