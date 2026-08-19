@@ -14,7 +14,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@pablo2410/core-server": "^0.6.1",
-    "@pablo2410/shared-ui": "^0.13.0",
+    "@pablo2410/shared-ui": "^0.18.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
