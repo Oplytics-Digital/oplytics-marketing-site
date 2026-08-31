@@ -3,27 +3,34 @@
  * Each demo is a 20-second looping React animation rendered inside the
  * browser mockup frame on the corresponding SolutionPage.
  */
-import { lazy } from 'react';
+import { lazy } from "react";
 
-export const PolicyDeploymentDemo = lazy(() => import('./PolicyDeploymentDemo'));
-export const SQDCPHubDemo = lazy(() => import('./SQDCPHubDemo'));
-export const OEEManagerDemo = lazy(() => import('./OEEManagerDemo'));
-export const ConnectDemo = lazy(() => import('./ConnectDemo'));
-export const ActionManagerDemo = lazy(() => import('./ActionManagerDemo'));
-export const QualityManagerDemo = lazy(() => import('./QualityManagerDemo'));
-export const SafetyManagerDemo = lazy(() => import('./SafetyManagerDemo'));
-export const CertificationManagerDemo = lazy(() => import('./CertificationManagerDemo'));
+export const PolicyDeploymentDemo = lazy(
+  () => import("./PolicyDeploymentDemo")
+);
+export const SQDCPHubDemo = lazy(() => import("./SQDCPHubDemo"));
+export const OEEManagerDemo = lazy(() => import("./OEEManagerDemo"));
+export const ConnectDemo = lazy(() => import("./ConnectDemo"));
+export const ActionManagerDemo = lazy(() => import("./ActionManagerDemo"));
+export const QualityManagerDemo = lazy(() => import("./QualityManagerDemo"));
+export const SafetyManagerDemo = lazy(() => import("./SafetyManagerDemo"));
+export const CertificationManagerDemo = lazy(
+  () => import("./CertificationManagerDemo")
+);
 
 /** Map from service slug → lazy demo component */
-export const demoComponents: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
-  'policy-deployment': PolicyDeploymentDemo,
-  'sqdcp': SQDCPHubDemo,
-  'oee-manager': OEEManagerDemo,
-  'connect': ConnectDemo,
-  'action-manager': ActionManagerDemo,
-  'quality-manager': QualityManagerDemo,
-  'safety-manager': SafetyManagerDemo,
-  'certification-manager': CertificationManagerDemo,
+export const demoComponents: Record<
+  string,
+  React.LazyExoticComponent<React.ComponentType>
+> = {
+  "policy-deployment": PolicyDeploymentDemo,
+  sqdcp: SQDCPHubDemo,
+  "oee-manager": OEEManagerDemo,
+  connect: ConnectDemo,
+  "action-manager": ActionManagerDemo,
+  "quality-manager": QualityManagerDemo,
+  "safety-manager": SafetyManagerDemo,
+  "certification-manager": CertificationManagerDemo,
 };
 
 /**
@@ -32,6 +39,4 @@ export const demoComponents: Record<string, React.LazyExoticComponent<React.Comp
  * "Try It Live" overlay so the mouse can reach the demo; it shows a small,
  * non-blocking corner CTA instead.
  */
-export const interactiveDemos = new Set<string>([
-  'policy-deployment',
-]);
+export const interactiveDemos = new Set<string>(["policy-deployment"]);

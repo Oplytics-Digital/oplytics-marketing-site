@@ -8,11 +8,14 @@
  * Link to service solution page.
  * Consistent card sizing regardless of content length.
  */
-import { Link } from 'wouter';
-import { ArrowRight } from 'lucide-react';
-import type { ServiceConfig } from '@/config/services';
-import { getServiceStatusLabel, getServiceStatusColor } from '@/config/services';
-import { AIBadgeInline } from './AIBadge';
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
+import type { ServiceConfig } from "@/config/services";
+import {
+  getServiceStatusLabel,
+  getServiceStatusColor,
+} from "@/config/services";
+import { AIBadgeInline } from "./AIBadge";
 
 interface ServiceCardProps {
   service: ServiceConfig;
@@ -27,15 +30,17 @@ export default function ServiceCard({ service }: ServiceCardProps) {
       <div
         className="group relative h-full p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-opacity-60 transition-all duration-300 hover:-translate-y-1 flex flex-col"
         style={{
-          borderColor: '#1E2738',
+          borderColor: "#1E2738",
         }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.borderColor = service.accentColor + '40';
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 30px ${service.accentColor}15`;
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLElement).style.borderColor =
+            service.accentColor + "40";
+          (e.currentTarget as HTMLElement).style.boxShadow =
+            `0 0 30px ${service.accentColor}15`;
         }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.borderColor = '#1E2738';
-          (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLElement).style.borderColor = "#1E2738";
+          (e.currentTarget as HTMLElement).style.boxShadow = "none";
         }}
       >
         {/* Top accent bar */}
@@ -49,19 +54,25 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           <span
             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase"
             style={{
-              background: statusColor + '15',
+              background: statusColor + "15",
               color: statusColor,
               border: `1px solid ${statusColor}30`,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor }} />
+            <span
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: statusColor }}
+            />
             {statusLabel}
           </span>
           {service.aiFeatures.length > 0 && <AIBadgeInline />}
         </div>
 
         {/* Service Name */}
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#C084FC] transition-colors" style={{ fontFamily: 'Montserrat' }}>
+        <h3
+          className="text-lg font-bold text-white mb-2 group-hover:text-[#C084FC] transition-colors"
+          style={{ fontFamily: "Montserrat" }}
+        >
           {service.name}
         </h3>
 

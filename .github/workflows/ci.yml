@@ -13,13 +13,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
       - name: Install pnpm
         run: npm install -g pnpm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Formatting check
+        run: pnpm prettier --check .
 
       - name: TypeScript check
         run: pnpm check

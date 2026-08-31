@@ -49,10 +49,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Oplytics brand tokens */
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
-  --color-oplytics-purple: oklch(0.50 0.25 295);
-  --color-oplytics-teal: oklch(0.70 0.12 195);
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+  --color-oplytics-purple: oklch(0.5 0.25 295);
+  --color-oplytics-teal: oklch(0.7 0.12 195);
   --color-oplytics-navy: oklch(0.12 0.02 260);
   --color-oplytics-surface: oklch(0.14 0.02 260);
   --color-oplytics-card: oklch(0.22 0.02 255);
@@ -60,38 +60,38 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.10 0.02 260);
+  --background: oklch(0.1 0.02 260);
   --foreground: oklch(0.92 0.01 250);
   --card: oklch(0.16 0.02 258);
   --card-foreground: oklch(0.92 0.01 250);
   --popover: oklch(0.14 0.02 258);
   --popover-foreground: oklch(0.92 0.01 250);
-  --primary: oklch(0.50 0.25 295);
+  --primary: oklch(0.5 0.25 295);
   --primary-foreground: oklch(0.98 0 0);
   --secondary: oklch(0.22 0.02 255);
-  --secondary-foreground: oklch(0.80 0.01 250);
-  --muted: oklch(0.20 0.015 258);
-  --muted-foreground: oklch(0.60 0.02 255);
-  --accent: oklch(0.70 0.12 195);
+  --secondary-foreground: oklch(0.8 0.01 250);
+  --muted: oklch(0.2 0.015 258);
+  --muted-foreground: oklch(0.6 0.02 255);
+  --accent: oklch(0.7 0.12 195);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.60 0.22 25);
+  --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.25 0.02 255);
   --input: oklch(0.22 0.02 255);
-  --ring: oklch(0.50 0.25 295);
-  --chart-1: oklch(0.50 0.25 295);
-  --chart-2: oklch(0.70 0.12 195);
+  --ring: oklch(0.5 0.25 295);
+  --chart-1: oklch(0.5 0.25 295);
+  --chart-2: oklch(0.7 0.12 195);
   --chart-3: oklch(0.65 0.18 150);
-  --chart-4: oklch(0.70 0.15 60);
-  --chart-5: oklch(0.60 0.20 30);
+  --chart-4: oklch(0.7 0.15 60);
+  --chart-5: oklch(0.6 0.2 30);
   --sidebar: oklch(0.12 0.02 260);
   --sidebar-foreground: oklch(0.92 0.01 250);
-  --sidebar-primary: oklch(0.50 0.25 295);
+  --sidebar-primary: oklch(0.5 0.25 295);
   --sidebar-primary-foreground: oklch(0.98 0 0);
   --sidebar-accent: oklch(0.22 0.02 255);
   --sidebar-accent-foreground: oklch(0.92 0.01 250);
   --sidebar-border: oklch(0.25 0.02 255);
-  --sidebar-ring: oklch(0.50 0.25 295);
+  --sidebar-ring: oklch(0.5 0.25 295);
 }
 
 @layer base {
@@ -105,7 +105,9 @@
     html {
       scroll-behavior: auto;
     }
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -118,12 +120,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
   /* Accessible focus-visible ring */
   :focus-visible {
-    outline: 2px solid #8C34E9;
+    outline: 2px solid #8c34e9;
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -134,7 +141,7 @@
     left: 1rem;
     z-index: 9999;
     padding: 0.75rem 1.5rem;
-    background: #8C34E9;
+    background: #8c34e9;
     color: white;
     font-weight: 600;
     border-radius: 0.375rem;
@@ -196,39 +203,57 @@
 
   /* Glow effects */
   .glow-purple {
-    box-shadow: 0 0 20px rgba(140, 52, 233, 0.15), 0 0 40px rgba(140, 52, 233, 0.05);
+    box-shadow:
+      0 0 20px rgba(140, 52, 233, 0.15),
+      0 0 40px rgba(140, 52, 233, 0.05);
   }
   .glow-teal {
-    box-shadow: 0 0 20px rgba(29, 184, 206, 0.15), 0 0 40px rgba(29, 184, 206, 0.05);
+    box-shadow:
+      0 0 20px rgba(29, 184, 206, 0.15),
+      0 0 40px rgba(29, 184, 206, 0.05);
   }
   .glow-purple-strong {
-    box-shadow: 0 0 30px rgba(140, 52, 233, 0.3), 0 0 60px rgba(140, 52, 233, 0.1);
+    box-shadow:
+      0 0 30px rgba(140, 52, 233, 0.3),
+      0 0 60px rgba(140, 52, 233, 0.1);
   }
 
   /* Gradient border animation */
   @keyframes gradient-rotate {
-    0% { --gradient-angle: 0deg; }
-    100% { --gradient-angle: 360deg; }
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
   }
 }
 
 @layer utilities {
   .text-gradient-purple {
-    background: linear-gradient(135deg, #8C34E9, #C084FC);
+    background: linear-gradient(135deg, #8c34e9, #c084fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .text-gradient-teal {
-    background: linear-gradient(135deg, #1DB8CE, #34D399);
+    background: linear-gradient(135deg, #1db8ce, #34d399);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .bg-radial-purple {
-    background: radial-gradient(ellipse at 50% 30%, rgba(140,52,233,0.12) 0%, transparent 60%);
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      rgba(140, 52, 233, 0.12) 0%,
+      transparent 60%
+    );
   }
   .bg-radial-teal {
-    background: radial-gradient(ellipse at 50% 30%, rgba(29,184,206,0.08) 0%, transparent 60%);
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      rgba(29, 184, 206, 0.08) 0%,
+      transparent 60%
+    );
   }
 }

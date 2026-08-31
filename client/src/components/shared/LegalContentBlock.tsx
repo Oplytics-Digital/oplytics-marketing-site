@@ -10,8 +10,8 @@
  *   - Section numbering
  *   - Last updated date
  */
-import { useState, useEffect, useRef } from 'react';
-import { ChevronDown, ChevronUp, List } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown, ChevronUp, List } from "lucide-react";
 
 interface LegalSection {
   id: string;
@@ -25,21 +25,25 @@ interface LegalContentBlockProps {
   sections: LegalSection[];
 }
 
-export default function LegalContentBlock({ title, lastUpdated, sections }: LegalContentBlockProps) {
-  const [activeSection, setActiveSection] = useState('');
+export default function LegalContentBlock({
+  title,
+  lastUpdated,
+  sections,
+}: LegalContentBlockProps) {
+  const [activeSection, setActiveSection] = useState("");
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
           }
         });
       },
-      { rootMargin: '-100px 0px -60% 0px' }
+      { rootMargin: "-100px 0px -60% 0px" }
     );
 
     Object.values(sectionRefs.current).forEach(ref => {
@@ -52,7 +56,7 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
   function scrollToSection(id: string) {
     const el = sectionRefs.current[id];
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
       setMobileTocOpen(false);
     }
   }
@@ -61,7 +65,10 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
+        <h1
+          className="text-3xl sm:text-4xl font-bold text-white mb-3"
+          style={{ fontFamily: "Montserrat" }}
+        >
           {title}
         </h1>
         <p className="text-sm text-[#596475]">Last updated: {lastUpdated}</p>
@@ -92,8 +99,8 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
                     onClick={() => scrollToSection(section.id)}
                     className={`text-left text-xs leading-relaxed transition-colors ${
                       activeSection === section.id
-                        ? 'text-[#C084FC] font-medium'
-                        : 'text-[#596475] hover:text-[#8890A0]'
+                        ? "text-[#C084FC] font-medium"
+                        : "text-[#596475] hover:text-[#8890A0]"
                     }`}
                   >
                     {i + 1}. {section.title}
@@ -108,7 +115,9 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         {/* Desktop Table of Contents */}
         <nav className="hidden lg:block sticky top-24 self-start">
-          <span className="section-label text-[#596475] mb-3 block">Contents</span>
+          <span className="section-label text-[#596475] mb-3 block">
+            Contents
+          </span>
           <ul className="space-y-2">
             {sections.map((section, i) => (
               <li key={section.id}>
@@ -116,8 +125,8 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
                   onClick={() => scrollToSection(section.id)}
                   className={`text-left block text-xs leading-relaxed transition-colors ${
                     activeSection === section.id
-                      ? 'text-[#C084FC] font-medium'
-                      : 'text-[#596475] hover:text-[#8890A0]'
+                      ? "text-[#C084FC] font-medium"
+                      : "text-[#596475] hover:text-[#8890A0]"
                   }`}
                 >
                   {i + 1}. {section.title}
@@ -133,9 +142,14 @@ export default function LegalContentBlock({ title, lastUpdated, sections }: Lega
             <section
               key={section.id}
               id={section.id}
-              ref={el => { sectionRefs.current[section.id] = el; }}
+              ref={el => {
+                sectionRefs.current[section.id] = el;
+              }}
             >
-              <h2 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+              <h2
+                className="text-xl font-bold text-white mb-4"
+                style={{ fontFamily: "Montserrat" }}
+              >
                 {i + 1}. {section.title}
               </h2>
               <div className="text-sm text-[#8890A0] leading-relaxed whitespace-pre-line">

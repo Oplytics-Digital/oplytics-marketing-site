@@ -7,12 +7,24 @@
  * (services.ts's demoScreenshots captions — "Opi Insights", "Opi Coaching",
  * "AI Facilitator") rather than invented examples.
  */
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from "framer-motion";
 
 const INSIGHT_CARDS = [
-  { label: 'AI Facilitator', text: 'Root cause scored — 2 improvement actions suggested', color: '#8C34E9' },
-  { label: 'Opi Insights', text: 'Cascade strength scored live at 92', color: '#F59E0B' },
-  { label: 'Opi Coaching', text: 'Green streak now 4 days — longest run this window', color: '#1DB8CE' },
+  {
+    label: "AI Facilitator",
+    text: "Root cause scored — 2 improvement actions suggested",
+    color: "#8C34E9",
+  },
+  {
+    label: "Opi Insights",
+    text: "Cascade strength scored live at 92",
+    color: "#F59E0B",
+  },
+  {
+    label: "Opi Coaching",
+    text: "Green streak now 4 days — longest run this window",
+    color: "#1DB8CE",
+  },
 ];
 
 export default function OpiTeamCard() {
@@ -26,7 +38,10 @@ export default function OpiTeamCard() {
         {/* ambient glow */}
         <div
           className="absolute inset-0 pointer-events-none opacity-40"
-          style={{ background: 'radial-gradient(circle at 50% 0%, rgba(140,52,233,0.18), transparent 60%)' }}
+          style={{
+            background:
+              "radial-gradient(circle at 50% 0%, rgba(140,52,233,0.18), transparent 60%)",
+          }}
         />
 
         <div className="relative flex flex-col items-center text-center">
@@ -36,13 +51,17 @@ export default function OpiTeamCard() {
             <span className="otc-orb__sheen" />
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat' }}>
+          <h3
+            className="text-xl sm:text-2xl font-bold text-white mb-2"
+            style={{ fontFamily: "Montserrat" }}
+          >
             Your AI CI Engineer, On Shift 24/7
           </h3>
           <p className="text-sm sm:text-base text-[#A0A8B8] max-w-lg leading-relaxed mb-8">
-            Every Oplytics module is taught on the same Lean and Six Sigma playbooks — Opi is the AI that
-            actually applies them, live, in the huddle and in the sidebar of every service. Not here to
-            replace the huddle. Here to make every huddle sharper.
+            Every Oplytics module is taught on the same Lean and Six Sigma
+            playbooks — Opi is the AI that actually applies them, live, in the
+            huddle and in the sidebar of every service. Not here to replace the
+            huddle. Here to make every huddle sharper.
           </p>
 
           {/* Live insight feed */}
@@ -58,7 +77,10 @@ export default function OpiTeamCard() {
                 style={{ borderColor: `${card.color}40` }}
               >
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <span className="otc-livedot" style={{ background: card.color }} />
+                  <span
+                    className="otc-livedot"
+                    style={{ background: card.color }}
+                  />
                   <span
                     className="text-[10px] font-semibold tracking-widest uppercase"
                     style={{ color: card.color }}
@@ -66,7 +88,9 @@ export default function OpiTeamCard() {
                     {card.label}
                   </span>
                 </div>
-                <p className="text-xs sm:text-[13px] text-[#C7CCD6] leading-snug">{card.text}</p>
+                <p className="text-xs sm:text-[13px] text-[#C7CCD6] leading-snug">
+                  {card.text}
+                </p>
               </motion.div>
             ))}
           </div>

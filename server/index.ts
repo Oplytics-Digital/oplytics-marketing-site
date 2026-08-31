@@ -36,7 +36,7 @@ const supportEngine = createSupportEngine(
 async function startServer() {
   const app = express();
   const server = createServer(app);
-  
+
   app.use(express.json());
 
   // AI Chat Endpoint — Opi (marketing persona + shared knowledge base).

@@ -17,7 +17,8 @@ import type {
 type LedgerConfig = { ledgerUrl?: string; secret?: string };
 
 const toEnterpriseId = (v: unknown): number | undefined => {
-  const n = typeof v === "number" ? v : typeof v === "string" ? parseInt(v, 10) : NaN;
+  const n =
+    typeof v === "number" ? v : typeof v === "string" ? parseInt(v, 10) : NaN;
   return Number.isFinite(n) ? n : undefined;
 };
 

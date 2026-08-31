@@ -4,7 +4,7 @@
  * cost/price figures, per the Pricing page's contact-first approach.
  */
 
-export type CompanySize = 'small' | 'medium' | 'large';
+export type CompanySize = "small" | "medium" | "large";
 
 export interface ROIInputs {
   size: CompanySize;
@@ -13,10 +13,28 @@ export interface ROIInputs {
   sites: number;
 }
 
-export const sizePresets: Record<CompanySize, { label: string; headcount: number; lines: number; sites: number }> = {
-  small: { label: 'Small (< 100 employees)', headcount: 50, lines: 3, sites: 1 },
-  medium: { label: 'Medium (100–500 employees)', headcount: 250, lines: 12, sites: 2 },
-  large: { label: 'Large (500+ employees)', headcount: 800, lines: 40, sites: 5 },
+export const sizePresets: Record<
+  CompanySize,
+  { label: string; headcount: number; lines: number; sites: number }
+> = {
+  small: {
+    label: "Small (< 100 employees)",
+    headcount: 50,
+    lines: 3,
+    sites: 1,
+  },
+  medium: {
+    label: "Medium (100–500 employees)",
+    headcount: 250,
+    lines: 12,
+    sites: 2,
+  },
+  large: {
+    label: "Large (500+ employees)",
+    headcount: 800,
+    lines: 40,
+    sites: 5,
+  },
 };
 
 export function calculateROI(inputs: ROIInputs) {
@@ -31,7 +49,8 @@ export function calculateROI(inputs: ROIInputs) {
   const oeeImprovement = 0.03;
   const throughputGain = avgRevenuePerLine * oeeImprovement * lines;
 
-  const meetingSavings = (15 / 60) * avgHourlyLabourCost * 5 * 5 * weeksPerYear * sites;
+  const meetingSavings =
+    (15 / 60) * avgHourlyLabourCost * 5 * 5 * weeksPerYear * sites;
 
   const totalAnnualBenefit = totalTimeSavings + throughputGain + meetingSavings;
 
