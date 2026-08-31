@@ -2,9 +2,13 @@
  * Service Status Page
  * Design: "Neon Operations"
  */
-import MarketingLayout from '@/components/shared/MarketingLayout';
-import { services, getServiceStatusColor, getServiceStatusLabel } from '@/config/services';
-import { CheckCircle, Clock } from 'lucide-react';
+import MarketingLayout from "@/components/shared/MarketingLayout";
+import {
+  services,
+  getServiceStatusColor,
+  getServiceStatusLabel,
+} from "@/config/services";
+import { CheckCircle, Clock } from "lucide-react";
 
 export default function Status() {
   return (
@@ -17,9 +21,14 @@ export default function Status() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-[#22C55E]" />
               </span>
-              <span className="text-sm font-medium text-[#22C55E]">All Systems Operational</span>
+              <span className="text-sm font-medium text-[#22C55E]">
+                All Systems Operational
+              </span>
             </div>
-            <h1 className="text-4xl font-black text-white mb-4" style={{ fontFamily: 'Montserrat' }}>
+            <h1
+              className="text-4xl font-black text-white mb-4"
+              style={{ fontFamily: "Montserrat" }}
+            >
               Service Status
             </h1>
             <p className="text-[#8890A0]">
@@ -36,20 +45,28 @@ export default function Status() {
                 <div className="flex items-center gap-3">
                   <div
                     className="w-2 h-2 rounded-full"
-                    style={{ background: getServiceStatusColor(service.status) }}
+                    style={{
+                      background: getServiceStatusColor(service.status),
+                    }}
                   />
-                  <span className="text-sm font-medium text-white">{service.name}</span>
+                  <span className="text-sm font-medium text-white">
+                    {service.name}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  {service.status === 'live' ? (
+                  {service.status === "live" ? (
                     <>
                       <CheckCircle className="w-4 h-4 text-[#22C55E]" />
-                      <span className="text-xs font-medium text-[#22C55E]">Operational</span>
+                      <span className="text-xs font-medium text-[#22C55E]">
+                        Operational
+                      </span>
                     </>
                   ) : (
                     <>
                       <Clock className="w-4 h-4 text-[#8C34E9]" />
-                      <span className="text-xs font-medium text-[#8C34E9]">{getServiceStatusLabel(service.status)}</span>
+                      <span className="text-xs font-medium text-[#8C34E9]">
+                        {getServiceStatusLabel(service.status)}
+                      </span>
                     </>
                   )}
                 </div>

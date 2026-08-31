@@ -19,7 +19,12 @@ const TRACKED = ["@pablo2410/shared-ui", "@pablo2410/core-server"];
 
 function installedVersion(pkg) {
   try {
-    const pkgJsonPath = path.join(root, "node_modules", ...pkg.split("/"), "package.json");
+    const pkgJsonPath = path.join(
+      root,
+      "node_modules",
+      ...pkg.split("/"),
+      "package.json"
+    );
     if (fs.existsSync(pkgJsonPath)) {
       const json = JSON.parse(fs.readFileSync(pkgJsonPath, "utf-8"));
       if (typeof json.version === "string") return json.version;
@@ -36,7 +41,11 @@ for (const pkg of TRACKED) packages[pkg] = installedVersion(pkg);
 const out = {
   service: "oplytics-marketing-site",
   packages,
-  commit: process.env.CF_PAGES_COMMIT_SHA ?? process.env.GIT_SHA ?? process.env.COMMIT_SHA ?? null,
+  commit:
+    process.env.CF_PAGES_COMMIT_SHA ??
+    process.env.GIT_SHA ??
+    process.env.COMMIT_SHA ??
+    null,
   // No Date.now() at module scope elsewhere, but this is a build script — fine here.
   builtAt: new Date().toISOString(),
 };

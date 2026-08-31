@@ -24,33 +24,33 @@ All service statuses and metadata are driven by a single config file at `client/
 
 ### Shared Components (`client/src/components/shared/`)
 
-| Component | Purpose |
-|-----------|---------|
-| `MarketingLayout` | Wraps all pages with header, footer, chatbot |
-| `MarketingHeader` | Sticky nav with Solutions dropdown, mobile menu |
-| `MarketingFooter` | Footer with grouped service links |
-| `HeroSection` | Hero with Live/In-Dev CTA variants |
-| `FeatureGrid` | Configurable feature card grid (2/3/4 cols) |
-| `ServiceCard` | Service card with status badge and glow hover |
-| `PricingTier` | Pricing plan card with feature list |
-| `ContactForm` | Validated contact form (name, email, company, message) |
-| `TeamMemberCard` | Team member card with photo and bio |
-| `LegalContentBlock` | Legal text with auto-generated TOC |
-| `SimpleChatbotWidget` | Floating quick-action link widget |
+| Component             | Purpose                                                |
+| --------------------- | ------------------------------------------------------ |
+| `MarketingLayout`     | Wraps all pages with header, footer, chatbot           |
+| `MarketingHeader`     | Sticky nav with Solutions dropdown, mobile menu        |
+| `MarketingFooter`     | Footer with grouped service links                      |
+| `HeroSection`         | Hero with Live/In-Dev CTA variants                     |
+| `FeatureGrid`         | Configurable feature card grid (2/3/4 cols)            |
+| `ServiceCard`         | Service card with status badge and glow hover          |
+| `PricingTier`         | Pricing plan card with feature list                    |
+| `ContactForm`         | Validated contact form (name, email, company, message) |
+| `TeamMemberCard`      | Team member card with photo and bio                    |
+| `LegalContentBlock`   | Legal text with auto-generated TOC                     |
+| `SimpleChatbotWidget` | Floating quick-action link widget                      |
 
 ### Pages
 
-| Route | Page |
-|-------|------|
-| `/` | Home |
+| Route              | Page                         |
+| ------------------ | ---------------------------- |
+| `/`                | Home                         |
 | `/solutions/:slug` | Solution detail (8 services) |
-| `/pricing` | Pricing plans |
-| `/contact` | Contact form |
-| `/why-us` | Why Oplytics |
-| `/privacy` | Privacy Policy |
-| `/terms` | Terms of Service |
-| `/status` | Service Status |
-| `/login` | Sign In (placeholder) |
+| `/pricing`         | Pricing plans                |
+| `/contact`         | Contact form                 |
+| `/why-us`          | Why Oplytics                 |
+| `/privacy`         | Privacy Policy               |
+| `/terms`           | Terms of Service             |
+| `/status`          | Service Status               |
+| `/login`           | Sign In (placeholder)        |
 
 ## Epic 1 Issues Addressed
 

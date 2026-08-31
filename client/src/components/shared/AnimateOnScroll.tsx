@@ -6,11 +6,12 @@
  * Respects prefers-reduced-motion automatically (Framer Motion built-in).
  * Max delay 300ms, no layout shift (uses opacity + transform only).
  */
-import { useRef, type ReactNode } from 'react';
-import { motion, useInView } from 'framer-motion';
-import type { TargetAndTransition } from 'framer-motion';
+import { useRef, type ReactNode } from "react";
+import { motion, useInView } from "framer-motion";
+import type { TargetAndTransition } from "framer-motion";
 
-type AnimationVariant = 'fade-in' | 'slide-up' | 'slide-left' | 'slide-right' | 'scale-in';
+type AnimationVariant =
+  "fade-in" | "slide-up" | "slide-left" | "slide-right" | "scale-in";
 
 interface AnimateOnScrollProps {
   children: ReactNode;
@@ -23,27 +24,27 @@ interface AnimateOnScrollProps {
 }
 
 const hiddenVariants: Record<AnimationVariant, TargetAndTransition> = {
-  'fade-in': { opacity: 0 },
-  'slide-up': { opacity: 0, y: 32 },
-  'slide-left': { opacity: 0, x: -32 },
-  'slide-right': { opacity: 0, x: 32 },
-  'scale-in': { opacity: 0, scale: 0.92 },
+  "fade-in": { opacity: 0 },
+  "slide-up": { opacity: 0, y: 32 },
+  "slide-left": { opacity: 0, x: -32 },
+  "slide-right": { opacity: 0, x: 32 },
+  "scale-in": { opacity: 0, scale: 0.92 },
 };
 
 const visibleVariants: Record<AnimationVariant, TargetAndTransition> = {
-  'fade-in': { opacity: 1 },
-  'slide-up': { opacity: 1, y: 0 },
-  'slide-left': { opacity: 1, x: 0 },
-  'slide-right': { opacity: 1, x: 0 },
-  'scale-in': { opacity: 1, scale: 1 },
+  "fade-in": { opacity: 1 },
+  "slide-up": { opacity: 1, y: 0 },
+  "slide-left": { opacity: 1, x: 0 },
+  "slide-right": { opacity: 1, x: 0 },
+  "scale-in": { opacity: 1, scale: 1 },
 };
 
 export default function AnimateOnScroll({
   children,
-  variant = 'fade-in',
+  variant = "fade-in",
   delay = 0,
   duration = 0.5,
-  className = '',
+  className = "",
   once = true,
   amount = 0.15,
 }: AnimateOnScrollProps) {
@@ -82,10 +83,10 @@ interface StaggerContainerProps {
 
 export function StaggerContainer({
   children,
-  variant = 'slide-up',
+  variant = "slide-up",
   staggerDelay = 0.08,
   duration = 0.5,
-  className = '',
+  className = "",
   once = true,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -95,7 +96,7 @@ export function StaggerContainer({
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={isInView ? "visible" : "hidden"}
       variants={{
         hidden: {},
         visible: {

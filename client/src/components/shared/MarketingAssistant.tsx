@@ -14,20 +14,20 @@
  *
  * Talks to the same REST endpoint as before, so no server changes are required.
  */
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Send, Loader2, User, Sparkles } from 'lucide-react';
-import { Streamdown } from 'streamdown';
+import { useState, useEffect, useRef, useCallback } from "react";
+import { X, Send, Loader2, User, Sparkles } from "lucide-react";
+import { Streamdown } from "streamdown";
 
 type Message = {
-  role: 'system' | 'user' | 'assistant';
+  role: "system" | "user" | "assistant";
   content: string;
 };
 
 const SUGGESTED_PROMPTS = [
-  'What does Oplytics do?',
-  'How does OEE Manager work?',
-  'Can it integrate with our ERP?',
-  'Book a demo',
+  "What does Oplytics do?",
+  "How does OEE Manager work?",
+  "Can it integrate with our ERP?",
+  "Book a demo",
 ];
 
 const GREETING =
@@ -37,7 +37,7 @@ const GREETING =
 function Orb({
   size = 56,
   active = false,
-  className = '',
+  className = "",
 }: {
   size?: number;
   active?: boolean;
@@ -45,7 +45,7 @@ function Orb({
 }) {
   return (
     <span
-      className={`oa-orb ${active ? 'oa-orb--active' : ''} ${className}`}
+      className={`oa-orb ${active ? "oa-orb--active" : ""} ${className}`}
       style={{ width: size, height: size }}
       aria-hidden
     >
@@ -59,7 +59,7 @@ export default function MarketingAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [showNudge, setShowNudge] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   // Text currently being "typed out" for the latest assistant reply.
@@ -98,7 +98,7 @@ export default function MarketingAssistant() {
   /** Reveal an assistant reply character-by-character for a "live" feel. */
   const typewriterReveal = useCallback((full: string) => {
     if (typewriterRef.current) clearInterval(typewriterRef.current);
-    setStreamingText('');
+    setStreamingText("");
     let i = 0;
     // Reveal a few chars per tick so long answers don't crawl.
     const stepSize = Math.max(1, Math.round(full.length / 240));
@@ -107,7 +107,7 @@ export default function MarketingAssistant() {
       if (i >= full.length) {
         if (typewriterRef.current) clearInterval(typewriterRef.current);
         setStreamingText(null);
-        setMessages((prev) => [...prev, { role: 'assistant', content: full }]);
+        setMessages(prev => [...prev, { role: "assistant", content: full }]);
       } else {
         setStreamingText(full.slice(0, i));
       }
@@ -119,31 +119,35 @@ export default function MarketingAssistant() {
       const trimmed = text.trim();
       if (!trimmed || isLoading || streamingText !== null) return;
 
-      const userMessage: Message = { role: 'user', content: trimmed };
+      const userMessage: Message = { role: "user", content: trimmed };
       const newMessages = [...messages, userMessage];
       setMessages(newMessages);
-      setInput('');
+      setInput("");
       setIsLoading(true);
 
       try {
-        const response = await fetch('/api/ai/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("/api/ai/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             messages: newMessages,
-            page: typeof window !== 'undefined' ? window.location.pathname : undefined,
+            page:
+              typeof window !== "undefined"
+                ? window.location.pathname
+                : undefined,
           }),
         });
-        if (!response.ok) throw new Error('Failed to chat');
+        if (!response.ok) throw new Error("Failed to chat");
         const data = await response.json();
         typewriterReveal(data.content);
       } catch (error) {
-        console.error('Chat error:', error);
-        setMessages((prev) => [
+        console.error("Chat error:", error);
+        setMessages(prev => [
           ...prev,
           {
-            role: 'assistant',
-            content: "Sorry mate, I've hit a bit of a snag. Give it another go?",
+            role: "assistant",
+            content:
+              "Sorry mate, I've hit a bit of a snag. Give it another go?",
           },
         ]);
       } finally {
@@ -154,7 +158,7 @@ export default function MarketingAssistant() {
   );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       send(input);
     }
@@ -171,23 +175,29 @@ export default function MarketingAssistant() {
         {isOpen && (
           <div
             className="oa-panel flex w-[92vw] max-w-[400px] flex-col overflow-hidden rounded-2xl"
-            style={{ height: 'min(560px, 75vh)' }}
+            style={{ height: "min(560px, 75vh)" }}
           >
             {/* Header */}
             <div
               className="flex items-center justify-between gap-3 px-4 py-3.5"
               style={{
-                background: 'linear-gradient(135deg, rgba(140,52,233,0.22), rgba(29,184,206,0.14))',
-                borderBottom: '1px solid #1E2738',
+                background:
+                  "linear-gradient(135deg, rgba(140,52,233,0.22), rgba(29,184,206,0.14))",
+                borderBottom: "1px solid #1E2738",
               }}
             >
               <div className="flex items-center gap-3">
                 <Orb size={36} active={busy} />
                 <div>
-                  <h3 className="text-sm font-bold leading-none text-white" style={{ fontFamily: 'Montserrat' }}>
+                  <h3
+                    className="text-sm font-bold leading-none text-white"
+                    style={{ fontFamily: "Montserrat" }}
+                  >
                     Opi
                   </h3>
-                  <p className="mt-1 text-[11px] text-white/55">Oplytics AI guide</p>
+                  <p className="mt-1 text-[11px] text-white/55">
+                    Oplytics AI guide
+                  </p>
                 </div>
               </div>
               <button
@@ -200,16 +210,21 @@ export default function MarketingAssistant() {
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="custom-scrollbar flex-1 space-y-4 overflow-y-auto p-4">
+            <div
+              ref={scrollRef}
+              className="custom-scrollbar flex-1 space-y-4 overflow-y-auto p-4"
+            >
               {messages.length === 0 && (
                 <div className="space-y-4 py-4 text-center">
                   <Orb size={64} className="mx-auto" />
-                  <p className="px-4 text-sm leading-relaxed text-white/80">{GREETING}</p>
+                  <p className="px-4 text-sm leading-relaxed text-white/80">
+                    {GREETING}
+                  </p>
                   <p className="text-[11px] font-medium uppercase tracking-wide text-white/40">
                     Here's what I can help with
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 pt-1">
-                    {SUGGESTED_PROMPTS.map((p) => (
+                    {SUGGESTED_PROMPTS.map(p => (
                       <button
                         key={p}
                         onClick={() => send(p)}
@@ -229,7 +244,9 @@ export default function MarketingAssistant() {
               ))}
 
               {/* Live typewriter reveal of the latest assistant reply */}
-              {streamingText !== null && <MessageRow role="assistant">{streamingText}</MessageRow>}
+              {streamingText !== null && (
+                <MessageRow role="assistant">{streamingText}</MessageRow>
+              )}
 
               {/* Thinking indicator (before the first token arrives) */}
               {isLoading && streamingText === null && (
@@ -247,7 +264,7 @@ export default function MarketingAssistant() {
               <div className="flex items-end gap-2">
                 <textarea
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={e => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask Opi anything…"
                   className="max-h-[120px] min-h-[40px] flex-1 resize-none rounded-lg border border-[#1E2738] bg-[#0D1220] px-3 py-2 text-sm text-white placeholder-[#596475] focus:border-[#8C34E9] focus:outline-none"
@@ -255,7 +272,9 @@ export default function MarketingAssistant() {
                 />
                 <button
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
-                  style={{ background: 'linear-gradient(135deg, #8C34E9, #1DB8CE)' }}
+                  style={{
+                    background: "linear-gradient(135deg, #8C34E9, #1DB8CE)",
+                  }}
                   onClick={() => send(input)}
                   disabled={!input.trim() || busy}
                 >
@@ -282,7 +301,11 @@ export default function MarketingAssistant() {
 
         {/* ─── Launcher: orb + persistent "Ask Opi" label ─── */}
         {!isOpen && (
-          <button onClick={openPanel} aria-label="Ask Opi — open AI assistant" className="oa-launcher">
+          <button
+            onClick={openPanel}
+            aria-label="Ask Opi — open AI assistant"
+            className="oa-launcher"
+          >
             <span className="oa-launcher__orb">
               <span className="oa-launcher__ping" aria-hidden />
               <Orb size={48} />
@@ -296,19 +319,29 @@ export default function MarketingAssistant() {
 }
 
 /** A single chat row with the appropriate avatar + bubble styling. */
-function MessageRow({ role, children }: { role: Message['role']; children: string }) {
-  const isUser = role === 'user';
+function MessageRow({
+  role,
+  children,
+}: {
+  role: Message["role"];
+  children: string;
+}) {
+  const isUser = role === "user";
   return (
-    <div className={`flex items-start gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div
+      className={`flex items-start gap-3 ${isUser ? "justify-end" : "justify-start"}`}
+    >
       {!isUser && <Orb size={32} className="shrink-0" />}
       <div
         className={`max-w-[80%] px-3 py-2.5 text-sm leading-relaxed ${
-          isUser ? 'rounded-2xl rounded-tr-sm text-white' : 'rounded-2xl rounded-tl-sm text-[#E2E8F0]'
+          isUser
+            ? "rounded-2xl rounded-tr-sm text-white"
+            : "rounded-2xl rounded-tl-sm text-[#E2E8F0]"
         }`}
         style={
           isUser
-            ? { background: 'linear-gradient(135deg, #8C34E9, #5B1FA6)' }
-            : { background: '#0D1220', border: '1px solid #1E2738' }
+            ? { background: "linear-gradient(135deg, #8C34E9, #5B1FA6)" }
+            : { background: "#0D1220", border: "1px solid #1E2738" }
         }
       >
         {isUser ? (

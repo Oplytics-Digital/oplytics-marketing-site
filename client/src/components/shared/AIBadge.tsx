@@ -3,8 +3,8 @@
  * Used on ServiceCards, SolutionPages, and anywhere AI features need highlighting.
  * Design: "Neon Operations" — teal/cyan glow with sparkle icon
  */
-import { Sparkles } from 'lucide-react';
-import type { AIFeature } from '@/config/services';
+import { Sparkles } from "lucide-react";
+import type { AIFeature } from "@/config/services";
 
 /** Small inline badge for cards */
 export function AIBadgeInline() {
@@ -23,9 +23,13 @@ export function AIFeatureList({ features }: { features: AIFeature[] }) {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Subtle teal glow background */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse at center, rgba(29,184,206,0.06) 0%, transparent 70%)',
-      }} />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(29,184,206,0.06) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="relative max-w-5xl mx-auto">
         <div className="text-center mb-12">
@@ -35,11 +39,16 @@ export function AIFeatureList({ features }: { features: AIFeature[] }) {
               Built-In AI
             </span>
           </div>
-          <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Montserrat' }}>
+          <h2
+            className="text-3xl font-bold text-white mb-3"
+            style={{ fontFamily: "Montserrat" }}
+          >
             Intelligence at Every Layer
           </h2>
           <p className="text-[#8890A0] max-w-xl mx-auto">
-            AI is not an add-on. It is woven into the core of every service, working behind the scenes to surface insights and automate decisions.
+            AI is not an add-on. It is woven into the core of every service,
+            working behind the scenes to surface insights and automate
+            decisions.
           </p>
         </div>
 
@@ -54,7 +63,10 @@ export function AIFeatureList({ features }: { features: AIFeature[] }) {
                   <Sparkles className="w-5 h-5 text-[#1DB8CE]" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white mb-1.5" style={{ fontFamily: 'Montserrat' }}>
+                  <h3
+                    className="text-sm font-bold text-white mb-1.5"
+                    style={{ fontFamily: "Montserrat" }}
+                  >
                     {feature.title}
                   </h3>
                   <p className="text-sm text-[#8890A0] leading-relaxed">

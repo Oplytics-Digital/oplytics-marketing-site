@@ -3,9 +3,9 @@
  * Auto-advances on a timer, pauses on hover/focus, crossfades between frames.
  * Each slide carries its own caption identifying what part of the app it shows.
  */
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface CarouselSlide {
   src: string;
@@ -18,14 +18,21 @@ interface ScreenshotCarouselProps {
   intervalMs?: number;
 }
 
-export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5000 }: ScreenshotCarouselProps) {
+export default function ScreenshotCarousel({
+  slides,
+  serviceName,
+  intervalMs = 5000,
+}: ScreenshotCarouselProps) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const goTo = useCallback((next: number) => {
-    setIndex(((next % slides.length) + slides.length) % slides.length);
-  }, [slides.length]);
+  const goTo = useCallback(
+    (next: number) => {
+      setIndex(((next % slides.length) + slides.length) % slides.length);
+    },
+    [slides.length]
+  );
 
   useEffect(() => {
     if (paused || slides.length <= 1) return;
@@ -63,8 +70,8 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            loading={index === 0 ? "eager" : "lazy"}
           />
         </AnimatePresence>
 
@@ -93,8 +100,12 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
 
       {/* Caption — below the frame, never overlapping the screenshot */}
       <div className="px-4 sm:px-5 py-3 border-t border-[#1E2738]">
-        <p className="text-xs sm:text-sm text-white font-medium">{current.caption}</p>
-        <p className="text-[10px] text-[#596475] uppercase tracking-wider mt-0.5">Real product · live customer data</p>
+        <p className="text-xs sm:text-sm text-white font-medium">
+          {current.caption}
+        </p>
+        <p className="text-[10px] text-[#596475] uppercase tracking-wider mt-0.5">
+          Real product · live customer data
+        </p>
       </div>
 
       {/* Dot indicators */}
@@ -108,7 +119,9 @@ export default function ScreenshotCarousel({ slides, serviceName, intervalMs = 5
               aria-label={`Go to screenshot ${i + 1}: ${slide.caption}`}
               aria-current={i === index}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? 'w-6 bg-[#8C34E9]' : 'w-1.5 bg-[#1E2738] hover:bg-[#596475]'
+                i === index
+                  ? "w-6 bg-[#8C34E9]"
+                  : "w-1.5 bg-[#1E2738] hover:bg-[#596475]"
               }`}
             />
           ))}

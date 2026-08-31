@@ -3,9 +3,9 @@
  * No captions/arrows/dots (too small for chrome) — just an auto-advancing,
  * uncropped rotation of real product screens at their native aspect ratio.
  */
-import { useState, useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import type { DemoScreenshot } from '@/config/services';
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import type { DemoScreenshot } from "@/config/services";
 
 interface CardScreenshotCarouselProps {
   slides: DemoScreenshot[];
@@ -13,7 +13,11 @@ interface CardScreenshotCarouselProps {
   intervalMs?: number;
 }
 
-export default function CardScreenshotCarousel({ slides, serviceName, intervalMs = 3500 }: CardScreenshotCarouselProps) {
+export default function CardScreenshotCarousel({
+  slides,
+  serviceName,
+  intervalMs = 3500,
+}: CardScreenshotCarouselProps) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -46,7 +50,7 @@ export default function CardScreenshotCarousel({ slides, serviceName, intervalMs
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           loading="lazy"
         />
       </AnimatePresence>

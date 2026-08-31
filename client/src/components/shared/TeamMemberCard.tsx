@@ -12,23 +12,39 @@ interface TeamMemberCardProps {
   linkedin?: string;
 }
 
-export default function TeamMemberCard({ photo, name, role, bio, linkedin }: TeamMemberCardProps) {
+export default function TeamMemberCard({
+  photo,
+  name,
+  role,
+  bio,
+  linkedin,
+}: TeamMemberCardProps) {
   return (
     <div className="group p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] hover:border-[#8C34E9]/30 transition-all duration-300">
       <div className="flex items-start gap-4">
         {/* Photo */}
         <div className="w-16 h-16 rounded-full bg-[#1E2738] overflow-hidden shrink-0 flex items-center justify-center">
           {photo ? (
-            <img src={photo} alt={name} className="w-full h-full object-cover" />
+            <img
+              src={photo}
+              alt={name}
+              className="w-full h-full object-cover"
+            />
           ) : (
-            <span className="text-xl font-bold text-[#596475]" style={{ fontFamily: 'Montserrat' }}>
+            <span
+              className="text-xl font-bold text-[#596475]"
+              style={{ fontFamily: "Montserrat" }}
+            >
               {name.charAt(0)}
             </span>
           )}
         </div>
 
         <div>
-          <h3 className="text-base font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+          <h3
+            className="text-base font-bold text-white"
+            style={{ fontFamily: "Montserrat" }}
+          >
             {name}
           </h3>
           <p className="text-xs font-medium text-[#8C34E9] mb-2">{role}</p>

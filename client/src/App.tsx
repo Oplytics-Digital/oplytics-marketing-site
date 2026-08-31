@@ -24,7 +24,7 @@ import OpsCI from "./pages/for/OpsCI";
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [location]);
   return null;
 }
@@ -56,7 +56,10 @@ function Router() {
 const errorFallback = (
   <div className="flex items-center justify-center min-h-screen p-8 bg-background">
     <div className="flex flex-col items-center w-full max-w-2xl p-8">
-      <AlertTriangle size={48} className="text-destructive mb-6 flex-shrink-0" />
+      <AlertTriangle
+        size={48}
+        className="text-destructive mb-6 flex-shrink-0"
+      />
       <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
       <button
         onClick={() => window.location.reload()}

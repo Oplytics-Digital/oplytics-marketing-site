@@ -7,10 +7,10 @@
  * Status badge: none for Live, purple 'In Development' badge for in-dev
  * Status driven by service config — no manual per-page edits.
  */
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'wouter';
-import { ArrowRight } from 'lucide-react';
-import type { ServiceStatus } from '@/config/services';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
+import type { ServiceStatus } from "@/config/services";
 
 interface HeroSectionProps {
   headline: string;
@@ -20,29 +20,47 @@ interface HeroSectionProps {
   backgroundImage?: string;
   /** Looping background video — takes priority over backgroundImage when set. Respects prefers-reduced-motion. */
   backgroundVideo?: string;
-  customCtas?: { label: string; href: string; variant: 'primary' | 'secondary' }[];
+  customCtas?: {
+    label: string;
+    href: string;
+    variant: "primary" | "secondary";
+  }[];
 }
 
-export default function HeroSection({ headline, subheadline, subtext, status, backgroundImage, backgroundVideo, customCtas }: HeroSectionProps) {
-  const isLive = status === 'live';
+export default function HeroSection({
+  headline,
+  subheadline,
+  subtext,
+  status,
+  backgroundImage,
+  backgroundVideo,
+  customCtas,
+}: HeroSectionProps) {
+  const isLive = status === "live";
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(query.matches);
     const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    query.addEventListener('change', handler);
-    return () => query.removeEventListener('change', handler);
+    query.addEventListener("change", handler);
+    return () => query.removeEventListener("change", handler);
   }, []);
 
   const defaultCtas = isLive
-    ? [
-        { label: 'View Plans', href: '/pricing', variant: 'primary' as const },
-      ]
+    ? [{ label: "View Plans", href: "/pricing", variant: "primary" as const }]
     : [
-        { label: 'Request Early Access', href: '/contact', variant: 'primary' as const },
-        { label: 'Join Waitlist', href: '/contact', variant: 'secondary' as const },
+        {
+          label: "Request Early Access",
+          href: "/contact",
+          variant: "primary" as const,
+        },
+        {
+          label: "Join Waitlist",
+          href: "/contact",
+          variant: "secondary" as const,
+        },
       ];
 
   const ctas = customCtas || defaultCtas;
@@ -65,15 +83,17 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#080C16]/60 via-[#0A0E1A]/80 to-[#0A0E1A]" />
         </div>
-      ) : backgroundImage && (
-        <div className="absolute inset-0 z-0">
-          <img
-            src={backgroundImage}
-            alt=""
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080C16]/60 via-[#0A0E1A]/80 to-[#0A0E1A]" />
-        </div>
+      ) : (
+        backgroundImage && (
+          <div className="absolute inset-0 z-0">
+            <img
+              src={backgroundImage}
+              alt=""
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080C16]/60 via-[#0A0E1A]/80 to-[#0A0E1A]" />
+          </div>
+        )
       )}
 
       {/* Radial glow */}
@@ -96,14 +116,17 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
         {/* Headline */}
         <h1
           className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6"
-          style={{ fontFamily: 'Montserrat' }}
+          style={{ fontFamily: "Montserrat" }}
         >
           {headline}
         </h1>
 
         {/* Subheadline */}
         {subheadline && (
-          <p className="text-xl sm:text-2xl font-semibold text-[#C084FC] mb-4" style={{ fontFamily: 'Montserrat' }}>
+          <p
+            className="text-xl sm:text-2xl font-semibold text-[#C084FC] mb-4"
+            style={{ fontFamily: "Montserrat" }}
+          >
             {subheadline}
           </p>
         )}
@@ -120,21 +143,26 @@ export default function HeroSection({ headline, subheadline, subtext, status, ba
               key={i}
               href={cta.href}
               data-umami-event="cta_click"
-              data-umami-event-button={cta.label.toLowerCase().replace(/\s+/g, '_')}
+              data-umami-event-button={cta.label
+                .toLowerCase()
+                .replace(/\s+/g, "_")}
               data-umami-event-location="hero"
               className={`inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider transition-all duration-200 ${
-                cta.variant === 'primary'
-                  ? 'text-white hover:opacity-90 glow-purple'
-                  : 'text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/40 hover:text-white bg-[#0D1220]/60'
+                cta.variant === "primary"
+                  ? "text-white hover:opacity-90 glow-purple"
+                  : "text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/40 hover:text-white bg-[#0D1220]/60"
               }`}
               style={
-                cta.variant === 'primary'
-                  ? { background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }
+                cta.variant === "primary"
+                  ? {
+                      background:
+                        "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
+                    }
                   : undefined
               }
             >
               {cta.label}
-              {cta.variant === 'primary' && <ArrowRight className="w-4 h-4" />}
+              {cta.variant === "primary" && <ArrowRight className="w-4 h-4" />}
             </Link>
           ))}
         </div>

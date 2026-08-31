@@ -6,9 +6,9 @@
  * Consent stored in localStorage key 'oplytics-cookie-consent'.
  * Revocable via "Cookie Settings" link in footer.
  */
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'wouter';
-import { X, Shield, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "wouter";
+import { X, Shield, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ConsentState {
   essential: boolean; // always true
@@ -17,7 +17,7 @@ interface ConsentState {
   timestamp: number;
 }
 
-const STORAGE_KEY = 'oplytics-cookie-consent';
+const STORAGE_KEY = "oplytics-cookie-consent";
 const EXPIRY_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
 
 function getStoredConsent(): ConsentState | null {
@@ -44,12 +44,12 @@ function saveConsent(consent: ConsentState) {
 function applyAnalyticsConsent(allowed: boolean) {
   if (!allowed) {
     // Remove Umami script if present
-    const umamiScript = document.querySelector('script[data-website-id]');
+    const umamiScript = document.querySelector("script[data-website-id]");
     if (umamiScript) {
       umamiScript.remove();
     }
     // Set Umami disable flag
-    (window as unknown as Record<string, unknown>)['umami.disabled'] = true;
+    (window as unknown as Record<string, unknown>)["umami.disabled"] = true;
   }
 }
 
@@ -108,16 +108,25 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 p-4 sm:p-6" style={{ marginBottom: '0' }}>
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 p-4 sm:p-6"
+      style={{ marginBottom: "0" }}
+    >
       <div
         className="max-w-2xl mx-auto rounded-xl border border-[#1E2738] p-5 sm:p-6"
-        style={{ background: '#0D1220', boxShadow: '0 -4px 40px rgba(0,0,0,0.5)' }}
+        style={{
+          background: "#0D1220",
+          boxShadow: "0 -4px 40px rgba(0,0,0,0.5)",
+        }}
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-2.5">
             <Shield className="w-5 h-5 text-[#8C34E9] shrink-0" />
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: 'Montserrat' }}>
+            <h3
+              className="text-sm font-bold text-white"
+              style={{ fontFamily: "Montserrat" }}
+            >
               Cookie Preferences
             </h3>
           </div>
@@ -132,11 +141,13 @@ export default function CookieConsent() {
 
         <p className="text-xs text-[#8890A0] leading-relaxed mb-4">
           We use cookies to improve your experience and analyse site usage.
-          Essential cookies are always active.
-          See our{' '}
-          <Link href="/privacy" className="text-[#8C34E9] hover:text-[#C084FC] underline transition-colors">
+          Essential cookies are always active. See our{" "}
+          <Link
+            href="/privacy"
+            className="text-[#8C34E9] hover:text-[#C084FC] underline transition-colors"
+          >
             Privacy Policy
-          </Link>{' '}
+          </Link>{" "}
           for details.
         </p>
 
@@ -146,7 +157,11 @@ export default function CookieConsent() {
           className="flex items-center gap-1.5 text-xs font-medium text-[#8890A0] hover:text-white transition-colors mb-3"
         >
           Manage Preferences
-          {showPrefs ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          {showPrefs ? (
+            <ChevronUp className="w-3.5 h-3.5" />
+          ) : (
+            <ChevronDown className="w-3.5 h-3.5" />
+          )}
         </button>
 
         {showPrefs && (
@@ -154,8 +169,12 @@ export default function CookieConsent() {
             {/* Essential — always on */}
             <label className="flex items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-semibold text-white">Essential</span>
-                <p className="text-[10px] text-[#596475]">Required for site functionality. Cannot be disabled.</p>
+                <span className="text-xs font-semibold text-white">
+                  Essential
+                </span>
+                <p className="text-[10px] text-[#596475]">
+                  Required for site functionality. Cannot be disabled.
+                </p>
               </div>
               <div className="w-9 h-5 rounded-full bg-[#22C55E]/30 flex items-center justify-end px-0.5 cursor-not-allowed opacity-60">
                 <div className="w-4 h-4 rounded-full bg-[#22C55E]" />
@@ -165,32 +184,48 @@ export default function CookieConsent() {
             {/* Analytics */}
             <label className="flex items-center justify-between gap-3 cursor-pointer">
               <div>
-                <span className="text-xs font-semibold text-white">Analytics</span>
-                <p className="text-[10px] text-[#596475]">Anonymous usage data to improve the site.</p>
+                <span className="text-xs font-semibold text-white">
+                  Analytics
+                </span>
+                <p className="text-[10px] text-[#596475]">
+                  Anonymous usage data to improve the site.
+                </p>
               </div>
               <button
                 onClick={() => setAnalytics(!analytics)}
                 className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors ${
-                  analytics ? 'bg-[#8C34E9]/40 justify-end' : 'bg-[#1E2738] justify-start'
+                  analytics
+                    ? "bg-[#8C34E9]/40 justify-end"
+                    : "bg-[#1E2738] justify-start"
                 }`}
               >
-                <div className={`w-4 h-4 rounded-full transition-colors ${analytics ? 'bg-[#8C34E9]' : 'bg-[#596475]'}`} />
+                <div
+                  className={`w-4 h-4 rounded-full transition-colors ${analytics ? "bg-[#8C34E9]" : "bg-[#596475]"}`}
+                />
               </button>
             </label>
 
             {/* Preferences */}
             <label className="flex items-center justify-between gap-3 cursor-pointer">
               <div>
-                <span className="text-xs font-semibold text-white">Preferences</span>
-                <p className="text-[10px] text-[#596475]">Remember your theme and display settings.</p>
+                <span className="text-xs font-semibold text-white">
+                  Preferences
+                </span>
+                <p className="text-[10px] text-[#596475]">
+                  Remember your theme and display settings.
+                </p>
               </div>
               <button
                 onClick={() => setPreferences(!preferences)}
                 className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors ${
-                  preferences ? 'bg-[#8C34E9]/40 justify-end' : 'bg-[#1E2738] justify-start'
+                  preferences
+                    ? "bg-[#8C34E9]/40 justify-end"
+                    : "bg-[#1E2738] justify-start"
                 }`}
               >
-                <div className={`w-4 h-4 rounded-full transition-colors ${preferences ? 'bg-[#8C34E9]' : 'bg-[#596475]'}`} />
+                <div
+                  className={`w-4 h-4 rounded-full transition-colors ${preferences ? "bg-[#8C34E9]" : "bg-[#596475]"}`}
+                />
               </button>
             </label>
           </div>
@@ -201,7 +236,9 @@ export default function CookieConsent() {
           <button
             onClick={acceptAll}
             className="flex-1 px-4 py-2.5 rounded-lg text-xs font-bold text-white transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)' }}
+            style={{
+              background: "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
+            }}
           >
             Accept All
           </button>
@@ -209,7 +246,7 @@ export default function CookieConsent() {
             <button
               onClick={savePreferences}
               className="flex-1 px-4 py-2.5 rounded-lg text-xs font-bold text-white border border-[#1E2738] hover:border-[#8C34E9]/50 transition-all"
-              style={{ background: 'transparent' }}
+              style={{ background: "transparent" }}
             >
               Save Preferences
             </button>
@@ -217,7 +254,7 @@ export default function CookieConsent() {
             <button
               onClick={rejectNonEssential}
               className="flex-1 px-4 py-2.5 rounded-lg text-xs font-bold text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/50 hover:text-white transition-all"
-              style={{ background: 'transparent' }}
+              style={{ background: "transparent" }}
             >
               Reject Non-Essential
             </button>

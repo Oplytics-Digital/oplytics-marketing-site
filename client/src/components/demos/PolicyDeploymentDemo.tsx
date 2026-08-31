@@ -4,7 +4,7 @@
  * It walks Dashboard → X-Matrix → Catchball → Bowling, then settles on the live,
  * clickable X-Matrix. Uses fictional Testa Group sample data; no auth, no backend.
  */
-import PolicyDeploymentTour from './policy/PolicyDeploymentTour';
+import PolicyDeploymentTour from "./policy/PolicyDeploymentTour";
 
 export default function PolicyDeploymentDemo() {
   return <PolicyDeploymentTour />;
