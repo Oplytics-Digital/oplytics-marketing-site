@@ -330,6 +330,9 @@ export default function SolutionPage() {
   const features = serviceFeatures[service.slug] || [];
   const crossSellServices = getCrossSellServices(service);
 
+  // Held back until its role cards carry sourced/tier-labelled figures — see below.
+  const showConnectRolesSection = false;
+
   return (
     <MarketingLayout>
       <SEOHead
@@ -397,7 +400,7 @@ export default function SolutionPage() {
             </h2>
             <p className="text-[#8890A0] max-w-xl mx-auto">
               {service.demoScreenshots.length > 0
-                ? `Real screens from ${service.name}, captured from a live customer deployment.`
+                ? `Real screens from ${service.name}, captured in our Testa demo environment.`
                 : service.status === "live"
                   ? `Experience ${service.name} with a live interactive walkthrough. See how it works in a real manufacturing environment.`
                   : `Preview the ${service.name} experience. Full interactive demos will be available when the service launches.`}
@@ -719,11 +722,15 @@ export default function SolutionPage() {
       {/* Task 6: OEE Manager — IoT Device Showcase */}
       {service.slug === "oee-manager" && <IoTShowcaseSection />}
 
-      {/* Task 7: OplyticsConnect — Value Proposals by Role & Supported Protocols */}
-      {service.slug === "smartconnect" && <ConnectRolesProtocolsSection />}
+      {/* Task 7: OplyticsConnect — Value Proposals by Role & Supported Protocols.
+          Held back: the role cards carry unsourced £/% figures (£144K+, "30% less
+          downtime", "70% fewer breakdowns") on an in-development service. Flip
+          showConnectRolesSection to `service.slug === "connect"` once those claims
+          are tier-labelled or replaced with real numbers. */}
+      {showConnectRolesSection && <ConnectRolesProtocolsSection />}
 
-      {/* Task 8: SQDCP Dashboard — Tier Meeting Workflow */}
-      {service.slug === "sqdcp-hub" && <TierMeetingSection />}
+      {/* Task 8: SQDCP Dashboard — Tier Meeting Workflow (feeds into the Obeya Room) */}
+      {service.slug === "sqdcp" && <TierMeetingSection />}
 
       {/* ── 9. CROSS-SELL ── */}
       {crossSellServices.length > 0 && (
