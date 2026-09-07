@@ -43,12 +43,12 @@ export function AIFeatureList({ features }: { features: AIFeature[] }) {
             className="text-3xl font-bold text-white mb-3"
             style={{ fontFamily: "Montserrat" }}
           >
-            Intelligence at Every Layer
+            Opi, Working Alongside Your Team
           </h2>
           <p className="text-[#8890A0] max-w-xl mx-auto">
-            AI is not an add-on. It is woven into the core of every service,
-            working behind the scenes to surface insights and automate
-            decisions.
+            AI is not an add-on. Opi reads this service's live data to surface
+            what a busy operator would miss and draft the next step — you stay
+            in control of every decision.
           </p>
         </div>
 

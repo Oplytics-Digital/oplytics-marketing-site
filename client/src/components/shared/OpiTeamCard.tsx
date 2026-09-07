@@ -3,16 +3,17 @@
  * Reuses the exact orb identity from MarketingAssistant.tsx (conic-gradient
  * spin + sheen + breathe) so Opi reads as the same character everywhere on
  * the site — the chat launcher, the in-app Opi Insights sidebar, and here.
- * Floating insight cards echo the real callouts already shipping in-product
- * (services.ts's demoScreenshots captions — "Opi Insights", "Opi Coaching",
- * "AI Facilitator") rather than invented examples.
+ * Floating insight cards echo the real callouts shipping in-product — the
+ * similar-issue lookup in the AI Facilitator, the cascade-strength score from
+ * Policy Deployment's Opi Insights, and the deterministic streak line on the
+ * SQDCP board — rather than invented examples.
  */
 import { motion, useReducedMotion } from "framer-motion";
 
 const INSIGHT_CARDS = [
   {
     label: "AI Facilitator",
-    text: "Root cause scored — 2 improvement actions suggested",
+    text: "Delivery is red — similar issue closed in Extrusion 3 weeks ago",
     color: "#8C34E9",
   },
   {

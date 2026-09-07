@@ -134,7 +134,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
         step: 4,
         title: "Review and Adjust",
         description:
-          "Monthly and quarterly reviews with automated bowling charts. Course-correct before targets slip.",
+          "Structured monthly and quarterly reviews against every deployment target. Course-correct before targets slip, with Opi scoring the cascade live.",
       },
     ],
     results: [
@@ -163,51 +163,38 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     crossSellIds: ["sqdcp-hub", "action-manager", "oee-manager"],
     aiFeatures: [
       {
-        title: "AI Strategy Alignment",
+        title: "Opi Insights — Live Cascade Scoring",
         description:
-          "Machine learning identifies misalignment between strategic objectives and operational KPIs, suggesting corrective cascading adjustments.",
+          "Opi reads your whole strategic cascade and scores its strength out of 100 — which pillars are anchored, how many metrics are actually wired to a deployment target, whether data is coming back from sites. It names the specific gaps and the next move, in plain English.",
       },
       {
-        title: "Predictive Goal Tracking",
+        title: "Ask Opi",
         description:
-          "AI forecasts whether current trajectories will meet targets and flags at-risk objectives before they slip.",
+          "Follow up on any finding with a grounded chat — Opi answers from your live plan data, not generic advice.",
       },
     ],
   },
   sqdcp: {
     id: "sqdcp-hub",
-    demoImage:
-      "https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/sqdcp-dashboard-real_bcc775e0.png",
+    // The SolutionPage demo slot renders the interactive ObeyaWalkthrough
+    // (registered in demos/index.ts). These feed the Home service-card hover
+    // preview only. TODO: reshoot on the current Obeya UI (they predate #762)
+    // and repoint at /screenshots/obeya/ — see SCREENSHOT-MANIFEST.md.
     demoScreenshots: [
-      {
-        src: "/screenshots/sqdcp/01.png",
-        caption:
-          "Dashboard — Safety, Quality, Delivery, Cost, and People status at a glance",
-      },
-      {
-        src: "/screenshots/sqdcp/02.png",
-        caption:
-          "Action Tracker — every open, in-progress, and closed action from the huddle",
-      },
       {
         src: "/screenshots/sqdcp/03.png",
         caption:
-          "AI Facilitator — hierarchy-aware huddle rooms, from plant review down to area teams",
+          "AI Facilitator — hierarchy-aware rooms, from plant review down to area teams",
       },
       {
         src: "/screenshots/sqdcp/04.png",
         caption:
-          "Huddle room overview — check in, see every pillar’s status, start the huddle",
-      },
-      {
-        src: "/screenshots/sqdcp/05.png",
-        caption:
-          "Metric drill-down — 90-day trend with green/amber/red zones and target line",
+          "Huddle room — check in, see every pillar's status, start the huddle",
       },
       {
         src: "/screenshots/sqdcp/06.png",
         caption:
-          "Pillar review — Opi calls out streaks live: “Green streak now 4 days — the longest run in this window”",
+          "Pillar review — Opi calls it live: “Green streak now 4 days — the longest run in this window”",
       },
     ],
     problem:
@@ -227,15 +214,15 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       },
       {
         step: 3,
-        title: "Run Tier Meetings",
+        title: "Run the Huddle in the Obeya Room",
         description:
-          "Structured daily stand-ups with real-time data. Raise issues, assign actions, and escalate blockers in seconds.",
+          "Every tier runs its daily huddle in the immersive Obeya Room — a readiness gate, a board walk, PDCA on every red, and a close-out. Turn on the AI Facilitator and Opi drafts the prompts as you go.",
       },
       {
         step: 4,
         title: "Aggregate and Analyse",
         description:
-          "Roll up data across teams, sites, and regions. Spot trends and drive continuous improvement at every level.",
+          "Roll up data across teams, sites, and regions. Opi Insights watches the whole board and names where performance is slipping.",
       },
     ],
     results: [
@@ -264,19 +251,14 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     crossSellIds: ["action-manager", "policy-deployment", "oee-manager"],
     aiFeatures: [
       {
-        title: "AI Anomaly Detection",
-        description:
-          "Automatically flags unusual metric patterns across Safety, Quality, Delivery, Cost, and People dimensions before they escalate.",
-      },
-      {
-        title: "Smart Trend Summaries",
-        description:
-          "AI generates natural-language daily summaries highlighting key changes, emerging risks, and improvement opportunities.",
-      },
-      {
         title: "AI Facilitator",
         description:
-          "Runs your daily SQDCP huddle for you — surfaces what’s red, drafts root cause with a starter 5-Why, and tracks who owns what by when.",
+          "Turn it on for the huddle and Opi drafts the facilitation as you go — a spoken-style line at each stage hand-off, a read on every red or amber pillar, the next 5-Why step, a summary of similar past issues from your own action history, an accountability prompt for each overdue action, and a close-out recap. Opi drafts; the facilitator edits and confirms.",
+      },
+      {
+        title: "Opi Insights",
+        description:
+          "A real LLM reads your live board — stale metrics, reds without an action, metrics heading to red, backlog ageing, how much traces to a strategic objective — and hands back a prioritised, scored findings list with the next move on each. Ask Opi follows up, grounded in that data.",
       },
     ],
   },
@@ -357,19 +339,14 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     crossSellIds: ["smartconnect", "sqdcp-hub", "action-manager"],
     aiFeatures: [
       {
-        title: "AI Loss Classification",
+        title: "Opi Loss Coaching",
         description:
-          "Automatically classifies downtime events and speed losses using machine learning, eliminating manual categorisation errors.",
+          "Opi watches your weekly loss picture and flags the biggest movers — where an attackable loss just grew, which asset slipped, what to look at first — so the improvement conversation starts from the right place.",
       },
       {
-        title: "Predictive Maintenance Alerts",
+        title: "Ask Opi",
         description:
-          "AI analyses OEE patterns to predict equipment failures before they occur, reducing unplanned downtime.",
-      },
-      {
-        title: "Smart Root Cause Analysis",
-        description:
-          "AI correlates OEE drops with process variables, operator shifts, and material batches to surface root causes.",
+          "Ask a plain-English question about a loss trend or a shift comparison and get a grounded answer from your own OEE data.",
       },
     ],
   },
@@ -444,18 +421,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       },
     ],
     crossSellIds: ["oee-manager", "sqdcp-hub", "quality-manager"],
-    aiFeatures: [
-      {
-        title: "AI Signal Mapping",
-        description:
-          "Machine learning auto-detects and maps machine signals to Oplytics data points, reducing configuration time significantly.",
-      },
-      {
-        title: "Intelligent Edge Processing",
-        description:
-          "AI at the edge filters noise, detects anomalies, and pre-processes data before it reaches the platform.",
-      },
-    ],
+    aiFeatures: [],
   },
   "action-manager": {
     id: "action-manager",
@@ -491,7 +457,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
         step: 2,
         title: "Assign and Prioritise",
         description:
-          "Assign to individuals with clear due dates and priority levels. AI scoring helps focus on what matters most.",
+          "Assign to individuals with clear due dates and priority levels. A reviewer is derived automatically from your reporting line.",
       },
       {
         step: 3,
@@ -531,14 +497,9 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
     crossSellIds: ["sqdcp-hub", "safety-manager", "quality-manager"],
     aiFeatures: [
       {
-        title: "AI Priority Scoring",
+        title: "Opi Insights",
         description:
-          "Machine learning scores and prioritises actions based on impact, urgency, and historical closure patterns.",
-      },
-      {
-        title: "Smart Escalation",
-        description:
-          "AI monitors action ageing and predicts which items are at risk of missing deadlines, triggering proactive escalation.",
+          "Opi reads your whole action portfolio — backlog ageing, whether closure is keeping up with inflow, where actions concentrate on one owner or category, what's stalled — and hands back a prioritised, scored findings list. Ask Opi follows up from the same data.",
       },
     ],
   },
@@ -597,18 +558,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       },
     ],
     crossSellIds: ["certification-manager", "action-manager", "sqdcp-hub"],
-    aiFeatures: [
-      {
-        title: "AI Defect Pattern Recognition",
-        description:
-          "Machine learning identifies recurring defect patterns across products, lines, and suppliers to prevent repeat non-conformances.",
-      },
-      {
-        title: "Smart CAPA Recommendations",
-        description:
-          "AI suggests corrective actions based on historical effectiveness data and similar past incidents.",
-      },
-    ],
+    aiFeatures: [],
   },
   "safety-manager": {
     id: "safety-manager",
@@ -641,7 +591,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
         step: 4,
         title: "Analyse and Prevent",
         description:
-          "AI-powered risk prediction identifies high-risk areas. Compliance dashboards ensure regulatory requirements are met.",
+          "Leading-indicator dashboards surface high-risk areas from your observation and near-miss data. Compliance dashboards ensure regulatory requirements are met.",
       },
     ],
     results: [
@@ -667,18 +617,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       },
     ],
     crossSellIds: ["action-manager", "sqdcp-hub", "certification-manager"],
-    aiFeatures: [
-      {
-        title: "AI Risk Prediction",
-        description:
-          "Predictive models analyse incident history, near-miss data, and environmental factors to forecast high-risk areas and times.",
-      },
-      {
-        title: "Smart Observation Analysis",
-        description:
-          "Natural language processing categorises safety observations and extracts actionable insights from free-text reports.",
-      },
-    ],
+    aiFeatures: [],
   },
   "certification-manager": {
     id: "certification-manager",
@@ -703,7 +642,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
         step: 3,
         title: "Monitor Compliance",
         description:
-          "Real-time compliance dashboard shows status against every clause. AI identifies gaps before auditors do.",
+          "Real-time compliance dashboard shows status against every clause, flagging where evidence is missing before auditors do.",
       },
       {
         step: 4,
@@ -735,18 +674,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       },
     ],
     crossSellIds: ["quality-manager", "safety-manager", "action-manager"],
-    aiFeatures: [
-      {
-        title: "AI Compliance Gap Analysis",
-        description:
-          "Automatically scans your documentation and processes against standard requirements to identify gaps before auditors do.",
-      },
-      {
-        title: "Smart Document Classification",
-        description:
-          "AI categorises and tags documents by standard, clause, and revision status for instant retrieval during audits.",
-      },
-    ],
+    aiFeatures: [],
   },
 };
 

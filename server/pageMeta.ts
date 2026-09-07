@@ -33,6 +33,16 @@ const STATIC_PAGE_META: Record<string, PageMeta> = {
     description:
       "Operational excellence platform for manufacturing. Real-time OEE, digital SQDCP boards, safety management, and continuous improvement — all in one place.",
   },
+  "/ai": {
+    title: "Platform AI — Meet Opi",
+    description:
+      "Opi is Oplytics' AI CI Engineer. It reads your live Policy Deployment, SQDCP and Action Manager data for the findings you'd miss, runs your daily huddle in the Obeya Room, and answers questions in the sidebar of every service — all under real enterprise governance: kill switches, plan-tier gating, and spend budgets that cut off automatically.",
+  },
+  "/obeya": {
+    title: "The Obeya Room",
+    description:
+      "Run your daily SQDCP huddle in an immersive 3D Obeya Room — a readiness gate, a board walk with PDCA on every red, and a close-out recap. Turn on the AI Facilitator and Opi drafts the facilitation as you go. Hierarchy-aware rooms, from plant review down to area teams.",
+  },
   "/pricing": {
     title: "Pricing",
     description:
@@ -124,7 +134,7 @@ const PERSONA_PAGE_META: Record<string, PageMeta> = {
   "ops-ci": {
     title: "Oplytics for Operational Excellence Leaders — Meet Opi",
     description:
-      "Opi is Oplytics' AI CI Engineer — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle and in the sidebar of every service. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default.",
+      "Opi is Oplytics' AI CI Engineer — it reads your live data for the findings you'd miss, runs your daily huddle in the Obeya Room, and answers questions in the sidebar of every service. Under real governance: kill switches, plan-tier gating, and spend budgets that cut off automatically.",
   },
 };
 

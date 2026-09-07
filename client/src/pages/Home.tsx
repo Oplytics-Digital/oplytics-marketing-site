@@ -94,7 +94,7 @@ export default function Home() {
       <HeroSection
         headline="Operational Excellence. One Digital Platform."
         subheadline="Fully Integrated. Powered by AI."
-        subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. When an OEE loss triggers an action, that action flows into the SQDCP board, links to the relevant Hoshin objective, and tracks through to verified closure — every improvement effort traceable to its result. All supported by AI for better decision making and process compliance. All in one platform."
+        subtext="We build OpEx and CI into each connecting step of your deployment process. From Enterprise strategy through Business Units, Sites, Areas, down to your manufacturing assets. Live Policy Deployment, SQDCP Dashboards, real-time OEE and integrated Action Management. When an OEE loss triggers an action, that action flows into the SQDCP board, links to the relevant Hoshin objective, and tracks through to verified closure — every improvement effort traceable to its result. Opi, our AI CI Engineer, reads that live data to surface what you'd miss and run your daily huddle. All in one platform."
         status="live"
         backgroundImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031899852/TqfjMS5mXpLDBG5ze8gzfz/hero-main-8i2QPeXPF5Zif5HP36QHAA.webp"
         backgroundVideo="/video/hero-microchip.mp4"
@@ -272,15 +272,14 @@ export default function Home() {
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4"
               style={{ fontFamily: "Montserrat" }}
             >
-              Intelligence Built Into Every Service
+              Meet Opi — Your AI CI Engineer
             </h2>
             <p className="text-sm sm:text-lg text-[#8890A0] max-w-2xl mx-auto mb-10">
-              Every Oplytics service is supported by our AI Support Engineer — a
-              smart guided coaching layer built into the platform. It doesn't
-              just show you data, it helps your teams understand it, act on it,
-              and improve continuously. From suggesting corrective actions to
-              guiding users through standard processes, AI is woven into every
-              step.
+              Opi is one AI that shows up in three places: reading your live
+              data for the findings you'd otherwise miss, running your daily
+              huddle in the Obeya Room, and answering questions in the sidebar
+              of every service. Opi drafts and surfaces — your team stays in
+              control of every decision.
             </p>
           </AnimateOnScroll>
           <StaggerContainer
@@ -290,16 +289,16 @@ export default function Home() {
           >
             {[
               {
-                title: "Smart Guided CI Coaching",
-                desc: "Our AI Support Engineer coaches your teams through standard CI processes — from 5 Whys to corrective action planning — in real time.",
+                title: "Opi Insights",
+                desc: "A real language model reads a live snapshot of your Policy Deployment, SQDCP or Action Manager screen and hands back a prioritised, scored findings list — the specific gap and the next move on each. Ask Opi follows up, grounded in that data.",
               },
               {
-                title: "Smart Automation",
-                desc: "Automatic loss classification, action prioritisation, and compliance gap detection.",
+                title: "AI Facilitator",
+                desc: "Turn it on for the huddle and Opi drafts the facilitation as you go — stage hand-offs, a read on every red pillar, the next 5-Why step, accountability prompts, a close-out recap. The facilitator edits and confirms.",
               },
               {
-                title: "Natural Language Insights",
-                desc: "AI generates plain-English summaries of trends, anomalies, and recommended actions.",
+                title: "Enterprise AI Governance",
+                desc: "AI is off outside production by default. Platform and per-enterprise kill switches take effect with no deploy, it's gated to your plan tier, and every call is metered against a spend budget that cuts off automatically.",
               },
             ].map((item, i) => (
               <div
@@ -321,6 +320,18 @@ export default function Home() {
               </div>
             ))}
           </StaggerContainer>
+          <AnimateOnScroll variant="fade-in" className="mt-10">
+            <Link
+              href="/ai"
+              data-umami-event="cta_click"
+              data-umami-event-button="explore_platform_ai"
+              data-umami-event-location="home_ai_callout"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1DB8CE] hover:text-[#5FD3E4] transition-colors"
+            >
+              Explore the AI platform
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </AnimateOnScroll>
         </div>
       </section>
 

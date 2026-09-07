@@ -3,8 +3,8 @@
  * Route: /for/ops-ci
  * Ad-landable, standalone from any single product module (unlike the old
  * Connect-scoped role pages this replaces). Own hero, own proof points.
- * AI-led messaging: root-cause speed, guided facilitation, $ impact,
- * ISO-aligned compliance automation.
+ * AI-led messaging: Opi Insights, the AI Facilitator in the Obeya Room, and
+ * governed AI (kill switches, plan-tier gating, spend budgets).
  */
 import MarketingLayout from "@/components/shared/MarketingLayout";
 import HeroSection from "@/components/shared/HeroSection";
@@ -59,37 +59,37 @@ const aiFeatures = [
     icon: <Users className="w-5 h-5" />,
     title: "AI Facilitation — Enhance, Not Replace",
     description:
-      "Opi structures the noise, focuses the attention, and supports the analysis — standardising how every tier meeting runs, so a first-week supervisor can facilitate as sharply as a ten-year veteran.",
+      "In the Obeya Room, Opi drafts a line at each moment of the huddle — stage hand-offs, a read on every red pillar, an accountability prompt for each overdue action. It standardises how every tier meeting runs, so a first-week supervisor facilitates as sharply as a ten-year veteran.",
   },
   {
     icon: <Zap className="w-5 h-5" />,
-    title: "Effective Root Cause, Strong Bias for Action",
+    title: "Root Cause, One Step at a Time",
     description:
-      "Opi coaches and drives effective root cause analysis — it scores the analysis and suggests improvements to the actions, so you get to fixes, and the future state, faster.",
+      "During the huddle Opi drafts the next single step of a 5-Why for you to edit, and summarises similar past issues pulled from your own action history — so the analysis starts from what you already know.",
   },
   {
     icon: <LayoutGrid className="w-5 h-5" />,
-    title: "Opi Insights, Everywhere You Work",
+    title: "Opi Insights, in the Sidebar of Every Service",
     description:
-      "Always-on suggestions in the sidebar of every service, driving the improvement process faster — never a dashboard you have to go hunting through separately.",
+      "Open the panel on your Policy Deployment, SQDCP or Action Manager screen and a real language model hands back a scored, prioritised findings list — the specific gap and the next move on each.",
   },
   {
     icon: <Radar className="w-5 h-5" />,
-    title: "Opi Watches the Whole Suite for Gaps",
+    title: "Opi Names Where Performance Is Slipping",
     description:
-      "Across Plant Management and the shop floor, Opi spots where performance is slipping and tells you exactly where to focus resource and attention next.",
+      "On the SQDCP board, Opi flags the reds without an action, the metrics heading to red, and the stale data — the things a busy shift would walk past.",
   },
   {
     icon: <Gauge className="w-5 h-5" />,
-    title: "Every Action Priced in $, Not Just Ranked",
+    title: "Actions Routed by Your Reporting Line",
     description:
-      "AI scores and prioritises the action backlog by real impact and urgency — so the improvement programme has a number finance can put in a budget line, not just a status.",
+      "A red metric raises an action automatically and routes it to the right owner through your org structure — manager chain, then pillar leader, then enterprise admin. Deterministic, auditable, no guesswork.",
   },
   {
     icon: <ShieldCheck className="w-5 h-5" />,
-    title: "ISO-Aligned Playbook, Audit-Ready by Default",
+    title: "AI Under Real Governance",
     description:
-      "Certification Manager maps your processes to ISO and IATF clauses automatically, tracks compliance in real time, and lets you walk a regulator through the evidence without weeks of prep.",
+      "AI is off outside production by default, has platform and per-enterprise kill switches that need no deploy, is gated to your plan tier, and every call is metered against a spend budget that cuts off automatically.",
   },
 ];
 
@@ -110,7 +110,7 @@ const whatYouGet = [
     icon: <Sparkles className="w-5 h-5" />,
     title: "Opi Runs the Huddle With You",
     description:
-      "Guided digital tier meeting facilitation that structures the discussion and tracks who owns what by when — so tier meetings run on data, not on who remembered to update the board.",
+      "Your daily huddle runs in the immersive Obeya Room — a readiness gate, a board walk with PDCA on every red, a close-out that carries forward. Turn the AI Facilitator on and Opi drafts the prompts as you go.",
   },
 ];
 
@@ -119,17 +119,17 @@ export default function OpsCI() {
     <MarketingLayout>
       <SEOHead
         title="Oplytics for Operational Excellence Leaders — Meet Opi"
-        description="Opi is Oplytics' AI CI Engineer — live 24/7, taught on every Lean and Six Sigma playbook, in the room for every huddle and in the sidebar of every service. Faster root cause, guided facilitation, every action priced in $, and an ISO-aligned playbook that's audit-ready by default."
+        description="Opi is Oplytics' AI CI Engineer — it reads your live data for the findings you'd miss, runs your daily huddle in the Obeya Room, and answers questions in the sidebar of every service. Under real governance: kill switches, plan-tier gating, and spend budgets that cut off automatically."
       />
 
       <HeroSection
         headline="Recruit Opi, Your Always-Available CI Employee"
         subheadline="For Operational Excellence Leaders"
-        subtext="Opi is Oplytics' AI CI Engineer — live, taught on every Lean and Six Sigma playbook there is, in the room for every huddle and in the sidebar of every service. Opi helps your team get to root cause faster, provides guided digital tier meeting facilitation, and turns every improvement into a number finance believes in."
+        subtext="Opi is Oplytics' AI CI Engineer. It reads a live snapshot of your Policy Deployment, SQDCP and Action Manager data for the findings a busy operator would miss, and drafts the facilitation for your daily huddle in the Obeya Room. Opi drafts and surfaces — your team makes every decision."
         status="live"
         customCtas={[
           { label: "Try It Free", href: "/contact", variant: "primary" },
-          { label: "See the Platform", href: "/why-us", variant: "secondary" },
+          { label: "See the Obeya Room", href: "/obeya", variant: "secondary" },
         ]}
       />
 
@@ -216,25 +216,23 @@ export default function OpsCI() {
         </div>
       </section>
 
-      {/* ISO / compliance */}
+      {/* AI governance — the question IT and procurement ask */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <AnimateOnScroll variant="slide-up" className="text-center mb-10">
-            <span className="section-label text-[#F97316] mb-3 block">
-              Audit-Ready by Default
+            <span className="section-label text-[#22C55E] mb-3 block">
+              Governed AI
             </span>
             <h2
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4"
               style={{ fontFamily: "Montserrat" }}
             >
-              An ISO-Aligned Playbook, Not a Panic Every Audit Season
+              You Can Answer “What Is the AI Doing?”
             </h2>
             <p className="text-base sm:text-lg text-[#A0A8B8] leading-relaxed max-w-2xl mx-auto">
-              Certification Manager maps your existing processes to ISO and IATF
-              clauses, keeps a live compliance dashboard against every
-              requirement, and gives you the evidence trail to walk a regulator
-              through your infrastructure — instead of losing weeks to audit
-              prep every time.
+              Every AI call in the platform runs through one gate. When your IT
+              or procurement team asks, you have a straight answer — and a
+              switch you can flip yourself.
             </p>
           </AnimateOnScroll>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
@@ -243,11 +241,11 @@ export default function OpsCI() {
                 className="text-sm font-semibold text-white mb-2"
                 style={{ fontFamily: "Montserrat" }}
               >
-                Map Your Standards
+                Off by Default
               </div>
               <p className="text-sm text-[#8890A0] leading-relaxed">
-                Import ISO, IATF, or other standard requirements and map them to
-                your existing processes and documents, clause by clause.
+                Live, billed AI calls only run in production. Every other
+                environment has to opt in explicitly.
               </p>
             </div>
             <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] text-center">
@@ -255,11 +253,12 @@ export default function OpsCI() {
                 className="text-sm font-semibold text-white mb-2"
                 style={{ fontFamily: "Montserrat" }}
               >
-                AI Gap Analysis
+                Your Kill Switch
               </div>
               <p className="text-sm text-[#8890A0] leading-relaxed">
-                AI scans your documentation and processes against every clause
-                and flags gaps before an auditor finds them.
+                A per-enterprise switch turns all AI off from an admin screen,
+                with no deploy and no downtime. Nothing runs until a user opens
+                the panel.
               </p>
             </div>
             <div className="p-6 rounded-lg border border-[#1E2738] bg-[#0D1220] text-center">
@@ -267,13 +266,25 @@ export default function OpsCI() {
                 className="text-sm font-semibold text-white mb-2"
                 style={{ fontFamily: "Montserrat" }}
               >
-                Walk the Auditor Through It
+                Metered to a Budget
               </div>
               <p className="text-sm text-[#8890A0] leading-relaxed">
-                Every finding, corrective action, and piece of evidence in one
-                place — regulators see a live system, not a scramble.
+                Every call is recorded with its token count and estimated cost,
+                against a spend budget that cuts off automatically.
               </p>
             </div>
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/ai"
+              data-umami-event="cta_click"
+              data-umami-event-button="how_the_ai_works"
+              data-umami-event-location="for_ops_ci_governance"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#22C55E] hover:text-[#4ADE80] transition-colors"
+            >
+              How the AI works, end to end
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

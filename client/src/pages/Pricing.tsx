@@ -75,6 +75,7 @@ const plans: PlanTier[] = [
     features: [
       "OEE Manager — 1 production line",
       "SQDCP Dashboard — 1 team board",
+      "Obeya Room — daily huddle (manual mode)",
       "Policy Deployment — 1 X-matrix",
       "Action Manager — up to 50 actions",
       "Up to 10 users",
@@ -98,8 +99,8 @@ const plans: PlanTier[] = [
       "Up to 50 users",
       "Priority support",
       "Advanced analytics and dashboards",
-      "AI-powered insights",
-      "AI Facilitator — SQDCP huddle assistant",
+      "Opi Insights — AI oversight on your live data",
+      "AI Facilitator — Opi runs the SQDCP huddle in the Obeya Room",
       "API access",
       "Custom integrations",
       "Shift handover reports",
@@ -142,6 +143,10 @@ const faqs = [
   {
     q: "Is there a free trial?",
     a: "We offer a guided demo and proof-of-concept period for qualified organisations. Contact our sales team to discuss your requirements and arrange a trial.",
+  },
+  {
+    q: "What does the AI actually do, and what does it cost?",
+    a: "Opi is a language model that reads a structured snapshot of your data — it drafts and surfaces, it doesn't decide. Opi Insights and the AI Facilitator are included with Professional and Enterprise. AI is off outside production by default, has platform-wide and per-enterprise kill switches that take effect with no deploy, and every call is metered against a spend budget that cuts off automatically. Run the huddle in manual mode and no AI is involved.",
   },
   {
     q: "Can I switch plans at any time?",

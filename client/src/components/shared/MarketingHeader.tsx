@@ -86,7 +86,7 @@ export default function MarketingHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {/* Solutions Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -179,6 +179,12 @@ export default function MarketingHeader() {
               )}
             </div>
 
+            <Link href="/obeya" className={navLinkClass("/obeya")}>
+              Obeya
+            </Link>
+            <Link href="/ai" className={navLinkClass("/ai")}>
+              AI
+            </Link>
             <Link href="/why-us" className={navLinkClass("/why-us")}>
               Why Us
             </Link>
@@ -279,6 +285,18 @@ export default function MarketingHeader() {
 
             <div className="h-px bg-[#1E2738]" />
 
+            <Link
+              href="/obeya"
+              className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors"
+            >
+              Obeya Room
+            </Link>
+            <Link
+              href="/ai"
+              className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors"
+            >
+              Platform AI
+            </Link>
             <Link
               href="/why-us"
               className="block py-2 text-sm text-[#8890A0] hover:text-white transition-colors"

@@ -104,7 +104,7 @@ export default function ScreenshotCarousel({
           {current.caption}
         </p>
         <p className="text-[10px] text-[#596475] uppercase tracking-wider mt-0.5">
-          Real product · live customer data
+          Real product · Testa demo environment
         </p>
       </div>
 
