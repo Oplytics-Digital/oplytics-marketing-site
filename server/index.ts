@@ -16,8 +16,6 @@ const __dirname = path.dirname(__filename);
 // injected so every call is recorded and cost-controlled via the ledger.
 const supportEngine = createSupportEngine(
   {
-    forgeApiUrl: ENV.FORGE_API_URL ?? "",
-    forgeApiKey: ENV.FORGE_API_KEY ?? "",
     geminiApiUrl: ENV.GEMINI_API_URL ?? "",
     geminiApiKey: ENV.GEMINI_API_KEY ?? "",
   },

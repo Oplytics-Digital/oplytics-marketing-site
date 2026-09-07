@@ -20,8 +20,8 @@ importers:
         specifier: ^5.9.1
         version: 5.9.1(@standard-schema/spec@1.1.0)(react-hook-form@7.87.0(react@19.2.8))(zod@4.5.4)
       '@pablo2410/core-server':
-        specifier: ^0.6.1
-        version: 0.6.1(@pablo2410/shared-ui@0.18.1(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@18.3.1)(react@19.2.8)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.20.0)(cookie@0.7.2)(express@4.22.2)
+        specifier: ^0.8.0
+        version: 0.8.0(@pablo2410/shared-ui@0.18.1(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@18.3.1)(react@19.2.8)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.20.0)(cookie@0.7.2)(express@4.22.2)
       '@pablo2410/shared-ui':
         specifier: ^0.18.1
         version: 0.18.1(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@18.3.1)(react@19.2.8)(redux@5.0.1)
@@ -932,8 +932,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@pablo2410/core-server@0.6.1':
-    resolution: {integrity: sha512-DBDPGgbVMNng/oBxOMdK04VZJvqhYOxtiILr/zOA++ozOeWky4v7J7fzW3++Q9ZcETdlRf9Kpz6IdE9FXJoHkw==}
+  '@pablo2410/core-server@0.8.0':
+    resolution: {integrity: sha512-Xur1fb8/jyL/dTXlgZxiM7Fwm30Ts1payyoptNYvfDoCVHHlGcm2CRbXTu3wOmOYwITUyzBsaiQd4soIOdxRGA==}
     peerDependencies:
       '@pablo2410/shared-ui': '>=0.7.0'
       '@trpc/server': '>=11.0.0'
@@ -4297,7 +4297,7 @@ snapshots:
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
 
-  '@pablo2410/core-server@0.6.1(@pablo2410/shared-ui@0.18.1(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@18.3.1)(react@19.2.8)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.20.0)(cookie@0.7.2)(express@4.22.2)':
+  '@pablo2410/core-server@0.8.0(@pablo2410/shared-ui@0.18.1(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@18.3.1)(react@19.2.8)(redux@5.0.1))(@trpc/server@11.17.0(typescript@5.6.3))(axios@1.20.0)(cookie@0.7.2)(express@4.22.2)':
     dependencies:
       '@trpc/server': 11.17.0(typescript@5.6.3)
     optionalDependencies:
