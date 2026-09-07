@@ -70,3 +70,20 @@ All service statuses and metadata are driven by a single config file at `client/
 pnpm install
 pnpm dev
 ```
+
+## Deployment
+
+Serves `oplytics.digital` (and `www`) from the shared VPS — the service block lives
+in `oplytics-policy-deployment`'s `deploy/docker-compose.yml` + `Caddyfile`.
+
+> ⚠️ `main` is **not** production. Merging a PR to `main` runs CI only — it does
+> **not** deploy. Production updates only when a `v*` **tag** is pushed.
+
+```bash
+git checkout main && git pull
+git tag -a v2026.09.10 -m "release: <what changed>"
+git push origin v2026.09.10       # builds + deploys to the VPS
+```
+
+Image is tagged `:v2026.09.10`, `:latest`, `:<sha>` in GHCR. Rollback = redeploy the
+previous `:vX` image on the VPS. Fleet context: `oplytics-policy-deployment` issue #207.
