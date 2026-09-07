@@ -213,9 +213,9 @@ export default function AiPlatform() {
           </AnimateOnScroll>
           <AnimateOnScroll variant="slide-left">
             <ProductShot
-              src="/screenshots/ai/opi-insights-sqdcp.png"
-              alt="Opi Insights sidebar on the SQDCP dashboard — a scored findings list"
-              label="Opi Insights — SQDCP board"
+              src="/screenshots/ai/opi-insights-pd.png"
+              alt="Opi Insights sidebar on Policy Deployment — a scored findings list with execution-gap score"
+              label="Opi Insights — Policy Deployment"
             />
           </AnimateOnScroll>
         </div>

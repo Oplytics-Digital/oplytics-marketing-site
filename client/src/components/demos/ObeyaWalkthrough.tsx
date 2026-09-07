@@ -32,16 +32,16 @@ const FRAMES: Frame[] = [
     src: "/screenshots/obeya/01-room.png",
     label: "The room",
     caption:
-      "Walk into the Obeya Room — a 3D war room with every SQDCP pillar on the wall, live.",
+      "Walk into the Obeya Room — a 3D war room with every SQDCP pillar on the wall, live. A readiness check confirms every pillar has data before the huddle can start.",
   },
   {
-    src: "/screenshots/obeya/02-lobby.png",
-    label: "Lobby",
+    src: "/screenshots/obeya/03-rooms.png",
+    label: "Tier on tier",
     caption:
-      "A readiness gate checks every pillar has data and thresholds before the huddle can start, and names the ones that don't.",
+      "One room per team, feeding the one above. The plant review is fed by the area huddles below it.",
   },
   {
-    src: "/screenshots/obeya/03-seats.png",
+    src: "/screenshots/obeya/02-seats.png",
     label: "Check in",
     caption:
       "Assign a representative to each pillar for today's huddle, then check in — a quick ceremony, not an identity check.",
@@ -50,19 +50,31 @@ const FRAMES: Frame[] = [
     src: "/screenshots/obeya/04-board-walk.png",
     label: "Board walk",
     caption:
-      "The camera focuses each pillar in turn. A PDCA panel and a 5-Why stepper dock alongside the card.",
+      "The camera focuses each pillar in turn. Green pillars are acknowledged; reds get a PDCA panel and a 5-Why stepper docked alongside.",
   },
   {
     src: "/screenshots/obeya/05-opi-line.png",
     label: "AI Facilitator",
     caption:
-      "With the AI Facilitator on, Opi drafts a spoken-style line for each red or amber pillar — you edit and confirm.",
+      "With the AI Facilitator on, Opi drafts a line for each red pillar — “Safety is red today due to Lost Time Injuries, and we have an action drafted waiting on Sarah Chen to confirm.” You edit and confirm.",
   },
   {
-    src: "/screenshots/obeya/06-closeout.png",
+    src: "/screenshots/obeya/06-actions.png",
+    label: "Actions",
+    caption:
+      "Opi opens the overdue-action review by name — “sixteen overdue today, let's get firm commitment dates” — with owners and due dates on every one.",
+  },
+  {
+    src: "/screenshots/obeya/07-ci.png",
+    label: "CI deep-dive",
+    caption:
+      "One improvement project from Policy Deployment is deep-dived each day, tied to its pillar's live status and the open countermeasures on its A3.",
+  },
+  {
+    src: "/screenshots/obeya/08-closeout.png",
     label: "Close-out",
     caption:
-      "Finish on a close-out recap — win of the day, the issues that matter, tomorrow's priorities.",
+      "Finish on a close-out recap — win of the day, the issues that matter, tomorrow's priorities. It carries forward into the next huddle.",
   },
 ];
 

@@ -1,45 +1,43 @@
 # Screenshot manifest — AI + Obeya splash
 
-Capture everything from the **live Testa environment** logged in as a Testa user
+Capture from the **live Testa environment** logged in as a Testa user
 (`sqdcp.oplyticsdigital.net`, `policy.oplyticsdigital.net`). Testa site 60003 has
 the seeded rolling 7-day huddle window; the room is "SQDCP Tier 1 Huddle" (id 1).
 
 **Rules**
 
-- No real customer names anywhere in frame. Testa / Testa Midlands Plant is fine.
+- No real customer names in frame. Testa / Testa Midlands Plant is fine.
+- No browser chrome — full-window app only.
 - Don't caption or frame the fingerprint check-in as a security feature — it's a
   ceremony, not identity verification.
-- Dark theme. Capture at a wide viewport (≥ 1600px). PNG.
-- Crop out browser chrome. Keep the app's own header/sidebar where it's part of
-  the shot (lobby, dashboard); the immersive 3D room is full-bleed.
+- Dark theme. Wide viewport (≥ 1600px). PNG.
 
 ---
 
-## `/client/public/screenshots/obeya/` — the Obeya walkthrough (ObeyaWalkthrough.tsx)
+## Status
 
-Target aspect ~1490×778 (16:8.36); the component crops to that with `object-cover`,
-so a normal 16:9 or 16:10 screenshot is fine — keep the subject centred.
+**Landed (2026-09-07):**
 
-| File                | Screen                                               | What it must show                                                                                                                                                               |
-| ------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `01-room.png`       | `/obeya`                                             | The 3D immersive wall — every SQDCP pillar card on the wall, room perspective visible. The "walk in" hero shot.                                                                 |
-| `02-lobby.png`      | `/rooms/1` (lobby)                                   | The lobby with the **readiness gate row** visible — ideally showing at least one pillar flagged as blocking (amber/red) so the gate is doing something. Post-#773 3-row layout. |
-| `03-seats.png`      | `/rooms/1` (lobby)                                   | The **representatives / seat-assignment row** — pillar-to-rep connector lines, a couple of seats filled. The check-in step.                                                     |
-| `04-board-walk.png` | huddle, Pillar Review stage                          | A pillar in focus with the **PDCA / 5-Why panel docked alongside** the card. Camera focused on one wall.                                                                        |
-| `05-opi-line.png`   | huddle, Pillar Review stage, **AI-assisted mode on** | A red or amber pillar in focus with an **Opi facilitator line** visible (the spoken-style narration). This is the AI Facilitator money shot.                                    |
-| `06-closeout.png`   | huddle, Close Out stage                              | The close-out recap — win of the day / issues / priorities.                                                                                                                     |
+| File                         | Shows                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------- |
+| `obeya/01-room.png`          | 3D Obeya wall + lobby readiness bar                                             |
+| `obeya/03-rooms.png`         | AI Facilitator room list — plant review + 2 area huddles feeding in             |
+| `obeya/04-board-walk.png`    | People pillar in focus + PDCA panel                                             |
+| `obeya/05-opi-line.png`      | Safety pillar red + Opi facilitator line + auto-drafted action                  |
+| `obeya/06-actions.png`       | Actions step + Opi accountability brief + overdue list                          |
+| `obeya/07-ci.png`            | CI Activities + Opi deep-dive intro                                             |
+| `obeya/08-data-entry.png`    | Data Entry — metric values with green/amber/red bands (not yet wired to a page) |
+| `obeya/09-admin-cascade.png` | Admin → Metrics & KPIs, "Cascaded from Enterprise PD" (not yet wired)           |
+| `ai/opi-insights-pd.png`     | Opi Insights sidebar on Policy Deployment — score dial + findings               |
 
-## `/client/public/screenshots/ai/` — the /ai and /obeya landing pages
+**Still needed — pages show a labelled placeholder until these land:**
 
-| File                     | Screen                                                  | What it must show                                                                                                                     |
-| ------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `opi-insights-sqdcp.png` | SQDCP dashboard, Opi Insights sidebar **expanded**      | The real findings list — headline, the score dial, a few findings with severity chips (good/watch/gap) and their "next action" lines. |
-| `opi-insights-pd.png`    | Policy Deployment, Opi Insights sidebar **expanded**    | Same, for PD — ideally showing a cascade-strength score and a gap finding.                                                            |
-| `ai-controls.png`        | Portal → Admin → AI Controls **or** Account → AI toggle | The kill-switch / AI governance UI. Blur any email addresses. Optional but strong for the governance section.                         |
-| `ai-usage.png`           | Business Hub → AI Usage & Cost dashboard                | The spend/token breakdown + budgets. Blur enterprise names if any real ones show. Optional.                                           |
+| File                     | Screen                                                                                    | What it must show                                                                                                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `obeya/02-seats.png`     | `/rooms/1` lobby                                                                          | The **representatives / seat-assignment row** — pillar-to-rep connector lines, a couple of seats filled.                                                                  |
+| `obeya/08-closeout.png`  | huddle, Close Out stage                                                                   | The close-out recap — win of the day / issues / priorities.                                                                                                               |
+| `ai/opi-insights-am.png` | Action Manager, Opi panel expanded (real LLM version, **no** "rule-based coaching" badge) | The scored advisor output. Optional but strong — currently the /ai page only shows the PD Opi shot. If captured, wire it into `AiPlatform.tsx` as a second `ProductShot`. |
 
----
-
-Until these are dropped in, `ObeyaWalkthrough` shows a labelled placeholder per
-frame and the landing pages show captioned placeholder boxes — layout and copy
-are reviewable now.
+Optional extras (nice to have, not blocking): `ai/ai-controls.png` (Portal → AI
+Controls kill switch) and `ai/ai-usage.png` (Business Hub AI Usage dashboard) for
+the governance section — blur any emails / real enterprise names.

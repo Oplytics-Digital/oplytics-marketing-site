@@ -232,9 +232,9 @@ export default function Obeya() {
           </AnimateOnScroll>
           <AnimateOnScroll variant="slide-left">
             <ProductShot
-              src="/screenshots/obeya/02-lobby.png"
-              alt="The Obeya Room lobby — readiness gate and pillar status"
-              label="Lobby — readiness gate"
+              src="/screenshots/obeya/03-rooms.png"
+              alt="The AI Facilitator room list — a plant review fed by two area huddles"
+              label="Hierarchy-aware rooms"
             />
           </AnimateOnScroll>
         </div>
