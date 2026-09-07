@@ -1,8 +1,12 @@
 name: Build and deploy (VPS)
 
+# Production deploys fire on a release TAG, never on a push to main.
+# `main` is the integration branch (CI gates PRs); a release is:
+#   git tag -a v2026.09.10 -m "..." && git push origin v2026.09.10
+# See oplytics-policy-deployment#207 and its SANDBOX-PLAN.md.
 on:
   push:
-    branches: [main]
+    tags: ["v*"]
 
 concurrency:
   group: deploy-marketing-site-vps
@@ -38,6 +42,7 @@ jobs:
           tags: |
             ${{ steps.meta.outputs.image }}:latest
             ${{ steps.meta.outputs.image }}:${{ github.sha }}
+            ${{ steps.meta.outputs.image }}:${{ github.ref_name }}
 
   deploy:
     needs: build-and-push
