@@ -1,4 +1,5 @@
 import express from "express";
+import rateLimit from "express-rate-limit";
 import { createServer } from "http";
 import path from "path";
 import fs from "fs";
@@ -78,8 +79,17 @@ async function startServer() {
   // <title>/description/OG tags rewritten per-route so crawlers, link-preview
   // unfurlers, and any tool that doesn't execute JS see real page-specific
   // content instead of the same static fallback on every URL.
+  //
+  // Rate-limited per the CodeQL js/missing-rate-limiting recommendation —
+  // this reads and rewrites a file from disk on every unmatched request.
+  const spaFallbackLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    limit: 300,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
   const indexHtmlPath = path.join(staticPath, "index.html");
-  app.get("*", (req, res) => {
+  app.get("*splat", spaFallbackLimiter, (req, res) => {
     fs.readFile(indexHtmlPath, "utf8", (err, html) => {
       if (err) {
         res.sendFile(indexHtmlPath);
