@@ -29,22 +29,22 @@ interface Frame {
 
 const FRAMES: Frame[] = [
   {
+    src: "/screenshots/obeya/03-rooms.png",
+    label: "Pick a room",
+    caption:
+      "One room per team, feeding the one above. The plant review is fed by the area huddles below it.",
+  },
+  {
     src: "/screenshots/obeya/01-room.png",
     label: "The room",
     caption:
       "Walk into the Obeya Room — a 3D war room with every SQDCP pillar on the wall, live. A readiness check confirms every pillar has data before the huddle can start.",
   },
   {
-    src: "/screenshots/obeya/03-rooms.png",
-    label: "Tier on tier",
-    caption:
-      "One room per team, feeding the one above. The plant review is fed by the area huddles below it.",
-  },
-  {
     src: "/screenshots/obeya/02-seats.png",
     label: "Check in",
     caption:
-      "Assign a representative to each pillar for today's huddle, then check in — a quick ceremony, not an identity check.",
+      "Live RAG per pillar, and who's representing it today — Safety and People are red, Actions has 16 overdue. Assign a rep to each, then start the huddle.",
   },
   {
     src: "/screenshots/obeya/04-board-walk.png",
@@ -189,8 +189,8 @@ export default function ObeyaWalkthrough() {
         />
       </div>
 
-      {/* Frame */}
-      <div className="relative bg-[#080C16] aspect-[1490/778]">
+      {/* Frame — matches the source screenshots' ~16:10 ratio so nothing is cropped */}
+      <div className="relative bg-[#080C16] aspect-[16/10]">
         {missing[frame.src] ? (
           <div
             className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center"
@@ -214,7 +214,7 @@ export default function ObeyaWalkthrough() {
           <img
             src={frame.src}
             alt={frame.caption}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
             loading="lazy"
             onError={() => setMissing(m => ({ ...m, [frame.src]: true }))}
           />

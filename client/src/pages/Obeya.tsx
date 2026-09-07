@@ -132,7 +132,7 @@ export default function Obeya() {
           </AnimateOnScroll>
           <Suspense
             fallback={
-              <div className="aspect-[1490/778] rounded-lg border border-[#1E2738] bg-[#0D1220] flex items-center justify-center">
+              <div className="aspect-[16/10] rounded-lg border border-[#1E2738] bg-[#0D1220] flex items-center justify-center">
                 <span className="text-xs text-[#596475] animate-pulse">
                   Loading walkthrough…
                 </span>
