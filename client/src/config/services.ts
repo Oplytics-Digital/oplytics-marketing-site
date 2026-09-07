@@ -176,17 +176,11 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
   },
   sqdcp: {
     id: "sqdcp-hub",
+    // The SolutionPage demo slot renders the interactive ObeyaWalkthrough
+    // (registered in demos/index.ts). These feed the Home service-card hover
+    // preview only. TODO: reshoot on the current Obeya UI (they predate #762)
+    // and repoint at /screenshots/obeya/ — see SCREENSHOT-MANIFEST.md.
     demoScreenshots: [
-      {
-        src: "/screenshots/sqdcp/01.png",
-        caption:
-          "The Obeya Room — walk into a 3D war room with every pillar on the wall",
-      },
-      {
-        src: "/screenshots/sqdcp/02.png",
-        caption:
-          "Lobby — a readiness gate checks every pillar has data before the huddle can start",
-      },
       {
         src: "/screenshots/sqdcp/03.png",
         caption:
@@ -195,12 +189,7 @@ const MARKETING_EXTENSIONS: Record<string, MarketingExtension> = {
       {
         src: "/screenshots/sqdcp/04.png",
         caption:
-          "Board walk — the camera focuses each pillar; a PDCA panel and 5-Why stepper dock alongside",
-      },
-      {
-        src: "/screenshots/sqdcp/05.png",
-        caption:
-          "Metric drill-down — trend with green/amber/red bands and a “watch” flag when it’s heading to red",
+          "Huddle room — check in, see every pillar's status, start the huddle",
       },
       {
         src: "/screenshots/sqdcp/06.png",

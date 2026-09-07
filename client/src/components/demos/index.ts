@@ -8,7 +8,7 @@ import { lazy } from "react";
 export const PolicyDeploymentDemo = lazy(
   () => import("./PolicyDeploymentDemo")
 );
-export const SQDCPHubDemo = lazy(() => import("./SQDCPHubDemo"));
+export const ObeyaWalkthrough = lazy(() => import("./ObeyaWalkthrough"));
 export const OEEManagerDemo = lazy(() => import("./OEEManagerDemo"));
 export const ConnectDemo = lazy(() => import("./ConnectDemo"));
 export const ActionManagerDemo = lazy(() => import("./ActionManagerDemo"));
@@ -24,7 +24,7 @@ export const demoComponents: Record<
   React.LazyExoticComponent<React.ComponentType>
 > = {
   "policy-deployment": PolicyDeploymentDemo,
-  sqdcp: SQDCPHubDemo,
+  sqdcp: ObeyaWalkthrough,
   "oee-manager": OEEManagerDemo,
   connect: ConnectDemo,
   "action-manager": ActionManagerDemo,
@@ -39,4 +39,4 @@ export const demoComponents: Record<
  * "Try It Live" overlay so the mouse can reach the demo; it shows a small,
  * non-blocking corner CTA instead.
  */
-export const interactiveDemos = new Set<string>(["policy-deployment"]);
+export const interactiveDemos = new Set<string>(["policy-deployment", "sqdcp"]);

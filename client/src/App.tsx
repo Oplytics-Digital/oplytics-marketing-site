@@ -19,6 +19,8 @@ import About from "./pages/About";
 import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/ResourceArticle";
 import OpsCI from "./pages/for/OpsCI";
+import AiPlatform from "./pages/AiPlatform";
+import Obeya from "./pages/Obeya";
 
 /** Scroll to top on every route change */
 function ScrollToTop() {
@@ -35,6 +37,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/solutions" component={Home} />
       <Route path="/solutions/:slug" component={SolutionPage} />
+      <Route path="/ai" component={AiPlatform} />
+      <Route path="/obeya" component={Obeya} />
       <Route path="/for/ops-ci" component={OpsCI} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/contact" component={Contact} />

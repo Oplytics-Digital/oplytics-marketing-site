@@ -407,8 +407,11 @@ export default function SolutionPage() {
             </p>
           </div>
 
-          {/* Real product screenshots take priority over the animated recreation */}
-          {service.demoScreenshots.length > 0 ? (
+          {/* A registered interactive demo (e.g. the Obeya walkthrough) wins over
+              the static screenshot carousel; otherwise real screenshots take
+              priority over the animated recreation. */}
+          {!interactiveDemos.has(service.slug) &&
+          service.demoScreenshots.length > 0 ? (
             <ScreenshotCarousel
               slides={service.demoScreenshots}
               serviceName={service.name}
@@ -473,36 +476,41 @@ export default function SolutionPage() {
                 </div>
               );
 
-              /* Live, user-driven demos: no click-swallowing overlay — a non-blocking
-               caption + CTA sits below the demo instead. */
+              /* Live, user-driven demos: no click-swallowing overlay. Each
+                 interactive demo component carries its own caption + CTA. */
               if (DemoComponent && interactiveDemos.has(service.slug)) {
+                const interactiveCaption: Record<string, string> = {
+                  "policy-deployment":
+                    "Guided tour with sample data — it settles on the live X-Matrix: hover a row to trace its correlations, click the dots to edit links.",
+                };
+                const caption = interactiveCaption[service.slug];
                 return (
                   <div className="rounded-lg border border-[#1E2738] bg-[#0D1220] overflow-hidden">
                     <Suspense fallback={demoFallback}>
                       <DemoComponent />
                     </Suspense>
-                    <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-[#1E2738] flex-wrap">
-                      <span className="text-xs text-[#596475]">
-                        Guided tour with sample data — it settles on the live
-                        X-Matrix: hover a row to trace its correlations, click
-                        the dots to edit links.
-                      </span>
-                      <Link
-                        href="/contact"
-                        data-umami-event="cta_click"
-                        data-umami-event-button="request_live_demo"
-                        data-umami-event-location="solution_demo"
-                        data-umami-event-service={service.slug}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-white font-semibold text-xs transition-all hover:scale-105 flex-shrink-0"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
-                        }}
-                      >
-                        Open the full app
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
+                    {caption && (
+                      <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-[#1E2738] flex-wrap">
+                        <span className="text-xs text-[#596475]">
+                          {caption}
+                        </span>
+                        <Link
+                          href="/contact"
+                          data-umami-event="cta_click"
+                          data-umami-event-button="request_live_demo"
+                          data-umami-event-location="solution_demo"
+                          data-umami-event-service={service.slug}
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-white font-semibold text-xs transition-all hover:scale-105 flex-shrink-0"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
+                          }}
+                        >
+                          Open the full app
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 );
               }
