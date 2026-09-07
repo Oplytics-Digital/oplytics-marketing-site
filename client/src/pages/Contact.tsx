@@ -10,16 +10,16 @@ import HeroSection from "@/components/shared/HeroSection";
 import ContactForm from "@/components/shared/ContactForm";
 import SEOHead from "@/components/shared/SEOHead";
 import AnimateOnScroll from "@/components/shared/AnimateOnScroll";
-import { Linkedin, Instagram } from "lucide-react";
+import { LinkedinIcon, InstagramIcon } from "@/components/shared/BrandIcons";
 
 const socialLinks = [
   {
-    icon: <Linkedin className="w-5 h-5" />,
+    icon: <LinkedinIcon className="w-5 h-5" />,
     label: "LinkedIn — Coming Soon",
     href: "#",
   },
   {
-    icon: <Instagram className="w-5 h-5" />,
+    icon: <InstagramIcon className="w-5 h-5" />,
     label: "Instagram — Coming Soon",
     href: "#",
   },
