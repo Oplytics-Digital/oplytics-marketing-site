@@ -6,7 +6,6 @@ WORKDIR /app
 # ---- install all deps, including dev deps needed to build ----
 FROM base AS deps
 COPY package.json pnpm-lock.yaml ./
-COPY patches ./patches
 RUN pnpm install --frozen-lockfile
 
 # ---- build client (vite) + server bundle (esbuild) ----
@@ -17,7 +16,6 @@ RUN pnpm run build
 # ---- production-only deps ----
 FROM base AS prod-deps
 COPY package.json pnpm-lock.yaml ./
-COPY patches ./patches
 RUN pnpm install --frozen-lockfile --prod
 
 # ---- final runtime image ----
