@@ -4,7 +4,11 @@ import { createServer } from "http";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { createSupportEngine, LLMBudgetError } from "@pablo2410/core-server";
+import {
+  createSupportEngine,
+  LLMBudgetError,
+  securityHeaders,
+} from "@pablo2410/core-server";
 import { ENV } from "./env";
 import { createLedgerHooks } from "./aiUsageClient";
 import { injectPageMeta } from "./pageMeta";
@@ -35,6 +39,12 @@ const supportEngine = createSupportEngine(
 async function startServer() {
   const app = express();
   const server = createServer(app);
+
+  // Security response headers on every response (RISK-09, ISO 27001 gap
+  // analysis). CSP is report-only for now — flip to cspMode: "enforce" once
+  // the violation reports are clean. The public site's browser code only
+  // calls same-origin (/api/ai/chat) and the portal leads API (a default).
+  app.use(securityHeaders());
 
   app.use(express.json());
 
