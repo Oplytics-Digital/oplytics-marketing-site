@@ -43,6 +43,11 @@ const STATIC_PAGE_META: Record<string, PageMeta> = {
     description:
       "Run your daily SQDCP huddle in an immersive 3D Obeya Room — a readiness gate, a board walk with PDCA on every red, and a close-out recap. Turn on the AI Facilitator and Opi drafts the facilitation as you go. Hierarchy-aware rooms, from plant review down to area teams.",
   },
+  "/pitch/beta": {
+    title: "Oplytics Beta Cohort",
+    description:
+      "A first look at Oplytics for the free beta cohort — one platform that runs your strategy deployment, your daily SQDCP boards, your huddle and your actions, with an AI that reads the data for you. Six months, full platform, no cost. We're taking ten sites.",
+  },
   "/pricing": {
     title: "Pricing",
     description:
