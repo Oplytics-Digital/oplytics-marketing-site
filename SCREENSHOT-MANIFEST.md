@@ -28,3 +28,35 @@ All shots from the **live Testa environment** (`sqdcp.oplyticsdigital.net`,
   section. Blur any emails.
 - `ai/ai-usage.png` — Business Hub AI Usage & Cost dashboard. Blur real enterprise
   names.
+
+---
+
+# /pitch/beta deck — v2 shots needed (PR #150 follow-up)
+
+Drop into `client/public/screenshots/pitch/`. All from the **live Testa
+environment**, logged in as a Testa user. **Turn the "Screenshot" debug button
+OFF** if it's showing (bottom-centre floating pill), or capture so it's below the
+16:10 crop. Landscape, ~1600px+ wide, no personal data beyond "Paul Cox" (fine).
+
+| File (in `screenshots/pitch/`) | Where                                                                                                                                        | What it should show                                                                                                                                                                                                                                                                                                    |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pd-xmatrix.png`               | `policy.oplyticsdigital.net` → **X-Matrix**                                                                                                  | The Hoshin X-matrix grid — annual objectives down the left, tactics across the top, the correlation dots in the quadrants, the coloured pillar legend. The current `policy-deployment/02.png` is close but its Opi sidebar says "coaching logic is mocked" — reshoot with the sidebar closed, or on the current build. |
+| `pd-cascade.png`               | `policy.oplyticsdigital.net` → **Catchball** or **Deployments** (whichever best shows one objective cascading Enterprise → BU → Site → Area) | The cascade / catchball view — a breakthrough objective breaking down through the hierarchy, each level's contribution visible. If there's no single clean "tree" screen, the Catchball view is fine.                                                                                                                  |
+| `sqdcp-dashboard.png`          | `sqdcp.oplyticsdigital.net` → **Dashboard** (Testa Midlands Plant scope)                                                                     | The current SQDCP board — the 5 SQDCP pillar cards with radar/target charts and RAG, the data-coverage / today's-status header. `sqdcp/01.png` is the old radar-only UI + has the debug button + is dated 2 Aug — needs a fresh one on the current build.                                                              |
+| `am-dashboard.png`             | `action.oplyticsdigital.net` → **Analytics** (or **Dashboard**)                                                                              | The Action Manager analytics view — the total/completed/in-progress/overdue stat cards + the Status Distribution and Priority Breakdown donuts. `action-manager/03.png` is exactly this but has the debug button showing — reshoot without it.                                                                         |
+
+### Nice-to-have reshoots (deck works without them — it falls back to what's there)
+
+- `oee-manager/01.png` — the Loss Insights screen. Current one is used as-is in the
+  new **OEE Manager** section (which is explicitly marked "In development"), but it
+  shows "AI Preview · Upgrade for live insights" and the debug button. A clean
+  reshoot on the current build would be tidier.
+- Any of the `policy-deployment/*` / `action-manager/*` / `sqdcp/01` shots used
+  elsewhere on the marketing site — they all predate recent UI work and carry the
+  debug button.
+
+### After the shots land
+
+`git add client/public/screenshots/pitch/*.png`, commit onto `feat/pitch-deck-v2`,
+push — the deck's `PitchShot` components pick them up automatically (they show a
+labelled placeholder until the file resolves). Then mark PR ready + merge + tag.
