@@ -3,21 +3,22 @@
  *
  * A scrolling, artifact-style document for a first look at Oplytics. Built for
  * the free beta cohort: introduce the platform, the value prop, and the hooks,
- * ending on the ask — join the first cohort, six months, full platform, free.
+ * ending on the ask — join the first cohort, six months, full access, free.
  *
  * Deliberately NOT wrapped in MarketingLayout: a pitch wants no nav chrome. Its
  * own minimal shell (brand mark + one persistent "you are here" cascade rail)
  * so it reads as a focused document, not a website page.
  *
- * It's a VISUAL first look — every section carries a real screenshot from the
- * live Testa environment (see client/public/screenshots/, SCREENSHOT-MANIFEST.md),
- * framed like the app. Opi — the platform AI — gets its own visual signature
- * (the purple orb, a purple-glow "Opi says" panel) so the AI story reads at a
- * glance and stands apart from the site's teal accent.
+ * It's a VISUAL first look — every service section carries a real screenshot
+ * from the live Testa environment (see client/public/screenshots/,
+ * SCREENSHOT-MANIFEST.md), framed like the app. Opi — the platform AI — gets its
+ * own visual signature (the purple orb, a purple-glow "Opi says" panel) so the
+ * AI story reads at a glance and stands apart from the site's teal accent.
  *
  * Voice: a UK operator who's stood on the shop floor. Plain English, no
  * corpo-speak, no Americanisms. Every claim maps to something that's actually
- * built (see the AI + Obeya splash, PR #127).
+ * built (see the AI + Obeya splash, PR #127); anything in development is
+ * labelled as such.
  *
  * All colour/type tokens are the site's own brand system (client/src/index.css).
  */
@@ -31,6 +32,7 @@ import {
   Target,
   LayoutGrid,
   ClipboardCheck,
+  Gauge,
   Box,
   Sparkles,
 } from "lucide-react";
@@ -49,9 +51,11 @@ const TIERS = [
   { id: "daily", label: "SQDCP boards", tier: "Site" },
   { id: "obeya", label: "The Obeya Room", tier: "Area" },
   { id: "actions", label: "Action Manager", tier: "Area" },
+  { id: "oee", label: "OEE Manager", tier: "Line" },
   { id: "opi", label: "Opi", tier: "Every tier" },
   { id: "founder", label: "Who's behind it", tier: "" },
   { id: "offer", label: "The offer", tier: "" },
+  { id: "appendix", label: "The detail", tier: "" },
 ];
 
 const RAIL_ICON: Record<string, typeof Target> = {
@@ -59,6 +63,7 @@ const RAIL_ICON: Record<string, typeof Target> = {
   daily: LayoutGrid,
   obeya: Box,
   actions: ClipboardCheck,
+  oee: Gauge,
   opi: Sparkles,
 };
 
@@ -135,19 +140,21 @@ function PillarStrip() {
 /* ── A framed product screenshot. Reads like the app — a slim title bar with
    traffic lights — and degrades to a labelled placeholder if the image is
    missing, so the deck is reviewable before shots land. All shots are from the
-   live Testa environment. ── */
+   live Testa environment. `status` stamps a corner tag (e.g. "In development"). ── */
 function PitchShot({
   src,
   alt,
   label,
   caption,
   tone = "teal",
+  status,
 }: {
   src: string;
   alt: string;
   label: string;
   caption?: string;
   tone?: "teal" | "purple";
+  status?: string;
 }) {
   const [missing, setMissing] = useState(false);
   return (
@@ -158,6 +165,7 @@ function PitchShot({
           <span className="shot-dot" />
           <span className="shot-dot" />
           <span className="shot-bar-label">{label}</span>
+          {status ? <span className="shot-status">{status}</span> : null}
         </div>
         <div className="shot-body">
           {missing ? (
@@ -201,7 +209,20 @@ function OpiSays({
   );
 }
 
-/* One deck section. `n` drives the rail highlight via IntersectionObserver. */
+/* ── A one-line "here's what Opi does on this screen" note, for each service
+   deep-dive. Smaller than OpiSays — a label, not a quote. ── */
+function OpiHere({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="opi-here">
+      <span className="opi-orb opi-orb-sm" aria-hidden="true" />
+      <span>
+        <strong>Opi here:</strong> {children}
+      </span>
+    </p>
+  );
+}
+
+/* One deck section. `id` drives the rail highlight via IntersectionObserver. */
 function Tier({
   id,
   eyebrow,
@@ -253,7 +274,7 @@ export default function BetaPitch() {
     <div className="pitch">
       <SEOHead
         title="Oplytics Beta Cohort"
-        description="A first look at Oplytics for the free beta cohort — one platform that runs your strategy deployment, your daily SQDCP boards, your huddle and your actions, with an AI that reads the data for you. Six months, full platform, no cost. We're taking ten sites."
+        description="A first look at Oplytics for the free beta cohort — one Operational Excellence platform that runs your strategy deployment, your daily SQDCP boards, your huddle, your actions and your OEE losses, with an AI that reads the data for you. Six months of full access, no cost. We're taking ten sites."
         ogType="website"
       />
       <style>{STYLES}</style>
@@ -302,9 +323,10 @@ export default function BetaPitch() {
             — on one platform.
           </h1>
           <p className="hero-sub">
-            Strategy deployment, daily SQDCP boards, the huddle and every action
-            — connected, so an improvement you make on Tuesday can be traced to
-            the objective it serves and the result it delivered.
+            Strategy deployment, daily SQDCP boards, the huddle, every action
+            and your OEE losses — connected, so an improvement you make on
+            Tuesday can be traced to the objective it serves and the result it
+            delivered.
           </p>
           <PillarStrip />
           <p className="hero-note">
@@ -326,21 +348,24 @@ export default function BetaPitch() {
           onSeen={setActive}
         >
           <h2 className="tier-h">
-            You&rsquo;ve got the method. The method is stuck in spreadsheets.
+            You&rsquo;ve got the intent. It&rsquo;s the systems that make
+            excellence hard to drive.
           </h2>
           <div className="two-col">
             <p>
-              Most manufacturers we talk to are already doing the right things.
-              There&rsquo;s a Hoshin plan. There are SQDCP boards on the wall.
-              The tier meetings happen. The actions get raised.
+              Many manufacturers we talk to are doing some of the right things.
+              There&rsquo;s a Policy Deployment intent. There are tracking
+              boards on the wall &mdash; some working, some not. A meeting
+              happens. There are actions.
             </p>
             <p>
-              But the plan lives in one file, the boards in another, the actions
-              on sticky notes and in someone&rsquo;s inbox. Nothing joins up. So
-              the tier meeting runs on last week&rsquo;s numbers, the same
-              problems come back because the root cause was never properly
-              chased, and when finance asks what the improvement programme
-              actually delivered, nobody can point to the line.
+              What&rsquo;s missing is the join-up. The accountability. The pace.
+              The standard work. It&rsquo;s loose &mdash; because the tools make
+              it genuinely hard to drive real excellence. The plan lives in one
+              file, the boards in another, the actions in an inbox. So the
+              meeting runs on last week&rsquo;s numbers, the same problems come
+              back, and nobody can point finance to the line the programme
+              delivered.
             </p>
           </div>
           <ul className="gap-list">
@@ -373,19 +398,21 @@ export default function BetaPitch() {
           onSeen={setActive}
         >
           <h2 className="tier-h">
-            One data model, from the annual objective to the machine.
+            One Operational Excellence platform. Powered by AI.
           </h2>
           <p className="lead">
-            Not four tools with an integration bolted between them. One platform
+            Policy Deployment, SQDCP, the Obeya Room huddle and Action Manager
+            &mdash; all in one, with OEE Manager integration in development. Not
+            separate tools with a connector bolted between them: one platform
             where the objective, the board, the huddle and the action are the
-            same set of records — so the thread from strategy to result is never
+            same set of records, so the thread from strategy to result is never
             broken.
           </p>
           <PitchShot
             src="/screenshots/obeya/01-room.png"
             alt="The Obeya Room in Oplytics — a 3D huddle room with the S, Q, D, C, P pillars live on the wall"
             label="SQDCP · Obeya Room · Testa Midlands Plant"
-            caption="The daily huddle room, live. Every pillar on the wall, RAG from real targets — this is one screen of the platform, not a mock-up."
+            caption="The daily huddle room, live. Every pillar on the wall, RAG from real targets — one screen of the platform, not a mock-up."
           />
           <div className="cascade">
             <div className="casc-node casc-strategy">
@@ -416,11 +443,19 @@ export default function BetaPitch() {
               Action Manager
               <span>every action, tracked to verified closure</span>
             </div>
+            <div className="casc-arrow">
+              loss data feeds from
+              <ArrowDown size={14} />
+            </div>
+            <div className="casc-node casc-oee">
+              OEE Manager
+              <span className="casc-dev">integration in development</span>
+            </div>
           </div>
           <p className="hook">
             When an OEE loss triggers an action, that action lands on the SQDCP
-            board, links to the Hoshin objective it affects, and tracks through
-            to closure. One thread, end to end.
+            board, links to the Policy Deployment objective it affects, and
+            tracks through to closure. One thread, end to end.
           </p>
         </Tier>
 
@@ -434,28 +469,37 @@ export default function BetaPitch() {
           <h2 className="tier-h">
             Strategy that reaches the floor, not the shelf.
           </h2>
-          <div className="two-col">
-            <p>
-              Set your breakthrough objectives and annual priorities the Hoshin
-              Kanri way. Build the X-matrix so every tactic, project, metric and
-              owner is visible in one place. Cascade it down through catchball —
-              top-down goals meeting bottom-up reality at every level.
-            </p>
-            <p>
-              Then it&rsquo;s not a document you review once a quarter. Opi
-              scores the cascade live — which pillars are anchored, how many
-              metrics are actually wired to a real target, whether data is
-              coming back from sites — and names the gap and the next move, in
-              plain English.
-            </p>
-          </div>
+          <p className="lead">
+            Set your breakthrough objectives and annual priorities the Hoshin
+            Kanri way. Build the X-matrix so every tactic, project, metric and
+            owner is visible on one grid. Then cascade it through catchball
+            &mdash; top-down goals meeting bottom-up reality at every level.
+          </p>
+          <PitchShot
+            src="/screenshots/pitch/pd-xmatrix.png"
+            alt="The Hoshin X-matrix in Oplytics Policy Deployment — annual objectives, tactics, projects and metrics correlated on one grid"
+            label="Policy Deployment · X-Matrix"
+            caption="The Hoshin X-matrix — annual objectives down the side, tactics across the top, projects and metrics correlated in the quadrants. The whole plan on one grid."
+          />
+          <PitchShot
+            src="/screenshots/pitch/pd-cascade.png"
+            alt="The Policy Deployment cascade in Oplytics — a breakthrough objective cascading through business unit, site and area with catchball"
+            label="Policy Deployment · Cascade"
+            caption="One breakthrough objective, cascaded down the hierarchy through catchball — each level agreeing its contribution before it's committed."
+          />
           <PitchShot
             src="/screenshots/ai/opi-insights-pd.png"
-            alt="The Policy Deployment dashboard in Oplytics with the Opi Insights panel open, showing an execution-gap score and prioritised findings"
-            label="Policy Deployment · Testa 2026 Strategic Plan"
-            caption="The X-matrix plan on the left; Opi's live read of the cascade on the right — an execution-gap score and the specific pillars carrying the plan."
+            alt="The Policy Deployment dashboard in Oplytics with the Opi Insights panel open, showing a cascade-strength score and prioritised findings"
+            label="Policy Deployment · Opi Insights"
+            caption="Opi's live read of the cascade — a strength score, which objectives are anchored, which have no project behind them."
             tone="purple"
           />
+          <OpiHere>
+            reads the whole cascade and scores it &mdash; which pillars are
+            anchored, how many metrics are wired to a real target, whether data
+            is coming back from sites &mdash; then names the gap and the next
+            move in plain English.
+          </OpiHere>
           <OpiSays context="Policy Deployment, live">
             &ldquo;Delivery has targets but zero projects to hit them, while
             Safety and People are completely undeployed. Add execution projects
@@ -489,11 +533,16 @@ export default function BetaPitch() {
             </p>
           </div>
           <PitchShot
-            src="/screenshots/obeya/x-admin-cascade.png"
-            alt="The SQDCP admin screen in Oplytics showing metrics tagged 'Cascaded from Enterprise PD', 'Business Unit PD' and 'Site PD'"
-            label="SQDCP · Admin · Metrics &amp; KPIs"
-            caption="Every metric on the board carries its lineage — cascaded from Enterprise, Business Unit or Site Policy Deployment. The strategy and the daily board are the same records."
+            src="/screenshots/pitch/sqdcp-dashboard.png"
+            alt="The SQDCP dashboard in Oplytics at Testa enterprise scope — the Safety, Quality, Delivery, Cost and People pillars with target charts and RAG status"
+            label="SQDCP · Dashboard · Testa"
+            caption="The live board at enterprise scope — five pillars, real targets, RAG from the data. Safety and People red, 14 open actions, 10 overdue. The same board drills all the way down to a single team."
           />
+          <OpiHere>
+            in the sidebar, reads the board&rsquo;s data for the pattern a busy
+            shift would walk past &mdash; a metric drifting, a red with no
+            action against it &mdash; and hands back a short, prioritised list.
+          </OpiHere>
           <p className="hook">
             Every tier &mdash; shop floor to enterprise &mdash; sees the same
             board, at its own level of detail.
@@ -503,22 +552,34 @@ export default function BetaPitch() {
         {/* ── The Obeya Room ── the headline feature ── */}
         <Tier
           id="obeya"
-          eyebrow="The Obeya Room"
+          eyebrow="The Obeya Room · AI Facilitator"
           tier="Area"
           onSeen={setActive}
         >
-          <h2 className="tier-h">Your daily huddle, in a room built for it.</h2>
+          <h2 className="tier-h">
+            Your daily huddle, run by an AI facilitator.
+          </h2>
           <p className="lead">
-            Not a screen-share of a dashboard. Walk into a 3D war room with
-            every pillar on the wall, live. A readiness gate that won&rsquo;t
-            let you start on missing data. A board walk with PDCA and a 5-Why on
-            every red. A close-out that carries forward to tomorrow.
+            This is the one to look at. Walk into a 3D war room with every
+            pillar on the wall, live &mdash; then turn the AI Facilitator on and
+            Opi runs the meeting with you. A line at every stage. A read on
+            every red pillar. The next 5-Why step, drafted. An accountability
+            prompt per overdue action. A close-out recap. You edit and confirm;
+            Opi keeps the pace and the standard work.
           </p>
           <PitchShot
-            src="/screenshots/obeya/02-seats.png"
-            alt="The Obeya Room lobby in Oplytics — pillar status and representatives, with an Auto-assign seats button and an AI-assisted toggle"
-            label="SQDCP · Obeya Room · lobby"
-            caption="Before you start: a rep on every pillar, live RAG, and the AI-assisted toggle. Safety and People red, Actions with 16 overdue — you see it before the huddle begins."
+            src="/screenshots/sqdcp/03.png"
+            alt="The AI Facilitator in Oplytics — the Opi orb, a plant review room and two area huddles feeding into it"
+            label="SQDCP · AI Facilitator"
+            caption="One room per team, feeding the one above it. Opi facilitates each one — see what's red, root-cause it, own it."
+            tone="purple"
+          />
+          <PitchShot
+            src="/screenshots/obeya/05-opi-line.png"
+            alt="The Obeya Room mid-huddle — the Safety pillar red, with an Opi facilitator line and a Confirm owner control"
+            label="Obeya Room · Safety pillar · mid-huddle"
+            caption="A red pillar in focus. Opi reads it, drafts the action, names the owner — Sarah Chen confirms. Opi never does."
+            tone="purple"
           />
           <ol className="flow">
             <li>
@@ -540,9 +601,10 @@ export default function BetaPitch() {
             <li>
               <span className="flow-n">3</span>
               <div>
-                <strong>Board walk</strong>
-                The camera focuses each pillar. Greens acknowledged; reds get a
-                PDCA panel and a 5-Why stepper docked alongside.
+                <strong>Board walk, with Opi</strong>
+                The camera focuses each pillar. Greens acknowledged; on every
+                red Opi narrates the finding, drafts a 5-Why and a PDCA panel
+                docks alongside.
               </div>
             </li>
             <li>
@@ -550,28 +612,28 @@ export default function BetaPitch() {
               <div>
                 <strong>Action on every red</strong>A red metric raises an
                 action automatically, routed to the right owner through your
-                reporting line.
+                reporting line. Opi prompts each owner for a firm date.
               </div>
             </li>
             <li>
               <span className="flow-n">5</span>
               <div>
                 <strong>Close out</strong>
-                Win of the day, the issues that matter, tomorrow&rsquo;s
-                priorities. It carries into the next huddle.
+                Opi writes the recap &mdash; win of the day, the issues that
+                matter, tomorrow&rsquo;s priorities. It carries into the next
+                huddle.
               </div>
             </li>
           </ol>
-          <PitchShot
-            src="/screenshots/obeya/04-board-walk.png"
-            alt="The board walk in the Obeya Room — a pillar in focus on the 3D wall with a PDCA panel and measures docked alongside"
-            label="Obeya Room · board walk"
-            caption="A red pillar in focus on the wall. Measures, trend and the PDCA panel docked alongside — worked in the room, not after it."
-          />
+          <OpiSays context="mid-huddle, close-out">
+            &ldquo;We&rsquo;re addressing red indicators in Safety and People
+            today. Immediate focus is the three newly assigned actions to
+            resolve them &mdash; top priority carrying into tomorrow.&rdquo;
+          </OpiSays>
           <p className="hook">
-            One room per team, feeding the one above it. An issue that
-            can&rsquo;t be sorted at one level escalates to the room a tier up
-            &mdash; resolved live from your org structure, not hard-wired.
+            Manual mode is zero AI &mdash; every Opi touch is behind the
+            AI-assisted toggle, and the facilitator confirms every draft. The
+            ordering, the escalation, the RAG status: all deterministic.
           </p>
         </Tier>
 
@@ -592,24 +654,71 @@ export default function BetaPitch() {
               admin.
             </p>
             <p>
-              Opi reads the whole portfolio &mdash; backlog ageing, whether
-              closure is keeping up with inflow, where actions pile up on one
-              owner, what&rsquo;s stalled &mdash; and hands back a prioritised
-              list with the next move on each.
+              Board, list, calendar and analytics views. Reminders straight out
+              through Outlook and Teams. And it&rsquo;s the single source of
+              truth &mdash; the SQDCP board and the Obeya Room both read and
+              write the same actions.
             </p>
           </div>
           <PitchShot
-            src="/screenshots/obeya/06-actions.png"
-            alt="The actions step of an Obeya Room huddle in Oplytics — an Opi accountability brief over a list of 16 overdue actions grouped by pillar"
-            label="Obeya Room · actions step"
-            caption="The overdue list, grouped by pillar and owner, with Opi's accountability brief up top — worked one at a time for a firm commitment date on each."
+            src="/screenshots/pitch/am-dashboard.png"
+            alt="The Action Manager board in Oplytics for a Testa site — a Kanban of actions with Opi scores, and the Opi Insights panel open showing a bottleneck analysis"
+            label="Action Manager · Board · Opi Insights"
+            caption="The board, with Opi's read of the whole portfolio on the right — 22 actions, 20 open, 16 overdue, and a bottleneck score of 25."
             tone="purple"
           />
-          <OpiSays context="Action Manager backlog">
-            &ldquo;Closure rate is behind inflow two weeks running, and 60% of
-            open actions sit with one owner. The backlog is
-            concentrating.&rdquo;
+          <OpiHere>
+            reads the whole portfolio &mdash; backlog ageing, whether closure is
+            keeping up with inflow, where actions pile up on one owner,
+            what&rsquo;s stalled &mdash; and hands back a prioritised list with
+            the next move on each.
+          </OpiHere>
+          <OpiSays context="Action Manager, live">
+            &ldquo;The backlog is growing rapidly as inflow outpaces closure.
+            Paul Cox is holding 17 of the 30 open actions &mdash; 15 overdue,
+            not updated in 17 days. Offload at least 5 low-priority actions to
+            other team members.&rdquo;
           </OpiSays>
+        </Tier>
+
+        {/* ── OEE Manager ── in development ── */}
+        <Tier id="oee" eyebrow="OEE Manager" tier="Line" onSeen={setActive}>
+          <div className="dev-banner">
+            In development &middot; in the beta you&rsquo;ll be testing this one
+            with us
+          </div>
+          <h2 className="tier-h">
+            Every hour of lost output, priced and pointed at a cause.
+          </h2>
+          <div className="two-col">
+            <p>
+              Log losses against the six big categories, by line and by shift.
+              OEE Manager turns them into an &ldquo;attackable loss&rdquo;
+              figure in pounds &mdash; the money on the table if you fix
+              what&rsquo;s fixable &mdash; with a loss tree and a league table
+              underneath.
+            </p>
+            <p>
+              The dashboard and the loss data are live on Testa today. What
+              we&rsquo;re still building is the deep integration &mdash; an OEE
+              loss automatically raising an Action Manager action and linking to
+              the Policy Deployment objective it drags on. That&rsquo;s a beta
+              workstream, and we want your input on it.
+            </p>
+          </div>
+          <PitchShot
+            src="/screenshots/oee-manager/01.png"
+            alt="The OEE Manager Loss Insights screen in Oplytics — an attackable loss figure of £54,106 with a week-on-week breakdown by loss category"
+            label="OEE Manager · Loss Insights"
+            caption="Attackable loss this period: £54,106. Mechanical Failure up 61% week-on-week — the biggest mover, priced in lost margin."
+            status="In development"
+          />
+          <OpiHere>
+            surfaces the movers &mdash; which loss category jumped, what
+            it&rsquo;s costing per week, where to re-check on the floor. Trend
+            coaching today; live LLM root-cause is on the roadmap with the
+            integration.
+          </OpiHere>
         </Tier>
 
         {/* ── Opi ── the AI age, its own colour world ── */}
@@ -639,7 +748,7 @@ export default function BetaPitch() {
         {/* ── The offer ── the ask ── */}
         <Tier id="offer" eyebrow="The offer" onSeen={setActive}>
           <h2 className="tier-h offer-h">
-            Six months. The full platform. No cost. {COHORT_SITES} sites.
+            Six months of full access. No cost. {COHORT_SITES} sites.
           </h2>
           <p className="lead">
             We&rsquo;re taking {COHORT_SITES} sites into the first cohort. You
@@ -650,20 +759,22 @@ export default function BetaPitch() {
           <ul className="offer-list">
             <li>
               <Check size={16} strokeWidth={3} />
-              Full platform &mdash; Policy Deployment, SQDCP, OEE Manager,
-              Action Manager, the Obeya Room and Opi
+              Full access &mdash; Policy Deployment, SQDCP, the Obeya Room,
+              Action Manager, Opi, and OEE Manager as it lands
             </li>
             <li>
               <Check size={16} strokeWidth={3} />
               Six months, no card, no auto-charge at the end
             </li>
             <li>
-              <Check size={16} strokeWidth={3} />A direct line to the person
-              building it, and a say in the roadmap
+              <Check size={16} strokeWidth={3} />
+              After the six months:{" "}
+              <strong>50% off standard pricing, locked for life</strong> if you
+              carry on
             </li>
             <li>
-              <Check size={16} strokeWidth={3} />
-              Preferential pricing locked in for life if you carry on
+              <Check size={16} strokeWidth={3} />A direct line to the person
+              building it, and a real say in the roadmap
             </li>
           </ul>
           <div className="offer-cta">
@@ -682,6 +793,66 @@ export default function BetaPitch() {
               like yours. If it fits, you&rsquo;re in the cohort.
             </span>
           </div>
+        </Tier>
+
+        {/* ── Appendix ── the procurement detail ── */}
+        <Tier id="appendix" eyebrow="The detail" onSeen={setActive}>
+          <h2 className="tier-h">
+            The bits your procurement team will ask about.
+          </h2>
+          <p className="lead">
+            We&rsquo;re a young company being upfront about where things stand.
+            Nothing here is a surprise we&rsquo;re hoping you won&rsquo;t
+            notice.
+          </p>
+          <dl className="appendix">
+            <div>
+              <dt>Security</dt>
+              <dd>
+                We&rsquo;ve self-audited against ISO 27001 and we&rsquo;re at
+                81%. The plan is to move that to 90% over the next couple of
+                releases. Protecting your data is central to how we&rsquo;re
+                building.
+              </dd>
+            </div>
+            <div>
+              <dt>EU data</dt>
+              <dd>We&rsquo;ll ensure compliance with all EU data laws.</dd>
+            </div>
+            <div>
+              <dt>Payment</dt>
+              <dd>
+                Billing runs on Stripe. It&rsquo;s built into the platform but
+                not switched on yet &mdash; and the beta has no card and no
+                charge anyway.
+              </dd>
+            </div>
+            <div>
+              <dt>Legal</dt>
+              <dd>
+                Full terms and conditions are being written and will land over
+                the coming releases. We&rsquo;ll share the beta agreement before
+                you commit.
+              </dd>
+            </div>
+            <div>
+              <dt>AI</dt>
+              <dd>
+                AI is a fast-moving technology. We commit to running your LLM
+                calls safely and guardrailed &mdash; off outside production by
+                default, kill switches, plan-gating, and a spend budget that
+                cuts off on its own.
+              </dd>
+            </div>
+            <div>
+              <dt>Supplier approval</dt>
+              <dd>
+                Tell us what your onboarding process needs &mdash; security
+                questionnaires, insurance, references &mdash; and we&rsquo;ll
+                work through it with you.
+              </dd>
+            </div>
+          </dl>
         </Tier>
 
         <footer className="pitch-foot">
@@ -733,23 +904,16 @@ function OpiTier({ onSeen }: { onSeen: (id: string) => void }) {
           <span className="tier-badge">Every tier</span>
         </div>
         <h2 className="tier-h">
-          An AI CI engineer that reads the data so your team doesn&rsquo;t have
-          to.
+          One AI CI engineer, present the whole way down.
         </h2>
         <p className="lead">
-          Opi is one AI in three places: reading a live snapshot of your Policy
-          Deployment, SQDCP or Action Manager screen for the findings a busy
-          shift would walk past; drafting the facilitation for your huddle; and
-          answering questions in the sidebar of every service. Opi drafts and
-          surfaces &mdash; your team makes every call.
+          Opi is omnipresent throughout the premium service level. Same AI,
+          three jobs: reading a live snapshot of your Policy Deployment, SQDCP,
+          Action Manager or OEE screen for the findings a busy shift would walk
+          past; facilitating your huddle in the Obeya Room; and answering
+          questions in the sidebar of every service. Opi drafts and surfaces
+          &mdash; your team makes every call.
         </p>
-        <PitchShot
-          src="/screenshots/obeya/05-opi-line.png"
-          alt="The Obeya Room mid-huddle — the Safety pillar red, with an Opi facilitator line and a Confirm owner control"
-          label="Obeya Room · Safety pillar · mid-huddle"
-          caption="Opi mid-huddle: reads the red pillar, drafts the action, names the owner. Sarah Chen confirms — Opi never does."
-          tone="purple"
-        />
         <div className="opi-grid">
           <div className="opi-card">
             <span className="opi-label">Opi Insights</span>A real language
@@ -769,9 +933,10 @@ function OpiTier({ onSeen }: { onSeen: (id: string) => void }) {
             a budget that cuts off on its own.
           </div>
         </div>
-        <OpiSays context="mid-huddle">
-          &ldquo;Safety is red due to Lost Time Injuries, so Sarah Chen, please
-          confirm the drafted action waiting on you.&rdquo;
+        <OpiSays context="the honest version">
+          &ldquo;Opi runs on a real language model, but it&rsquo;s a drafting
+          and oversight layer &mdash; not an autopilot. Every decision, every
+          action, every RAG status stays with your team.&rdquo;
         </OpiSays>
       </div>
     </section>
@@ -998,6 +1163,21 @@ const STYLES = `
   margin-top: 30px;
 }
 
+/* ── In-development banner ── */
+.dev-banner {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 5px 12px;
+  border: 1px solid color-mix(in srgb, var(--amber) 45%, transparent);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
 /* ── Pillar strip ── */
 .pd-strip {
   display: grid;
@@ -1072,6 +1252,17 @@ const STYLES = `
   color: var(--ink-faint);
   font-weight: 600;
 }
+.shot-status {
+  margin-left: auto;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid color-mix(in srgb, var(--amber) 45%, transparent);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
 .shot-body {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -1111,6 +1302,7 @@ const STYLES = `
   color: var(--ink-faint);
   max-width: 62ch;
 }
+
 /* ── Opi's own voice ── */
 .opi-orb {
   width: 20px; height: 20px;
@@ -1151,6 +1343,23 @@ const STYLES = `
   line-height: 1.5;
 }
 
+/* ── Opi one-liner ("Opi here:") ── */
+.opi-here {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 18px 0 8px !important;
+  max-width: 62ch !important;
+  font-size: 13.5px;
+  color: var(--ink-dim) !important;
+}
+.opi-here .opi-orb { margin-top: 2px; }
+.opi-here strong {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: var(--purple-lt);
+}
+
 /* ── Gap list ── */
 .gap-list, .offer-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .gap-list li, .offer-list li {
@@ -1164,6 +1373,7 @@ const STYLES = `
 .gap-x { flex: none; font-weight: 700; line-height: 1.5; }
 .offer-list { margin-top: 24px; }
 .offer-list li { color: var(--ink); }
+.offer-list li strong { color: var(--ink); font-weight: 600; }
 .offer-list svg { flex: none; margin-top: 3px; color: var(--green); }
 
 /* ── Cascade diagram ── */
@@ -1189,10 +1399,18 @@ const STYLES = `
   margin-top: 3px;
   letter-spacing: 0;
 }
+.casc-node .casc-dev {
+  color: var(--amber);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
 .casc-strategy { border-color: color-mix(in srgb, var(--amber) 45%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--amber) 12%, transparent), color-mix(in srgb, var(--amber) 4%, transparent)); }
 .casc-daily    { border-color: color-mix(in srgb, var(--teal) 45%, transparent);  background: linear-gradient(180deg, color-mix(in srgb, var(--teal) 12%, transparent),  color-mix(in srgb, var(--teal) 4%, transparent)); }
 .casc-obeya    { border-color: color-mix(in srgb, var(--purple) 50%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--purple) 14%, transparent), color-mix(in srgb, var(--purple) 4%, transparent)); }
 .casc-actions  { border-color: color-mix(in srgb, var(--green) 45%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--green) 12%, transparent), color-mix(in srgb, var(--green) 4%, transparent)); }
+.casc-oee      { border-color: color-mix(in srgb, var(--line) 90%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 80%, transparent), transparent); border-style: dashed; }
 .casc-arrow {
   display: flex;
   flex-direction: column;
@@ -1204,6 +1422,29 @@ const STYLES = `
   color: var(--ink-faint);
   padding: 6px 0;
 }
+
+/* ── The Opi section — its own colour world ── */
+.tier-opi {
+  position: relative;
+  background:
+    radial-gradient(60% 50% at 82% 0%, rgba(140, 52, 233, 0.13), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(29, 184, 206, 0.06), transparent 70%),
+    var(--surface) !important;
+  border-top: 1px solid color-mix(in srgb, var(--purple) 24%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--purple) 24%, transparent);
+}
+.opi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--purple-lt);
+}
+.tier-opi .opi-label { color: var(--purple-lt); }
 
 /* ── Obeya flow ── */
 .flow { list-style: none; margin: 28px 0 8px; padding: 0; display: flex; flex-direction: column; gap: 14px; counter-reset: none; }
@@ -1231,30 +1472,6 @@ const STYLES = `
 }
 .flow li div { font-size: 13.5px; color: var(--ink-dim); }
 
-/* ── The Opi section — its own colour world ── */
-.tier-opi {
-  position: relative;
-  background:
-    radial-gradient(60% 50% at 82% 0%, rgba(140, 52, 233, 0.13), transparent 70%),
-    radial-gradient(50% 40% at 0% 100%, rgba(29, 184, 206, 0.06), transparent 70%),
-    var(--surface) !important;
-  border-top: 1px solid color-mix(in srgb, var(--purple) 24%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--purple) 24%, transparent);
-}
-.opi-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--purple-lt);
-}
-.tier-opi .flow-n,
-.tier-opi .opi-label { color: var(--purple-lt); }
-
 /* ── Opi grid ── */
 .opi-grid { display: grid; gap: 12px; margin: 30px 0 8px; }
 @media (min-width: 720px) { .opi-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -1273,6 +1490,29 @@ const STYLES = `
   font-size: 13px;
   color: var(--ink);
   margin-bottom: 7px;
+}
+
+/* ── Appendix ── */
+.appendix { margin: 8px 0 0; display: grid; gap: 2px; }
+@media (min-width: 720px) { .appendix { grid-template-columns: 1fr 1fr; gap: 20px 40px; } }
+.appendix > div {
+  padding: 14px 0;
+  border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+.appendix dt {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.appendix dd {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  max-width: 46ch;
 }
 
 /* ── CTAs ── */
