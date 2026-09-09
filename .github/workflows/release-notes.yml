@@ -1,0 +1,43 @@
+name: Release notes
+
+# When a release tag is pushed, deploy-vps.yml builds + deploys the site. This
+# workflow, separately, creates the GitHub Release for that tag with
+# auto-generated notes listing every PR merged since the previous tag.
+#
+# Kept out of deploy-vps.yml so the release is created exactly once per tag and
+# a deploy failure doesn't block the release record (and vice versa).
+#
+# The Portal admin "Software Version → Releases" card reads these Releases via
+# the GitHub API, giving one cross-repo view of what shipped when.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-notes-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create or update the GitHub Release with generated notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists — regenerating notes."
+            gh release edit "$TAG" --verify-tag --generate-notes
+          else
+            gh release create "$TAG" --verify-tag --generate-notes --title "$TAG"
+          fi
