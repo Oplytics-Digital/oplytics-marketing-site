@@ -534,9 +534,9 @@ export default function BetaPitch() {
           </div>
           <PitchShot
             src="/screenshots/pitch/sqdcp-dashboard.png"
-            alt="The SQDCP dashboard in Oplytics for a Testa site — the Safety, Quality, Delivery, Cost and People pillars with radar charts and RAG status"
-            label="SQDCP · Dashboard · Testa Midlands Plant"
-            caption="A site's live board — five pillars, real targets, RAG from the data. This rolls straight up to the business unit and the enterprise."
+            alt="The SQDCP dashboard in Oplytics at Testa enterprise scope — the Safety, Quality, Delivery, Cost and People pillars with target charts and RAG status"
+            label="SQDCP · Dashboard · Testa"
+            caption="The live board at enterprise scope — five pillars, real targets, RAG from the data. Safety and People red, 14 open actions, 10 overdue. The same board drills all the way down to a single team."
           />
           <OpiHere>
             in the sidebar, reads the board&rsquo;s data for the pattern a busy
@@ -662,9 +662,10 @@ export default function BetaPitch() {
           </div>
           <PitchShot
             src="/screenshots/pitch/am-dashboard.png"
-            alt="The Action Manager dashboard in Oplytics for a Testa site — total, completed, in-progress and overdue counts with status and priority breakdowns"
-            label="Action Manager · Dashboard"
-            caption="The whole portfolio at a glance — status, priority, source and owner load. 15 actions, 8 overdue, concentrating on one owner."
+            alt="The Action Manager board in Oplytics for a Testa site — a Kanban of actions with Opi scores, and the Opi Insights panel open showing a bottleneck analysis"
+            label="Action Manager · Board · Opi Insights"
+            caption="The board, with Opi's read of the whole portfolio on the right — 22 actions, 20 open, 16 overdue, and a bottleneck score of 25."
+            tone="purple"
           />
           <OpiHere>
             reads the whole portfolio &mdash; backlog ageing, whether closure is
@@ -672,10 +673,11 @@ export default function BetaPitch() {
             what&rsquo;s stalled &mdash; and hands back a prioritised list with
             the next move on each.
           </OpiHere>
-          <OpiSays context="Action Manager backlog">
-            &ldquo;Closure rate is behind inflow two weeks running, and 60% of
-            open actions sit with one owner. The backlog is
-            concentrating.&rdquo;
+          <OpiSays context="Action Manager, live">
+            &ldquo;The backlog is growing rapidly as inflow outpaces closure.
+            Paul Cox is holding 17 of the 30 open actions &mdash; 15 overdue,
+            not updated in 17 days. Offload at least 5 low-priority actions to
+            other team members.&rdquo;
           </OpiSays>
         </Tier>
 
