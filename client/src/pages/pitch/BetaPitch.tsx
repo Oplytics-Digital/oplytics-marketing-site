@@ -1265,19 +1265,19 @@ const STYLES = `
 }
 .shot-body {
   position: relative;
-  aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: #080C16;
 }
+/* Show the whole screenshot — the shots are wider than any fixed frame ratio,
+   so let the image set its own height rather than cropping the nav / Opi panel
+   off the sides. */
 .shot-body img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
   display: block;
+  width: 100%;
+  height: auto;
 }
 .shot-ph {
-  position: absolute;
-  inset: 0;
+  aspect-ratio: 16 / 10;
   display: flex;
   flex-direction: column;
   align-items: center;
