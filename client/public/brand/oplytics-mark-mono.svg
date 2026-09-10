@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Oplytics">
+  <title>Oplytics — one colour</title>
+  <!-- Single-colour mark: fill inherits `currentColor`; set the `color`
+       (or override `fill` on <g>) to place it in purple, navy, white, black. -->
+  <defs>
+    <mask id="oplytics-rings">
+      <rect width="120" height="120" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="8">
+        <circle cx="60" cy="60" r="34"/>
+        <circle cx="60" cy="60" r="17"/>
+      </g>
+      <circle cx="77" cy="43" r="12" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="currentColor">
+    <circle cx="60" cy="60" r="58" mask="url(#oplytics-rings)"/>
+    <circle cx="77" cy="43" r="9"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 140" role="img" aria-label="Oplytics.digital — Operational Excellence. One Digital Platform. Powered by AI.">
+  <title>Oplytics.digital — stacked lockup</title>
+  <defs>
+    <linearGradient id="oplytics-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C34E9"/>
+      <stop offset="1" stop-color="#5B1FA6"/>
+    </linearGradient>
+  </defs>
+  <circle cx="180" cy="30" r="30" fill="url(#oplytics-purple)"/>
+  <g fill="none" stroke="#0A0E1A" stroke-width="4.2">
+    <circle cx="180" cy="30" r="17.5"/>
+    <circle cx="180" cy="30" r="8.5"/>
+  </g>
+  <circle cx="189" cy="21" r="4.6" fill="#1DB8CE"/>
+  <text x="180" y="90" text-anchor="middle" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="25" letter-spacing="-0.4" fill="#E2E8F0">Oplytics<tspan font-weight="300" fill="#596475">.digital</tspan></text>
+  <text text-anchor="middle" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="8" letter-spacing="1.6" fill="#1DB8CE">
+    <tspan x="180" y="110">OPERATIONAL EXCELLENCE &#183; ONE DIGITAL PLATFORM</tspan>
+    <tspan x="180" y="124">POWERED BY AI</tspan>
+  </text>
+</svg>

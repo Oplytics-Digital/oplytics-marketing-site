@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 52" role="img" aria-label="Oplytics.digital">
+  <title>Oplytics.digital — horizontal lockup, for light backgrounds</title>
+  <defs>
+    <linearGradient id="oplytics-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C34E9"/>
+      <stop offset="1" stop-color="#5B1FA6"/>
+    </linearGradient>
+  </defs>
+  <circle cx="26" cy="26" r="26" fill="url(#oplytics-purple)"/>
+  <g fill="none" stroke="#0A0E1A" stroke-width="3.6">
+    <circle cx="26" cy="26" r="15.5"/>
+    <circle cx="26" cy="26" r="7.5"/>
+  </g>
+  <circle cx="34" cy="18" r="4" fill="#1DB8CE"/>
+  <text x="64" y="35" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="27" letter-spacing="-0.5" fill="#0A0E1A">Oplytics<tspan font-weight="300" fill="#8890A0">.digital</tspan></text>
+</svg>
