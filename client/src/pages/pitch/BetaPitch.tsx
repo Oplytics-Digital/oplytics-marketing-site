@@ -282,7 +282,31 @@ export default function BetaPitch() {
       {/* Minimal shell — brand mark + the persistent cascade rail */}
       <header className="pitch-top">
         <Link href="/" className="brand" aria-label="Oplytics home">
-          <span className="brand-mark">O</span>
+          <svg
+            className="brand-mark"
+            viewBox="0 0 120 120"
+            role="img"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient
+                id="oplytics-pitch-mark"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0" stopColor="#8C34E9" />
+                <stop offset="1" stopColor="#5B1FA6" />
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="58" fill="url(#oplytics-pitch-mark)" />
+            <g fill="none" stroke="#0A0E1A" strokeWidth="8">
+              <circle cx="60" cy="60" r="34" />
+              <circle cx="60" cy="60" r="17" />
+            </g>
+            <circle cx="77" cy="43" r="9" fill="#1DB8CE" />
+          </svg>
           <span className="brand-word">
             Oplytics<span className="brand-tld">.digital</span>
           </span>
@@ -1000,13 +1024,7 @@ const STYLES = `
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-mark {
   width: 28px; height: 28px;
-  display: grid; place-items: center;
-  border-radius: 999px;
-  background: var(--purple);
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  font-size: 14px;
+  flex: none;
 }
 .brand-word {
   font-family: "Montserrat", sans-serif;
