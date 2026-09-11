@@ -65,17 +65,36 @@ export default function MarketingHeader() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ background: "#8C34E9" }}
+            <svg
+              className="w-8 h-8 shrink-0"
+              viewBox="0 0 120 120"
+              role="img"
+              aria-label="Oplytics"
             >
-              <span
-                className="text-white font-bold text-sm"
-                style={{ fontFamily: "Montserrat" }}
-              >
-                O
-              </span>
-            </div>
+              <defs>
+                <linearGradient
+                  id="oplytics-header-mark"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+                  <stop offset="0" stopColor="#8C34E9" />
+                  <stop offset="1" stopColor="#5B1FA6" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="60"
+                cy="60"
+                r="58"
+                fill="url(#oplytics-header-mark)"
+              />
+              <g fill="none" stroke="#0A0E1A" strokeWidth="8">
+                <circle cx="60" cy="60" r="34" />
+                <circle cx="60" cy="60" r="17" />
+              </g>
+              <circle cx="77" cy="43" r="9" fill="#1DB8CE" />
+            </svg>
             <span
               className="text-base font-extrabold text-white"
               style={{ fontFamily: "Montserrat" }}
