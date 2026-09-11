@@ -70,72 +70,13 @@ const RAIL_ICON: Record<string, typeof Target> = {
 /* ── How many sites we're taking. One place to change it. ── */
 const COHORT_SITES = "ten";
 
-/* A live-looking SQDCP pillar strip — the thing on the wall of every huddle.
-   Values shift once on mount so the first frame is a real board, then it
-   settles (respects reduced-motion). */
+/* RAG colour tokens — used for the "gap" section's red X marks. */
 type Rag = "green" | "amber" | "red";
-const PILLARS: { code: string; name: string; from: Rag; to: Rag }[] = [
-  { code: "S", name: "Safety", from: "amber", to: "red" },
-  { code: "Q", name: "Quality", from: "green", to: "green" },
-  { code: "D", name: "Delivery", from: "amber", to: "green" },
-  { code: "C", name: "Cost", from: "green", to: "green" },
-  { code: "P", name: "People", from: "red", to: "red" },
-];
 const RAG_HEX: Record<Rag, string> = {
   green: "#22C55E",
   amber: "#F59E0B",
   red: "#EF4444",
 };
-
-function PillarStrip() {
-  const [settled, setSettled] = useState(false);
-  useEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (reduce) {
-      setSettled(true);
-      return;
-    }
-    const t = setTimeout(() => setSettled(true), 900);
-    return () => clearTimeout(t);
-  }, []);
-
-  return (
-    <div
-      className="pd-strip"
-      role="img"
-      aria-label="SQDCP board — Safety red, People red, the rest on track"
-    >
-      {PILLARS.map((p, i) => {
-        const rag = settled ? p.to : p.from;
-        return (
-          <div
-            key={p.code}
-            className="pd-cell"
-            style={{
-              borderColor: `${RAG_HEX[rag]}66`,
-              background: `linear-gradient(180deg, ${RAG_HEX[rag]}1F, ${RAG_HEX[rag]}0A)`,
-              transitionDelay: `${i * 90}ms`,
-            }}
-          >
-            <span className="pd-code" style={{ color: RAG_HEX[rag] }}>
-              {p.code}
-            </span>
-            <span className="pd-name">{p.name}</span>
-            <span
-              className="pd-dot"
-              style={{
-                background: RAG_HEX[rag],
-                boxShadow: `0 0 10px ${RAG_HEX[rag]}`,
-              }}
-            />
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 /* ── A framed product screenshot. Reads like the app — a slim title bar with
    traffic lights — and degrades to a labelled placeholder if the image is
@@ -352,9 +293,13 @@ export default function BetaPitch() {
             Tuesday can be traced to the objective it serves and the result it
             delivered.
           </p>
-          <PillarStrip />
+          <PitchShot
+            src="/screenshots/pitch/sqdcp-dashboard.png"
+            alt="The SQDCP dashboard in Oplytics at Testa enterprise scope — the Safety, Quality, Delivery, Cost and People pillars with target charts and RAG status"
+            label="SQDCP · Dashboard · Testa"
+          />
           <p className="hero-note">
-            That strip is a live SQDCP board. Safety and People are red today.
+            That&rsquo;s a live SQDCP board. Safety and People are red today.
             The next few screens are the rest of the picture — actual product,
             actual data.
           </p>
@@ -1196,44 +1141,6 @@ const STYLES = `
   color: var(--amber);
 }
 
-/* ── Pillar strip ── */
-.pd-strip {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin: 6px 0;
-  max-width: 520px;
-}
-.pd-cell {
-  position: relative;
-  border: 1px solid;
-  border-radius: 10px;
-  padding: 14px 10px 12px;
-  text-align: center;
-  transition: border-color 500ms ease, background 500ms ease;
-}
-.pd-code {
-  display: block;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1;
-}
-.pd-name {
-  display: block;
-  margin-top: 5px;
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-.pd-dot {
-  position: absolute;
-  top: 8px; right: 8px;
-  width: 6px; height: 6px;
-  border-radius: 999px;
-}
-
 /* ── Framed screenshots ── */
 .shot {
   margin: 28px 0 8px;
@@ -1576,7 +1483,6 @@ const STYLES = `
 .foot-link:hover { color: var(--ink-dim); }
 
 @media (prefers-reduced-motion: reduce) {
-  .pd-cell { transition: none; }
   .cta:hover { transform: none; }
 }
 `;
