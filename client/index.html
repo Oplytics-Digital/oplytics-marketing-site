@@ -78,10 +78,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"
-    ></script>
+    <!--
+      Umami analytics is injected dynamically by CookieConsent.tsx only after
+      the visitor has consented to analytics cookies (UK PECR: consent before
+      the cookie is set, not an after-the-fact opt-out). Do not add an
+      unconditional <script> tag here.
+    -->
   </body>
 </html>

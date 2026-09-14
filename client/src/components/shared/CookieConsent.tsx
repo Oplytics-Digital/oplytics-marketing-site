@@ -40,16 +40,49 @@ function saveConsent(consent: ConsentState) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
 }
 
-/** Disable Umami analytics if consent not given */
+const UMAMI_SCRIPT_ID = "umami-analytics-script";
+
+/**
+ * Load the Umami script tag, but only once consent has actually been given.
+ * This is the primary mechanism: under UK PECR, analytics cookies must not
+ * be set before consent, so the script must never be present in the initial
+ * HTML — it is only ever added here, at the moment consent is granted.
+ */
+function loadAnalyticsScript() {
+  const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
+  const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID;
+  if (!endpoint || !websiteId) return; // guard: env vars not configured
+
+  // Guard against double-injection (e.g. effect re-run, multiple mounts).
+  if (document.getElementById(UMAMI_SCRIPT_ID)) return;
+
+  const script = document.createElement("script");
+  script.id = UMAMI_SCRIPT_ID;
+  script.defer = true;
+  script.src = `${endpoint}/umami`;
+  script.setAttribute("data-website-id", websiteId);
+  document.body.appendChild(script);
+}
+
+/**
+ * Defensive fallback only: if analytics consent is withdrawn/declined after
+ * the script was already injected, remove it and set the Umami disable flag.
+ * This does NOT gate the initial load — that's handled by loadAnalyticsScript
+ * only ever being called once consent is granted.
+ */
 function applyAnalyticsConsent(allowed: boolean) {
   if (!allowed) {
     // Remove Umami script if present
-    const umamiScript = document.querySelector("script[data-website-id]");
+    const umamiScript = document.querySelector(
+      `#${UMAMI_SCRIPT_ID}, script[data-website-id]`
+    );
     if (umamiScript) {
       umamiScript.remove();
     }
     // Set Umami disable flag
     (window as unknown as Record<string, unknown>)["umami.disabled"] = true;
+  } else {
+    loadAnalyticsScript();
   }
 }
 
@@ -78,6 +111,7 @@ export default function CookieConsent() {
       timestamp: Date.now(),
     };
     saveConsent(consent);
+    applyAnalyticsConsent(true);
     setVisible(false);
   }, []);
 
