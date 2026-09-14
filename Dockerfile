@@ -10,6 +10,11 @@ RUN pnpm install --frozen-lockfile
 
 # ---- build client (vite) + server bundle (esbuild) ----
 FROM deps AS build
+# So scripts/gen-version.mjs can stamp the deployed commit into version.json
+# (the deploy workflow's post-deploy verify step curls that). Was never set,
+# so commit was always null there.
+ARG GIT_SHA
+ENV GIT_SHA=$GIT_SHA
 COPY . .
 RUN pnpm run build
 
