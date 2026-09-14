@@ -138,38 +138,13 @@ function OpiHero() {
           One AI, Everywhere You Work — Not a Bot in the Corner
         </p>
 
-        <p className="text-lg sm:text-xl text-[#8890A0] leading-relaxed max-w-2xl mx-auto mb-10">
+        <p className="text-lg sm:text-xl text-[#8890A0] leading-relaxed max-w-2xl mx-auto">
           Opi is in the sidebar of every service, on shift for every huddle in
           the Obeya Room, and reading every board the moment it changes —
           scoring the cascade, catching the red nobody's raised yet, drafting
           the facilitation before you open your mouth. It drafts, it surfaces,
           it never decides — your team calls every shot.
         </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/contact"
-            data-umami-event="cta_click"
-            data-umami-event-button="book_a_demo"
-            data-umami-event-location="hero"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider text-white hover:opacity-90 glow-purple transition-all duration-200"
-            style={{
-              background: "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
-            }}
-          >
-            Book a Demo
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/obeya"
-            data-umami-event="cta_click"
-            data-umami-event-button="see_the_obeya_room"
-            data-umami-event-location="hero"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/40 hover:text-white bg-[#0D1220]/60 transition-all duration-200"
-          >
-            See the Obeya Room
-          </Link>
-        </div>
       </div>
     </section>
   );
