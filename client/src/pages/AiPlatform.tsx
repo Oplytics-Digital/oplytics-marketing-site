@@ -1,20 +1,21 @@
 /**
  * /ai — the AI platform landing page.
  *
- * The honest AI story: Opi is one AI CI Engineer that shows up in three places —
- * Opi Insights (reads your live data for the findings you'd miss), the AI
- * Facilitator (runs your daily huddle in the Obeya Room), and Ask Opi in the
- * sidebar of every service — all under real enterprise governance.
+ * The honest AI story: Opi is one AI CI Engineer that's live everywhere —
+ * scoring and ranking findings as Opi Insights, running the huddle as the AI
+ * Facilitator in the Obeya Room, and on call as Ask Opi in the sidebar of
+ * every service — all under real enterprise governance.
  *
  * Every claim on this page maps to a shipped surface. No predictive-ML claims.
  */
 import MarketingLayout from "@/components/shared/MarketingLayout";
-import HeroSection from "@/components/shared/HeroSection";
 import SEOHead from "@/components/shared/SEOHead";
 import ProductShot from "@/components/shared/ProductShot";
+import OpiOrb from "@/components/shared/OpiOrb";
 import AnimateOnScroll, {
   StaggerContainer,
 } from "@/components/shared/AnimateOnScroll";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "wouter";
 import {
   ArrowRight,
@@ -26,6 +27,10 @@ import {
   Power,
   Building2,
   FlaskConical,
+  Wrench,
+  GitBranch,
+  Users,
+  LayoutDashboard,
 } from "lucide-react";
 
 const insightExamples = [
@@ -55,6 +60,29 @@ const facilitatorMoments = [
   "A close-out recap — win of the day, the issues, tomorrow's priorities",
 ];
 
+const omnipresence = [
+  {
+    icon: <GitBranch className="w-5 h-5" />,
+    label: "Policy Deployment",
+    text: "Scores your cascade and flags the pillar carrying the plan alone",
+  },
+  {
+    icon: <LayoutDashboard className="w-5 h-5" />,
+    label: "SQDCP board",
+    text: "Catches the red with no action against it before the shift ends",
+  },
+  {
+    icon: <Wrench className="w-5 h-5" />,
+    label: "Action Manager",
+    text: "Sees the backlog concentrating on one owner two weeks out",
+  },
+  {
+    icon: <Users className="w-5 h-5" />,
+    label: "The Obeya Room",
+    text: "Drafts the facilitation, live, stage by stage, pillar by pillar",
+  },
+];
+
 const governance = [
   {
     icon: <FlaskConical className="w-5 h-5" />,
@@ -78,12 +106,81 @@ const governance = [
   },
 ];
 
+function OpiHero() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none bg-radial-purple" />
+
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <motion.div
+          className="inline-block mb-6"
+          animate={
+            reduceMotion ? undefined : { y: [0, -10, 0], rotate: [0, 3, -3, 0] }
+          }
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <OpiOrb size={88} />
+        </motion.div>
+
+        <h1
+          className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-4"
+          style={{ fontFamily: "Montserrat" }}
+        >
+          Meet Opi, Your AI CI Engineer
+        </h1>
+
+        <p
+          className="text-xl sm:text-2xl font-semibold text-[#C084FC] mb-4"
+          style={{ fontFamily: "Montserrat" }}
+        >
+          One AI, Everywhere You Work — Not a Bot in the Corner
+        </p>
+
+        <p className="text-lg sm:text-xl text-[#8890A0] leading-relaxed max-w-2xl mx-auto mb-10">
+          Opi is in the sidebar of every service, on shift for every huddle in
+          the Obeya Room, and reading every board the moment it changes —
+          scoring the cascade, catching the red nobody's raised yet, drafting
+          the facilitation before you open your mouth. It drafts, it surfaces,
+          it never decides — your team calls every shot.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/contact"
+            data-umami-event="cta_click"
+            data-umami-event-button="book_a_demo"
+            data-umami-event-location="hero"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider text-white hover:opacity-90 glow-purple transition-all duration-200"
+            style={{
+              background: "linear-gradient(135deg, #8C34E9 0%, #5B1FA6 100%)",
+            }}
+          >
+            Book a Demo
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/obeya"
+            data-umami-event="cta_click"
+            data-umami-event-button="see_the_obeya_room"
+            data-umami-event-location="hero"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-bold tracking-wider text-[#8890A0] border border-[#1E2738] hover:border-[#8C34E9]/40 hover:text-white bg-[#0D1220]/60 transition-all duration-200"
+          >
+            See the Obeya Room
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function AiPlatform() {
   return (
     <MarketingLayout>
       <SEOHead
         title="Platform AI — Meet Opi"
-        description="Opi is Oplytics' AI CI Engineer. It reads your live Policy Deployment, SQDCP and Action Manager data for the findings you'd miss, runs your daily huddle in the Obeya Room, and answers questions in the sidebar of every service — all under real enterprise governance: kill switches, plan-tier gating, and spend budgets that cut off automatically."
+        description="Opi is Oplytics' AI CI Engineer. It's live in the sidebar of every service, on shift for every huddle in the Obeya Room, and reading every board the moment it changes — scoring the cascade, catching the red nobody's raised yet, drafting the facilitation — all under real enterprise governance: kill switches, plan-tier gating, and spend budgets that cut off automatically."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
@@ -95,16 +192,53 @@ export default function AiPlatform() {
         }}
       />
 
-      <HeroSection
-        headline="Meet Opi, Your AI CI Engineer"
-        subheadline="One AI. Three Places It Shows Up."
-        subtext="Opi reads your live data for the findings a busy operator would miss, runs your daily huddle in the Obeya Room, and answers questions in the sidebar of every service. Opi drafts and surfaces — your team makes every decision."
-        status="live"
-        customCtas={[
-          { label: "Book a Demo", href: "/contact", variant: "primary" },
-          { label: "See the Obeya Room", href: "/obeya", variant: "secondary" },
-        ]}
-      />
+      <OpiHero />
+
+      {/* Omnipresence — Opi is in everything, say so loudly */}
+      <section
+        className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 border-y border-[#1E2738]/40"
+        style={{
+          background: "linear-gradient(180deg, #0D1220 0%, #080C16 100%)",
+        }}
+        role="region"
+        aria-label="Where Opi runs"
+      >
+        <div className="max-w-6xl mx-auto">
+          <AnimateOnScroll variant="slide-up" className="text-center mb-10">
+            <h2
+              className="text-xl sm:text-2xl lg:text-3xl font-bold text-white"
+              style={{ fontFamily: "Montserrat" }}
+            >
+              Every Service. Every Sidebar. Every Huddle. Opi Is Already There.
+            </h2>
+          </AnimateOnScroll>
+          <StaggerContainer
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+            variant="slide-up"
+            staggerDelay={0.08}
+          >
+            {omnipresence.map((o, i) => (
+              <div
+                key={i}
+                className="p-5 rounded-xl border border-[#1E2738] bg-[#0D1220]"
+              >
+                <div className="w-9 h-9 rounded-lg bg-[#8C34E9]/10 flex items-center justify-center mb-3 text-[#C084FC]">
+                  {o.icon}
+                </div>
+                <h3
+                  className="text-sm font-bold text-white mb-1.5"
+                  style={{ fontFamily: "Montserrat" }}
+                >
+                  {o.label}
+                </h3>
+                <p className="text-xs text-[#8890A0] leading-relaxed">
+                  {o.text}
+                </p>
+              </div>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
 
       {/* Three surfaces */}
       <section
@@ -133,17 +267,17 @@ export default function AiPlatform() {
               {
                 icon: <ListChecks className="w-5 h-5" />,
                 title: "Opi Insights",
-                desc: "Reads a structured snapshot of your Policy Deployment, SQDCP or Action Manager screen and hands back a prioritised, scored findings list — the specific gap and the next move on each.",
+                desc: "Scores the screen, ranks the findings, names the root cause — the gap a busy operator would walk straight past, and the exact next move to close it. On Policy Deployment, SQDCP and Action Manager.",
               },
               {
                 icon: <Sparkles className="w-5 h-5" />,
                 title: "AI Facilitator",
-                desc: "Turn it on for the huddle in the Obeya Room and Opi drafts the facilitation as you go — stage by stage, pillar by pillar. You edit and confirm.",
+                desc: "Runs the huddle with you in the Obeya Room — drafts the hand-off at every stage, calls out the pillar that needs attention, keeps the cascade honest. You edit, you confirm, you lead the room.",
               },
               {
                 icon: <MessagesSquare className="w-5 h-5" />,
                 title: "Ask Opi",
-                desc: "A grounded follow-up chat in the sidebar of every service — answers come from your live data, not generic advice.",
+                desc: "A grounded second opinion in the sidebar of every service, on call the moment you need it — answers built from what's actually on your board, not a generic playbook.",
               },
             ].map((s, i) => (
               <div
