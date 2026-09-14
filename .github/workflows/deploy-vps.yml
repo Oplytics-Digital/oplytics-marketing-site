@@ -39,6 +39,9 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            GIT_SHA=${{ github.sha }}
+          provenance: false
           tags: |
             ${{ steps.meta.outputs.image }}:latest
             ${{ steps.meta.outputs.image }}:${{ github.sha }}
@@ -54,7 +57,28 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          # `docker compose up -d` alone only compares compose config, not the
+          # :latest digest, so a fresh :latest with unchanged config would not
+          # recreate the container (see oplytics-portal's deploy.yml, hardened
+          # after hitting exactly this in incident #152).
           script: |
+            set -euo pipefail
             cd /opt/oplytics
             docker compose pull marketing-site
-            docker compose up -d marketing-site
+            docker compose up -d --pull always --force-recreate marketing-site
+
+      - name: Verify the running build
+        run: |
+          set -euo pipefail
+          url="https://oplyticsdigital.net/version.json"
+          for i in $(seq 1 20); do
+            commit=$(curl -fsS -m 10 "$url" | jq -r '.commit // empty' || true)
+            if [ "$commit" = "${{ github.sha }}" ]; then
+              echo "✅ Live build is $commit"
+              exit 0
+            fi
+            echo "waiting for /version.json to report ${{ github.sha }} (got '${commit:-none}')…"
+            sleep 15
+          done
+          echo "::error::Live /version.json never reported ${{ github.sha }} — deploy did not land"
+          exit 1
