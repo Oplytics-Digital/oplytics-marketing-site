@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1512 256" role="img" aria-label="Oplytics.digital — Operational Excellence. One Digital Platform. Powered by AI.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" role="img" aria-label="Oplytics.digital — Operational Excellence. One Digital Platform. Powered by AI.">
   <title>Oplytics.digital LinkedIn Company Page cover</title>
   <defs>
     <linearGradient id="oplytics-purple-cc" x1="0" y1="0" x2="1" y2="1">
@@ -15,37 +15,37 @@
     </radialGradient>
   </defs>
 
-  <rect width="1512" height="256" fill="url(#ground-cc)"/>
-  <rect width="1512" height="256" fill="url(#glow-cc)"/>
+  <rect width="1584" height="396" fill="url(#ground-cc)"/>
+  <rect width="1584" height="396" fill="url(#glow-cc)"/>
 
   <!-- Ghost target, right of centre (clear of the profile-logo overlap, kept off the lower-right corner per LinkedIn's crop guidance) -->
-  <g transform="translate(1220 118)" opacity="0.16">
-    <g fill="none" stroke="#8C34E9" stroke-width="5">
-      <circle r="120"/>
-      <circle r="85"/>
-      <circle r="50"/>
+  <g transform="translate(1280 198)" opacity="0.16">
+    <g fill="none" stroke="#8C34E9" stroke-width="6">
+      <circle r="160"/>
+      <circle r="113"/>
+      <circle r="66"/>
     </g>
   </g>
-  <g transform="translate(1220 118)" opacity="0.6">
-    <circle cx="0" cy="0" r="5" fill="#1DB8CE"/>
-    <circle cx="85" cy="-27" r="4.5" fill="#22C55E"/>
-    <circle cx="-47" cy="73" r="4.5" fill="#F59E0B"/>
+  <g transform="translate(1280 198)" opacity="0.6">
+    <circle cx="0" cy="0" r="6.5" fill="#1DB8CE"/>
+    <circle cx="113" cy="-36" r="6" fill="#22C55E"/>
+    <circle cx="-62" cy="97" r="6" fill="#F59E0B"/>
   </g>
 
   <!-- Mark -->
-  <circle cx="110" cy="108" r="42" fill="url(#oplytics-purple-cc)"/>
-  <g fill="none" stroke="#0A0E1A" stroke-width="6">
-    <circle cx="110" cy="108" r="25"/>
-    <circle cx="110" cy="108" r="12.5"/>
+  <circle cx="140" cy="178" r="55" fill="url(#oplytics-purple-cc)"/>
+  <g fill="none" stroke="#0A0E1A" stroke-width="8">
+    <circle cx="140" cy="178" r="33"/>
+    <circle cx="140" cy="178" r="16.5"/>
   </g>
-  <circle cx="122" cy="96" r="6.5" fill="#1DB8CE"/>
+  <circle cx="157" cy="161" r="8.5" fill="#1DB8CE"/>
 
   <!-- Wordmark -->
-  <text x="176" y="118" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="38" letter-spacing="-0.7" fill="#E2E8F0">Oplytics<tspan font-weight="300" fill="#8890A0">.digital</tspan></text>
+  <text x="226" y="192" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="50" letter-spacing="-0.9" fill="#E2E8F0">Oplytics<tspan font-weight="300" fill="#8890A0">.digital</tspan></text>
 
   <!-- Tagline -->
-  <text x="177" y="152" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="15.5" letter-spacing="0.4" fill="#8890A0">Operational Excellence. One Digital Platform. Powered by AI.</text>
+  <text x="227" y="236" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="20" letter-spacing="0.4" fill="#8890A0">Operational Excellence. One Digital Platform. Powered by AI.</text>
 
   <!-- Beta line -->
-  <text x="177" y="196" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="11" letter-spacing="1.6" fill="#1DB8CE">FREE BETA COHORT NOW OPEN &#160;&#183;&#160; OPLYTICS.DIGITAL/PITCH/BETA</text>
+  <text x="227" y="292" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14.5" letter-spacing="1.6" fill="#1DB8CE">FREE BETA COHORT NOW OPEN &#160;&#183;&#160; OPLYTICS.DIGITAL/PITCH/BETA</text>
 </svg>
