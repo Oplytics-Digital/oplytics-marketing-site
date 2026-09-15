@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1512 256" role="img" aria-label="Oplytics.digital — Operational Excellence. One Digital Platform. Powered by AI.">
+  <title>Oplytics.digital LinkedIn Company Page cover</title>
+  <defs>
+    <linearGradient id="oplytics-purple-cc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C34E9"/>
+      <stop offset="1" stop-color="#5B1FA6"/>
+    </linearGradient>
+    <linearGradient id="ground-cc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0E1A"/>
+      <stop offset="1" stop-color="#0D1220"/>
+    </linearGradient>
+    <radialGradient id="glow-cc" cx="0.82" cy="0.5" r="0.8">
+      <stop offset="0" stop-color="#8C34E9" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#8C34E9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1512" height="256" fill="url(#ground-cc)"/>
+  <rect width="1512" height="256" fill="url(#glow-cc)"/>
+
+  <!-- Ghost target, right of centre (clear of the profile-logo overlap, kept off the lower-right corner per LinkedIn's crop guidance) -->
+  <g transform="translate(1220 118)" opacity="0.16">
+    <g fill="none" stroke="#8C34E9" stroke-width="5">
+      <circle r="120"/>
+      <circle r="85"/>
+      <circle r="50"/>
+    </g>
+  </g>
+  <g transform="translate(1220 118)" opacity="0.6">
+    <circle cx="0" cy="0" r="5" fill="#1DB8CE"/>
+    <circle cx="85" cy="-27" r="4.5" fill="#22C55E"/>
+    <circle cx="-47" cy="73" r="4.5" fill="#F59E0B"/>
+  </g>
+
+  <!-- Mark -->
+  <circle cx="110" cy="108" r="42" fill="url(#oplytics-purple-cc)"/>
+  <g fill="none" stroke="#0A0E1A" stroke-width="6">
+    <circle cx="110" cy="108" r="25"/>
+    <circle cx="110" cy="108" r="12.5"/>
+  </g>
+  <circle cx="122" cy="96" r="6.5" fill="#1DB8CE"/>
+
+  <!-- Wordmark -->
+  <text x="176" y="118" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="38" letter-spacing="-0.7" fill="#E2E8F0">Oplytics<tspan font-weight="300" fill="#8890A0">.digital</tspan></text>
+
+  <!-- Tagline -->
+  <text x="177" y="152" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="15.5" letter-spacing="0.4" fill="#8890A0">Operational Excellence. One Digital Platform. Powered by AI.</text>
+
+  <!-- Beta line -->
+  <text x="177" y="196" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="11" letter-spacing="1.6" fill="#1DB8CE">FREE BETA COHORT NOW OPEN &#160;&#183;&#160; OPLYTICS.DIGITAL/PITCH/BETA</text>
+</svg>

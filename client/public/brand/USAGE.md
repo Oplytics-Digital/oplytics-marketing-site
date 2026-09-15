@@ -8,16 +8,17 @@ the September 2026 brand exploration.
 
 ## Files in this folder
 
-| File                                  | Use                                                              |
-| ------------------------------------- | ---------------------------------------------------------------- |
-| `oplytics-mark.svg`                   | **Primary mark.** Full colour, on dark or light. The default.    |
-| `oplytics-mark-mono.svg`              | One-colour mark. `fill: currentColor` — set `color` to place it. |
-| `oplytics-mark-512.png` / `-1024.png` | Raster mark, transparent background. Slides, avatars, favicons.  |
-| `oplytics-lockup-horizontal.svg`      | Mark + wordmark, side by side. **For dark backgrounds.**         |
-| `oplytics-lockup-horizontal-dark.svg` | Same, wordmark in navy. **For light backgrounds.**               |
-| `oplytics-lockup-stacked.svg`         | Mark over wordmark over the tagline. Square-ish contexts.        |
-| `oplytics-lockup-*.png`               | Raster versions of the above, transparent background.            |
-| `oplytics-linkedin-banner.svg`/`.png` | LinkedIn **company** cover, 1584 × 396. Upload the PNG.          |
+| File                                         | Use                                                                                                                                                                                                                          |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `oplytics-mark.svg`                          | **Primary mark.** Full colour, on dark or light. The default.                                                                                                                                                                |
+| `oplytics-mark-mono.svg`                     | One-colour mark. `fill: currentColor` — set `color` to place it.                                                                                                                                                             |
+| `oplytics-mark-512.png` / `-1024.png`        | Raster mark, transparent background. Slides, avatars, favicons.                                                                                                                                                              |
+| `oplytics-lockup-horizontal.svg`             | Mark + wordmark, side by side. **For dark backgrounds.**                                                                                                                                                                     |
+| `oplytics-lockup-horizontal-dark.svg`        | Same, wordmark in navy. **For light backgrounds.**                                                                                                                                                                           |
+| `oplytics-lockup-stacked.svg`                | Mark over wordmark over the tagline. Square-ish contexts.                                                                                                                                                                    |
+| `oplytics-lockup-*.png`                      | Raster versions of the above, transparent background.                                                                                                                                                                        |
+| `oplytics-linkedin-banner.svg`/`.png`        | LinkedIn **personal profile** background, 1584 × 396.                                                                                                                                                                        |
+| `oplytics-linkedin-company-cover.svg`/`.png` | LinkedIn **Company Page** cover, 1512 × 256 — LinkedIn's Company Page spec is a different (wider) aspect ratio than the personal-profile banner above; upload the PNG here, not the 1584×396 one, or the upload is rejected. |
 
 Favicon / app-icon files live one level up in `client/public/`: `favicon.ico`,
 `favicon.svg`, `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png`,
