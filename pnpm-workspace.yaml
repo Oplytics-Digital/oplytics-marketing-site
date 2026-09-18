@@ -1,0 +1,25 @@
+overrides:
+  tailwindcss>nanoid: "3.3.7"
+
+# pnpm 12 defaults to a 24h quarantine on newly-published package versions
+# (minimumReleaseAge, see https://pnpm.io/settings/dependency-resolution) as
+# a supply-chain safety net. lucide-react@1.47.0 was published ~23h before
+# this dependency bump was verified, one version bump behind the quarantine
+# window. Verified as a legitimate release from lucide-react's actual
+# maintainer (not a hijacked/typosquat publish) via `npm view lucide-react
+# maintainers`. This exclude can be dropped once the version has aged past
+# 24h naturally (i.e. any time after 2026-09-18, ~07:30 UTC) - it is not
+# needed going forward.
+minimumReleaseAgeExclude:
+  - lucide-react@1.47.0
+
+# pnpm 12 requires install/postinstall scripts to be explicitly allow-listed
+# (previously an ignorable warning under pnpm 10). Both were already running
+# their standard, required postinstall steps before this bump:
+# - esbuild: downloads its platform-specific native binary - the package is
+#   non-functional without it, and esbuild is already a trusted direct
+#   devDependency used directly in this repo's own build script.
+# - pnpm: installs its own bundled native helper/shim.
+allowBuilds:
+  esbuild: true
+  pnpm: true
