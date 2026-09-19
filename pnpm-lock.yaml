@@ -293,8 +293,8 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       openai:
-        specifier: ^7.16.0
-        version: 7.16.0(zod@4.6.5)
+        specifier: ^7.18.0
+        version: 7.18.0(zod@4.6.5)
       react:
         specifier: ^19.3.0
         version: 19.3.0
@@ -378,8 +378,8 @@ importers:
         specifier: ^8.5.28
         version: 8.5.28
       prettier:
-        specifier: ^3.9.7
-        version: 3.9.7
+        specifier: ^3.9.8
+        version: 3.9.8
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -2645,8 +2645,8 @@ packages:
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
-  openai@7.16.0:
-    resolution: {integrity: sha512-aeDOKi45g3KdjxBFOQAHLZ75p7ASPBR3Mx7h3P34+tNPsJ+Wzi7SRF8gOcXFvNuLh+7LxHRYgIERrTIzhdI2VA==}
+  openai@7.18.0:
+    resolution: {integrity: sha512-S+xxaUf9VzIHEPDUpUFnRgvR2Ho0K1yZEaSJ8gd7xQlCNm4sdOD7/QaKWLRTYK3MK6KhwpD3cOEC0F4OPG698A==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
@@ -2705,8 +2705,8 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.9.7:
-    resolution: {integrity: sha512-T3mF5P7HFzZVLDQuCUNtJj6WK1pcpLMweMNUVwGb01bLNkH9AkKxtZvmInw8K6bnn2O3d6/5RHl6zSHiBAD0Og==}
+  prettier@3.9.8:
+    resolution: {integrity: sha512-WRFq3Wn3WId7LLROfMLdH7xaFr2jR62wU8nLO6rQUOLOxNZUviyJQs1M0iIhLexSFy+L+w0ch66wtoO2jRjG0A==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5455,7 +5455,7 @@ snapshots:
     dependencies:
       wrappy: 1.0.2
 
-  openai@7.16.0(zod@4.6.5):
+  openai@7.18.0(zod@4.6.5):
     optionalDependencies:
       zod: 4.6.5
 
@@ -5511,7 +5511,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.9.7: {}
+  prettier@3.9.8: {}
 
   property-information@7.2.0: {}
 
