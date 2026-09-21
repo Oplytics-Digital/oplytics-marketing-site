@@ -5,7 +5,11 @@ WORKDIR /app
 
 # ---- install all deps, including dev deps needed to build ----
 FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
+# pnpm-workspace.yaml carries the `overrides`/`allowBuilds` config pnpm 12
+# reads (package.json's `pnpm.*` field is no longer honored). Without it here,
+# `--frozen-lockfile` sees an empty overrides config that doesn't match what's
+# baked into the lockfile and fails with ERR_PNPM_LOCKFILE_CONFIG_MISMATCH.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # ---- build client (vite) + server bundle (esbuild) ----
@@ -20,7 +24,7 @@ RUN pnpm run build
 
 # ---- production-only deps ----
 FROM base AS prod-deps
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile --prod
 
 # ---- final runtime image ----
