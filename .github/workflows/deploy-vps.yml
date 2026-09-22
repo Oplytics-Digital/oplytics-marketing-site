@@ -70,7 +70,7 @@ jobs:
       - name: Verify the running build
         run: |
           set -euo pipefail
-          url="https://oplyticsdigital.net/version.json"
+          url="https://oplytics.digital/version.json"
           for i in $(seq 1 20); do
             commit=$(curl -fsS -m 10 "$url" | jq -r '.commit // empty' || true)
             if [ "$commit" = "${{ github.sha }}" ]; then
