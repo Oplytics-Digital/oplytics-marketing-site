@@ -13,7 +13,6 @@ import Contact from "./pages/Contact";
 import WhyUs from "./pages/WhyUs";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-import Status from "./pages/Status";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
@@ -50,7 +49,6 @@ function Router() {
       <Route path="/resources/:slug" component={ResourceArticle} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
-      <Route path="/status" component={Status} />
       <Route path="/login" component={Login} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
