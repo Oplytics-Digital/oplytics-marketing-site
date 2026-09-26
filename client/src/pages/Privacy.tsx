@@ -13,7 +13,7 @@ const privacySections = [
     id: "introduction",
     title: "Introduction",
     content:
-      'Oplytics.digital ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.\n\nBy accessing or using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this privacy policy, please do not access our services.',
+      'Oplytics.digital ("we", "our", "us") is committed to protecting your data and privacy rights. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.\n\nBy accessing or using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this privacy policy, please do not access our services.',
   },
   {
     id: "information-collected",
@@ -99,7 +99,7 @@ export default function Privacy() {
       <div className="pt-16">
         <LegalContentBlock
           title="Privacy Policy"
-          lastUpdated="1 March 2026"
+          lastUpdated="26 September 2026"
           sections={privacySections}
         />
       </div>
