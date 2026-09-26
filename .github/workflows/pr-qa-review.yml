@@ -1,0 +1,11 @@
+name: PR QA Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  qa:
+    uses: Oplytics-Digital/.github/.github/workflows/pr-qa-review.yml@main
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
