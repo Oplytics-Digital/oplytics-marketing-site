@@ -1,0 +1,39 @@
+name: Legal document freshness check
+
+# Not part of normal code CI (ci.yml) deliberately — this checks content
+# correctness (did the "last updated" date move, are there leftover
+# placeholders), not code correctness, and is scoped to a narrow set of
+# files. Required status check on the PR; does not touch the tag-gated
+# deploy pipeline (deploy-vps.yml) at all.
+#
+# See .github/scripts/check-legal-docs.py for what it actually checks and
+# why — both checks tie to real mistakes already made once in
+# oplytics-marketing-site#172 (a stale date, a leftover [PLACEHOLDER]).
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "client/src/pages/Privacy.tsx"
+      - "client/src/pages/Terms.tsx"
+      - "client/src/pages/CookiePolicy.tsx"
+      - "client/src/pages/AcceptableUsePolicy.tsx"
+      - "client/src/pages/DataProcessingAgreement.tsx"
+      - "client/src/pages/ServiceLevelAgreement.tsx"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check legal doc freshness + placeholders
+        run: |
+          python3 .github/scripts/check-legal-docs.py \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}"
