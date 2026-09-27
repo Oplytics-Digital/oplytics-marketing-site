@@ -44,7 +44,15 @@ async function startServer() {
   // analysis). CSP is report-only for now — flip to cspMode: "enforce" once
   // the violation reports are clean. The public site's browser code only
   // calls same-origin (/api/ai/chat) and the portal leads API (a default).
-  app.use(securityHeaders());
+  //
+  // extraImgSrc: hero/demo images (services.ts's heroImage/demoImage/
+  // demoScreenshots) are served from CloudFront, not same-origin — without
+  // this, every one of those images fires a CSP violation report (harmless
+  // today since CSP is report-only, but would actually block them the
+  // moment anyone flips cspMode to "enforce"). See oplytics-portal#182.
+  app.use(
+    securityHeaders({ extraImgSrc: ["https://d2xsxph8kpxj0f.cloudfront.net"] })
+  );
 
   app.use(express.json());
 
