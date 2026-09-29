@@ -13,6 +13,10 @@ import Contact from "./pages/Contact";
 import WhyUs from "./pages/WhyUs";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import CookiePolicy from "./pages/CookiePolicy";
+import AcceptableUsePolicy from "./pages/AcceptableUsePolicy";
+import DataProcessingAgreement from "./pages/DataProcessingAgreement";
+import ServiceLevelAgreement from "./pages/ServiceLevelAgreement";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
@@ -49,6 +53,10 @@ function Router() {
       <Route path="/resources/:slug" component={ResourceArticle} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
+      <Route path="/cookies" component={CookiePolicy} />
+      <Route path="/aup" component={AcceptableUsePolicy} />
+      <Route path="/dpa" component={DataProcessingAgreement} />
+      <Route path="/sla" component={ServiceLevelAgreement} />
       <Route path="/login" component={Login} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}

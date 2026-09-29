@@ -1,7 +1,7 @@
 /**
  * TASK-07 / TASK-14 / TASK-15: LegalContentBlock Component
  * Design: "Neon Operations" — formatted legal text with auto-generated TOC
- * Used on /privacy and /terms pages.
+ * Used on /privacy, /terms, /cookies, /aup, /dpa and /sla pages.
  *
  * Features:
  *   - Auto-generated table of contents from sections
@@ -17,18 +17,23 @@ interface LegalSection {
   id: string;
   title: string;
   content: string;
+  /** Set false for annexes/schedules so clause numbers match the source document. */
+  numbered?: boolean;
 }
 
 interface LegalContentBlockProps {
   title: string;
   lastUpdated: string;
   sections: LegalSection[];
+  /** Preamble shown above the contents (parties, background, scope). */
+  intro?: string;
 }
 
 export default function LegalContentBlock({
   title,
   lastUpdated,
   sections,
+  intro,
 }: LegalContentBlockProps) {
   const [activeSection, setActiveSection] = useState("");
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
@@ -53,6 +58,12 @@ export default function LegalContentBlock({
     return () => observer.disconnect();
   }, [sections]);
 
+  // Unnumbered sections (annexes) don't consume a clause number.
+  let clause = 0;
+  const labels = sections.map(section =>
+    section.numbered === false ? section.title : `${++clause}. ${section.title}`
+  );
+
   function scrollToSection(id: string) {
     const el = sectionRefs.current[id];
     if (el) {
@@ -72,6 +83,11 @@ export default function LegalContentBlock({
           {title}
         </h1>
         <p className="text-sm text-[#596475]">Last updated: {lastUpdated}</p>
+        {intro && (
+          <div className="mt-6 text-sm text-[#8890A0] leading-relaxed whitespace-pre-line">
+            {intro}
+          </div>
+        )}
       </div>
 
       {/* Mobile TOC */}
@@ -103,7 +119,7 @@ export default function LegalContentBlock({
                         : "text-[#596475] hover:text-[#8890A0]"
                     }`}
                   >
-                    {i + 1}. {section.title}
+                    {labels[i]}
                   </button>
                 </li>
               ))}
@@ -129,7 +145,7 @@ export default function LegalContentBlock({
                       : "text-[#596475] hover:text-[#8890A0]"
                   }`}
                 >
-                  {i + 1}. {section.title}
+                  {labels[i]}
                 </button>
               </li>
             ))}
@@ -150,7 +166,7 @@ export default function LegalContentBlock({
                 className="text-xl font-bold text-white mb-4"
                 style={{ fontFamily: "Montserrat" }}
               >
-                {i + 1}. {section.title}
+                {labels[i]}
               </h2>
               <div className="text-sm text-[#8890A0] leading-relaxed whitespace-pre-line">
                 {section.content}
