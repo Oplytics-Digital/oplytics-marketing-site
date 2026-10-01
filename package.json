@@ -50,22 +50,22 @@
     "express-rate-limit": "8.7.0",
     "framer-motion": "^13.4.6",
     "input-otp": "^1.5.0",
-    "lucide-react": "^1.48.0",
+    "lucide-react": "^1.49.0",
     "nanoid": "^6.0.1",
     "next-themes": "^0.4.6",
-    "openai": "^7.24.0",
+    "openai": "^7.25.0",
     "react": "^19.3.0",
-    "react-day-picker": "^10.0.1",
+    "react-day-picker": "^10.0.2",
     "react-dom": "^19.3.0",
     "react-hook-form": "^7.89.0",
     "react-resizable-panels": "^4.14.1",
     "recharts": "^3.10.1",
     "sonner": "^2.0.8",
-    "streamdown": "^2.6.0",
+    "streamdown": "^2.7.0",
     "tailwind-merge": "^3.7.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "wouter": "^3.11.1",
+    "wouter": "^3.13.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -90,7 +90,7 @@
     "typescript": "5.6.3",
     "vite": "^8.3.1",
     "vite-plugin-manus-runtime": "^0.0.59",
-    "vitest": "^5.0.2"
+    "vitest": "^5.0.3"
   },
   "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9"
 }
