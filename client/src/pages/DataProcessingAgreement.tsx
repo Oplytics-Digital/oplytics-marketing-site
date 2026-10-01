@@ -14,7 +14,7 @@ const intro = `This Data Processing Agreement forms part of, and is a companion 
 
 BETWEEN:
 
-(1) Oplytics Digital, a company incorporated in England and Wales whose registered office is at 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom (the "Provider"); and
+(1) Oplytics Digital, a company incorporated in England and Wales with registered number 17475820 whose registered office is at 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom (the "Provider"); and
 
 (2) the Customer identified in the SaaS Subscription Agreement, whose registered office is at the address stated in that agreement (the "Customer"),
 
@@ -314,7 +314,7 @@ export default function DataProcessingAgreement() {
       <div className="pt-16">
         <LegalContentBlock
           title="Data Processing Agreement"
-          lastUpdated="27 September 2026"
+          lastUpdated="1 October 2026"
           intro={intro}
           sections={dpaSections}
         />
