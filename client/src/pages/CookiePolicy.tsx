@@ -2,7 +2,8 @@
  * Cookie Policy Page — #176
  * Design: "Neon Operations"
  * Source of truth: "Cookie Policy - Oplytics Digital" in the Legal Documents
- * Drive folder. Keep clause numbering in step with that document.
+ * Drive folder (30 Sep version), corrected to match the live site per #209.
+ * Keep clause numbering in step with that document.
  */
 import MarketingLayout from "@/components/shared/MarketingLayout";
 import LegalContentBlock from "@/components/shared/LegalContentBlock";
@@ -10,13 +11,13 @@ import SEOHead from "@/components/shared/SEOHead";
 
 const intro = `Oplytics Digital (the "Company", "we", "us" or "our")
 
-This Cookie Policy explains how we use cookies and similar technologies on our website at https://oplyticsdigital.net (the "Website") and, where applicable, in connection with the products and services we make available through it. It describes what these technologies are, the categories we use, the legal basis on which we use them, and how you can manage or withdraw your consent.
+This Cookie Policy explains how we use cookies and similar technologies on our website at https://oplytics.digital (the "Website") and, where applicable, in connection with the products and services we make available through it. It describes what these technologies are, the categories we use, the legal basis on which we use them, and how you can manage or withdraw your consent.
 
 This Cookie Policy should be read together with our Privacy Policy, which explains in more detail how we collect, use, and protect personal data more generally. Where cookies or similar technologies collect information that identifies you or relates to you, the Privacy Policy governs our wider processing of that personal data.
 
 We use cookies and similar technologies in accordance with the Privacy and Electronic Communications (EC Directive) Regulations 2003 (as amended) ("PECR") and, where personal data is processed, the retained EU law version of the General Data Protection Regulation ((EU) 2016/679) as it forms part of the law of England and Wales ("UK GDPR").
 
-At the date of this Policy, we use only Strictly Necessary Cookies to operate the Website. We do not currently use analytics, marketing or other Non-Essential Cookies, and no consent management tool is currently in place. If we introduce Non-Essential Cookies in future, we will update this Policy and implement a consent tool before doing so.`;
+We use a Consent Tool (a cookie banner) on the Website to obtain your consent before placing any Non-Essential Cookies. The Consent Tool includes a Performance or Analytics category for Umami Analytics, as set out in the table in Clause 4. At the date of this Policy, Umami Analytics is not enabled on the Website, so no Non-Essential Cookies are set, whatever you choose in the Consent Tool. If we enable it, it will only run where you have given your consent through the Consent Tool, and we will update this Policy before doing so.`;
 
 const cookieSections = [
   {
@@ -24,7 +25,7 @@ const cookieSections = [
     title: "Definitions and Interpretation",
     content: `1.1. In this Cookie Policy, the following definitions apply:
 
-"Consent Tool" means the consent management platform we use to obtain, record, and manage your consent preferences for non-essential cookies. We do not currently operate a Consent Tool, as we do not currently use any Non-Essential Cookies; this Policy will be updated, and a Consent Tool put in place, before any such cookies are introduced.
+"Consent Tool" means the cookie banner and related consent management functionality on the Website that we use to obtain, record, and manage your consent preferences for Non-Essential Cookies.
 
 "Cookie" means a small text file that is placed on your device (such as your computer, tablet, or mobile phone) when you visit a website, which allows the website or a third party to recognise your device and store certain information about your preferences or past actions.
 
@@ -64,7 +65,7 @@ const cookieSections = [
 
 (d) Targeting or Advertising Cookies — these Cookies are used to deliver content and advertising that is more relevant to you and your interests, to limit the number of times you see an advertisement, and to measure the effectiveness of advertising campaigns. They may be set through the Website by us or by our advertising partners.
 
-3.2. Strictly Necessary Cookies are placed on your device without requiring your consent, as explained in Clause 5. As set out above, we do not currently use any of the categories in Clauses 3.1(b), 3.1(c), or 3.1(d). If we introduce any Non-Essential Cookie in future, we will not set it until you have given your consent through a Consent Tool.`,
+3.2. Strictly Necessary Cookies are placed on your device without requiring your consent, as explained in Clause 5. The Consent Tool allows you to consent to Performance or Analytics Cookies within the meaning of Clause 3.1(c); at the date of this Policy, no such Cookies are set because the analytics service is not enabled. We do not currently use the categories described in Clauses 3.1(b) or 3.1(d). Non-Essential Cookies are not set until you have given your consent through the Consent Tool.`,
   },
   {
     id: "cookies-we-use",
@@ -83,7 +84,20 @@ __cf_bm, cf_clearance and related security cookies
 • Duration: Up to 30 minutes
 • Category: Strictly Necessary
 
-4.2. Because the Cookies used may change from time to time, for example if we introduce a Consent Tool and Non-Essential Cookies in future, we will update this list accordingly.`,
+Consent preference record (oplytics-cookie-consent, browser local storage)
+• Provider: Oplytics Digital
+• Purpose: Remembers the choices you make in the Consent Tool, so that we do not ask you again on every visit
+• Duration: 12 months, or until you clear your browser storage
+• Category: Strictly Necessary
+
+Umami Analytics
+• Provider: Umami (self-hosted)
+• Purpose: Measures website usage, such as which pages are visited, so that we can understand and improve the performance and content of the Website. Loaded only where you have given your consent through the Consent Tool.
+• Status: Not currently enabled on the Website. No Umami script is loaded and no Umami identifier is set, whatever you choose in the Consent Tool.
+• Duration: Not applicable while not enabled. Before enabling it, we will set out in this list any cookie or browser storage identifier it uses and its duration.
+• Category: Performance or Analytics
+
+4.2. Because the Cookies used may change from time to time, we will update this list accordingly.`,
   },
   {
     id: "legal-basis",
@@ -96,21 +110,21 @@ __cf_bm, cf_clearance and related security cookies
 
 5.2. Where Non-Essential Cookies collect Personal Data, we process that Personal Data on the basis of your consent, and our wider handling of that Personal Data is described in our Privacy Policy.
 
-5.3. We do not treat continued use of the Website, or the mere act of scrolling or navigating, as consent. Non-Essential Cookies will not be set until you actively give consent.`,
+5.3. We do not treat continued use of the Website, or the mere act of scrolling or navigating, as consent. Non-Essential Cookies will not be set until you actively give consent through the Consent Tool.`,
   },
   {
     id: "third-party",
     title: "Third-Party Cookies and Analytics",
     content: `6.1. Some Cookies on the Website are set by third parties that provide services to us, such as our security and infrastructure providers. These third parties may act as our processors or, in some cases, as independent controllers of the Personal Data they collect.
 
-6.2. We do not currently use any analytics services on the Website. If we introduce analytics in future, any Performance or Analytics Cookies used will be Non-Essential Cookies and will only be set where you have given your consent.
+6.2. We have configured Umami, a self-hosted website analytics tool, as a Performance or Analytics Cookie that is only loaded where you have given your consent through the Consent Tool. At the date of this Policy, Umami is not enabled on the Website. If we enable Umami, or introduce any further analytics service in future, it will be treated as a Non-Essential Cookie requiring your consent, and we will update this Policy before doing so.
 
 6.3. Where third parties act as independent controllers, their own privacy and cookie notices govern their use of the information they collect. We encourage you to review those notices. Further information about the identity of the relevant third parties is available in the cookie list in Clause 4.`,
   },
   {
     id: "manage-consent",
     title: "How to Manage or Withdraw Your Consent",
-    content: `7.1. Where we introduce Non-Essential Cookies in future, you will be able to manage your Cookie preferences at any time using a Consent Tool accessible on the Website, through which you can accept or reject each category of Non-Essential Cookies and change your preferences.
+    content: `7.1. You can manage your Cookie preferences at any time using the Consent Tool accessible on the Website (including through the "Cookie Settings" link in the Website footer), through which you can accept or reject each category of Non-Essential Cookies and change your preferences.
 
 7.2. You may withdraw your consent to any category of Non-Essential Cookies at any time, and as easily as you gave it, by revisiting the Consent Tool and updating your preferences. Withdrawing consent does not affect the lawfulness of any Cookie use carried out before you withdrew it.
 
@@ -144,7 +158,7 @@ export default function CookiePolicy() {
       <div className="pt-16">
         <LegalContentBlock
           title="Cookie Policy"
-          lastUpdated="27 September 2026"
+          lastUpdated="1 October 2026"
           intro={intro}
           sections={cookieSections}
         />
