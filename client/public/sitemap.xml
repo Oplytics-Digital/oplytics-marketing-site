@@ -19,4 +19,8 @@
   <url><loc>https://oplytics.digital/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://oplytics.digital/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://oplytics.digital/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://oplytics.digital/cookies</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://oplytics.digital/aup</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://oplytics.digital/dpa</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://oplytics.digital/sla</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
