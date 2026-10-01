@@ -314,7 +314,7 @@ export default function DataProcessingAgreement() {
       <div className="pt-16">
         <LegalContentBlock
           title="Data Processing Agreement"
-          lastUpdated="27 September 2026"
+          lastUpdated="1 October 2026"
           intro={intro}
           sections={dpaSections}
         />
