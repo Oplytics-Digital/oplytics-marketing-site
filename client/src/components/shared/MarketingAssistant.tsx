@@ -17,6 +17,15 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { X, Send, Loader2, User, Sparkles } from "lucide-react";
 import { Streamdown } from "streamdown";
+import { cn } from "@/lib/utils";
+import {
+  useCornerSnapDrag,
+  cornerPositionClasses,
+  cornerVerticalEdge,
+  cornerHorizontalEdge,
+} from "@/hooks/useCornerSnapDrag";
+
+const OPI_WIDGET_POSITION_KEY = "opi-widget-position";
 
 type Message = {
   role: "system" | "user" | "assistant";
@@ -166,11 +175,59 @@ export default function MarketingAssistant() {
 
   const busy = isLoading || streamingText !== null;
 
+  const {
+    corner,
+    isDragging,
+    dragOffset,
+    wrapperRef,
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
+    wasDragged,
+  } = useCornerSnapDrag(OPI_WIDGET_POSITION_KEY, "bottom-right");
+
+  const verticalEdge = cornerVerticalEdge(corner);
+  const horizontalEdge = cornerHorizontalEdge(corner);
+
+  const handleLauncherClick = () => {
+    // A drag-release shouldn't also register as a click that opens the panel.
+    if (wasDragged()) return;
+    openPanel();
+  };
+
+  // Center-anchored corners rely on a Tailwind `-translate-x-1/2` class for
+  // their resting position; while dragging we replace it with an inline
+  // transform, so fold that base centering into the live drag delta instead
+  // of letting the inline style silently clobber it.
+  const baseCenterOffset = horizontalEdge === "center" ? "-50%" : "0px";
+
   return (
     <>
       <style>{ORB_STYLES}</style>
 
-      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
+      <div
+        ref={wrapperRef}
+        className={cn(
+          "fixed z-[9999] flex gap-3",
+          cornerPositionClasses(corner),
+          // Stack order flips so the panel/nudge open toward the visible
+          // viewport rather than off the near edge, and cross-axis alignment
+          // tracks whichever side the launcher is currently snapped to.
+          verticalEdge === "top" ? "flex-col-reverse" : "flex-col",
+          horizontalEdge === "left" && "items-start",
+          horizontalEdge === "right" && "items-end",
+          horizontalEdge === "center" && "items-center"
+        )}
+        style={
+          isDragging
+            ? {
+                // Free-form tracking while dragging: layer the live pointer
+                // delta on top of the last-snapped corner's fixed position.
+                transform: `translate(calc(${baseCenterOffset} + ${dragOffset.x}px), ${dragOffset.y}px)`,
+              }
+            : undefined
+        }
+      >
         {/* ─── Open chat panel ─── */}
         {isOpen && (
           <div
@@ -288,11 +345,19 @@ export default function MarketingAssistant() {
           </div>
         )}
 
-        {/* ─── Proactive greeting nudge ─── */}
-        {!isOpen && showNudge && (
+        {/* ─── Proactive greeting nudge ───
+            Hidden while dragging/snapping so it doesn't float independently
+            mid-drag — it re-anchors to the launcher's new corner on its own
+            since it's a flex sibling of the same repositioned wrapper. */}
+        {!isOpen && showNudge && !isDragging && (
           <button
             onClick={openPanel}
-            className="oa-nudge flex max-w-[240px] items-center gap-2 rounded-2xl rounded-br-sm border border-[#1E2738] bg-[#0D1220] px-3.5 py-2.5 text-left text-xs font-medium text-white shadow-xl"
+            className={cn(
+              "oa-nudge flex max-w-[240px] items-center gap-2 rounded-2xl border border-[#1E2738] bg-[#0D1220] px-3.5 py-2.5 text-left text-xs font-medium text-white shadow-xl",
+              // The little "speech tail" corner should point toward the
+              // launcher, so it flips to whichever side is now the near edge.
+              verticalEdge === "top" ? "rounded-tr-sm" : "rounded-br-sm"
+            )}
           >
             <Sparkles className="h-3.5 w-3.5 shrink-0 text-[#1DB8CE]" />
             Questions about Oplytics? I can help 👋
@@ -302,9 +367,15 @@ export default function MarketingAssistant() {
         {/* ─── Launcher: orb + persistent "Ask Opi" label ─── */}
         {!isOpen && (
           <button
-            onClick={openPanel}
-            aria-label="Ask Opi — open AI assistant"
-            className="oa-launcher"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onClick={handleLauncherClick}
+            aria-label="Ask Opi — open AI assistant (drag to reposition)"
+            className={cn(
+              "oa-launcher touch-none select-none",
+              isDragging && "oa-launcher--dragging"
+            )}
           >
             <span className="oa-launcher__orb">
               <span className="oa-launcher__ping" aria-hidden />
@@ -390,6 +461,9 @@ const ORB_STYLES = `
              oa-glow 3.4s ease-in-out .6s infinite;
   transition: transform .25s ease, border-color .25s ease; }
 .oa-launcher:hover { transform: scale(1.04); border-color: #8C34E9; }
+.oa-launcher--dragging { cursor: grabbing; transform: scale(1.06); opacity: 0.92;
+  animation: none; border-color: #8C34E9; }
+.oa-launcher:not(.oa-launcher--dragging) { cursor: grab; }
 .oa-launcher__orb { position: relative; display: inline-flex; line-height: 0; }
 .oa-launcher__ping { position: absolute; inset: 0; border-radius: 9999px;
   border: 2px solid rgba(140,52,233,0.6); pointer-events: none;
