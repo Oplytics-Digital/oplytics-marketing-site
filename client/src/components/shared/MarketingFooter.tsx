@@ -1,15 +1,24 @@
 /**
  * TASK-03/30/31: Standardised MarketingFooter Component
- * Design: "Neon Operations" — dark footer with core/hub service grouping
+ * Design: "Neon Operations" — dark footer: brand, core platform, legal
  * Includes Cookie Settings link (TASK-30) and Resources link (TASK-31).
  */
 import { Link } from "wouter";
-import {
-  coreServices,
-  hubServices,
-  getServiceStatusColor,
-} from "@/config/services";
+import { coreServices, getServiceStatusColor } from "@/config/services";
 import { reopenCookieConsent } from "./CookieConsent";
+
+// OplyticsConnect stays in the services config (header, homepage, solution
+// pages) but is left out of the footer (#211).
+const footerCoreServices = coreServices.filter(s => s.id !== "smartconnect");
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/cookies", label: "Cookie Policy" },
+  { href: "/aup", label: "Acceptable Use Policy" },
+  { href: "/dpa", label: "Data Processing Agreement" },
+  { href: "/sla", label: "Service Level Agreement" },
+];
 
 export default function MarketingFooter() {
   const currentYear = new Date().getFullYear();
@@ -20,7 +29,7 @@ export default function MarketingFooter() {
       style={{ background: "#080C16" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Column 1: Logo & Copyright */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
@@ -76,7 +85,7 @@ export default function MarketingFooter() {
               Core Platform
             </span>
             <ul className="space-y-3">
-              {coreServices.map(service => (
+              {footerCoreServices.map(service => (
                 <li key={service.id}>
                   <Link
                     href={`/solutions/${service.slug}`}
@@ -95,93 +104,22 @@ export default function MarketingFooter() {
             </ul>
           </div>
 
-          {/* Column 3: Specialist Hubs */}
-          <div>
-            <span className="section-label text-[#1DB8CE] mb-4 block">
-              Specialist Hubs
-            </span>
-            <ul className="space-y-3">
-              {hubServices.map(service => (
-                <li key={service.id}>
-                  <Link
-                    href={`/solutions/${service.slug}`}
-                    className="flex items-center gap-2 text-sm text-[#8890A0] hover:text-white transition-colors"
-                  >
-                    <div
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{
-                        background: getServiceStatusColor(service.status),
-                      }}
-                    />
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Company & Legal */}
+          {/* Column 3: Legal */}
           <div>
             <span className="section-label text-[#596475] mb-4 block">
-              Company
+              Legal
             </span>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/why-us"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Why Oplytics
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/resources"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Resources
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-sm text-[#8890A0] hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
+              {legalLinks.map(link => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-[#8890A0] hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
