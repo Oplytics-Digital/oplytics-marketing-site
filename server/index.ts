@@ -11,7 +11,7 @@ import {
 } from "@pablo2410/core-server";
 import { ENV } from "./env";
 import { createLedgerHooks } from "./aiUsageClient";
-import { injectPageMeta } from "./pageMeta";
+import { injectPageMeta, injectPortalUrl } from "./pageMeta";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,7 +51,11 @@ async function startServer() {
   // today since CSP is report-only, but would actually block them the
   // moment anyone flips cspMode to "enforce"). See oplytics-portal#182.
   app.use(
-    securityHeaders({ extraImgSrc: ["https://d2xsxph8kpxj0f.cloudfront.net"] })
+    securityHeaders({
+      extraImgSrc: ["https://d2xsxph8kpxj0f.cloudfront.net"],
+      // Sandbox only: the contact form posts to PORTAL_URL when it is set.
+      extraConnectSrc: ENV.PORTAL_URL ? [new URL(ENV.PORTAL_URL).origin] : [],
+    })
   );
 
   app.use(express.json());
@@ -114,7 +118,7 @@ async function startServer() {
         return;
       }
       res.set("Content-Type", "text/html");
-      res.send(injectPageMeta(html, req.path));
+      res.send(injectPortalUrl(injectPageMeta(html, req.path), ENV.PORTAL_URL));
     });
   });
 

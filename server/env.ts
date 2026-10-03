@@ -20,6 +20,9 @@ const envSchema = z.object({
   // until they're set, so the site runs fine without them.
   AI_USAGE_LEDGER_URL: z.string().url().optional(),
   AI_USAGE_INGEST_SECRET: z.string().optional(),
+  // Portal address the login link and contact form point at. Unset = production.
+  // The sandbox sets this to its own Portal (http://localhost:3000).
+  PORTAL_URL: z.string().url().optional(),
 });
 
 export const ENV = envSchema.parse(process.env);
