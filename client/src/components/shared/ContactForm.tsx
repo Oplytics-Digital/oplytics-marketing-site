@@ -5,6 +5,7 @@
  * Fields: Name, Email, Company, Message
  * Form validation. Reusable across /contact and service pages.
  */
+import { getPortalUrl } from "@/lib/portalUrl";
 import { useState } from "react";
 import { Send, Loader2, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -52,7 +53,7 @@ export default function ContactForm({
       });
     }
     try {
-      const res = await fetch("https://portal.oplyticsdigital.net/api/leads", {
+      const res = await fetch(`${getPortalUrl()}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -189,3 +189,16 @@ export function injectPageMeta(html: string, pathname: string): string {
       `<meta property="og:description" content="${escapedDescription}" />`
     );
 }
+
+/**
+ * Tells the browser which Portal to link to. A meta tag, not an inline script,
+ * so it works under the site's CSP. No-op when unset (production default).
+ */
+export function injectPortalUrl(html: string, portalUrl?: string): string {
+  if (!portalUrl) return html;
+  const origin = new URL(portalUrl).origin.replace(/"/g, "&quot;");
+  return html.replace(
+    "</head>",
+    `<meta name="portal-url" content="${origin}" />\n</head>`
+  );
+}

@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import MarketingLayout from "@/components/shared/MarketingLayout";
 import { Link } from "wouter";
 import { ExternalLink, Loader2 } from "lucide-react";
+import { getPortalUrl } from "@/lib/portalUrl";
 
-const PLATFORM_LOGIN_URL = "https://portal.oplyticsdigital.net/login";
+const PLATFORM_LOGIN_URL = `${getPortalUrl()}/login`;
 
 export default function Login() {
   useEffect(() => {
