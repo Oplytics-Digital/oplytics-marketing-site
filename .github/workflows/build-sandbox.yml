@@ -14,6 +14,9 @@ name: Build sandbox image
 on:
   push:
     branches: [main]
+  # Manual run, for when a push to main didn't trigger this workflow (e.g. a
+  # PR auto-merged with GITHUB_TOKEN by the QA workflow, see subdomains#896).
+  workflow_dispatch:
 
 concurrency:
   group: build-sandbox
