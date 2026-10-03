@@ -11,7 +11,7 @@ import SEOHead from "@/components/shared/SEOHead";
 
 const intro = `These terms of service (the "Terms") are published by Oplytics Digital, a company incorporated in England and Wales with company number 17475820, whose registered office is at 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom (the "Provider", "Company", "we", "us" or "our").
 
-These Terms take effect on 27 September 2026 and govern your access to and use of the Oplytics platform, software and website at https://oplyticsdigital.net.`;
+These Terms take effect on 27 September 2026 and govern your access to and use of the Oplytics platform, software and website at https://oplytics.digital.`;
 
 const termsSections = [
   {
@@ -58,7 +58,7 @@ const termsSections = [
 
 "Trial Features" means any features, functionality or portions of the Platform made available to you free of charge, on a trial, beta, evaluation or preview basis.
 
-"Website" means the website operated by the Provider at https://oplyticsdigital.net.
+"Website" means the website operated by the Provider at https://oplytics.digital.
 
 2.2. In these Terms: (a) a reference to a clause is to a clause of these Terms; (b) headings are for convenience only and do not affect interpretation; (c) the words "including", "include" and "in particular" are illustrative and do not limit the words preceding them; (d) a reference to writing includes email; and (e) any reference to a statute or statutory provision is a reference to it as amended, extended or re-enacted from time to time.`,
   },
@@ -231,7 +231,7 @@ export default function Terms() {
       <div className="pt-16">
         <LegalContentBlock
           title="Terms of Service"
-          lastUpdated="27 September 2026"
+          lastUpdated="3 October 2026"
           intro={intro}
           sections={termsSections}
         />
